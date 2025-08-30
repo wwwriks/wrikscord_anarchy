@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1w7bjrerwfk"]
+[gd_scene load_steps=13 format=3 uid="uid://c1w7bjrerwfk"]
 
+[ext_resource type="Texture2D" uid="uid://dk0q2sebv02ic" path="res://Anna/powerlines.png" id="1_bb7to"]
 [ext_resource type="PackedScene" uid="uid://cu6arx1xq7hnr" path="res://Anna/epatraktor.glb" id="1_mojwp"]
 [ext_resource type="Texture2D" uid="uid://c87gbabodlv5b" path="res://Anna/sky3.png" id="2_7eklt"]
+[ext_resource type="Texture2D" uid="uid://dvkwnbo87myf" path="res://Anna/tree.png" id="2_tlw80"]
 [ext_resource type="Texture2D" uid="uid://cab7s3124y214" path="res://Anna/gras.jpg" id="3_4egxq"]
 [ext_resource type="AudioStream" uid="uid://bntqc707in06w" path="res://Anna/dunk.wav" id="4_7eklt"]
 [ext_resource type="AudioStream" uid="uid://dyk6gwqbkh10d" path="res://Anna/ambience.wav" id="5_4egxq"]
@@ -42,17 +44,1170 @@ uv1_triplanar = true
 
 [node name="World" type="Node3D"]
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(14.5386, 0, 0, 0, 13.6287, 0.0371752, 0, -0.429431, 1.17982, 15.573, 31.3779, -107.26)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("1_bb7to")
+
+[node name="tree" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 9.37014, 8.69617, -17.3142)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree2" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 12.5626, 8.69617, -25.9504)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree3" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 16.3317, 8.69617, -34.6744)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree4" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 20.6181, 8.69617, -34.6744)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree5" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 12.4933, 8.69617, -1.773)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree6" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 15.6858, 8.69617, -10.4092)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree7" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 19.4549, 8.69617, -19.1331)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree8" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 23.7413, 8.69617, -19.1331)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree9" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 13.9008, 8.69617, 14.539)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree10" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 17.0933, 8.69617, 5.90281)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree11" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 20.8624, 8.69617, -2.82114)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree12" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, 25.1488, 8.69617, -2.82114)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree13" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -106.682, 8.69617, -17.3142)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree14" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -103.49, 8.69617, -25.9504)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree15" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -99.7209, 8.69617, -34.6744)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree16" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -95.4344, 8.69617, -34.6744)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree17" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -103.559, 8.69617, -1.773)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree18" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -100.367, 8.69617, -10.4092)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree19" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -96.5977, 8.69617, -19.1331)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree20" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -92.3113, 8.69617, -19.1331)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree21" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -102.152, 8.69617, 14.539)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree22" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -98.9593, 8.69617, 5.90281)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree23" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -95.1902, 8.69617, -2.82114)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree24" type="Sprite3D" parent="."]
+transform = Transform3D(1.88934, 0, 0, 0, 3.38442, 0.0322338, 0, -0.106641, 1.023, -90.9037, 8.69617, -2.82114)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree25" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -70.5019, 8.69617, -54.169)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree27" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -52.0155, 8.69617, -51.3249)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree28" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -51.0436, 8.69617, -47.1502)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree29" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -84.9303, 8.69617, -47.6035)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree30" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -75.7952, 8.69617, -46.4523)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree31" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -66.4438, 8.69617, -44.7593)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree32" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -65.4719, 8.69617, -40.5846)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree33" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -100.498, 8.69617, -42.5341)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree34" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -91.3632, 8.69617, -41.3829)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree35" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -82.0119, 8.69617, -39.6899)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree36" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -81.04, 8.69617, -35.5152)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree37" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -78.5854, 8.69617, 20.4222)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree38" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -69.4503, 8.69617, 21.5734)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree39" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -60.0989, 8.69617, 23.2664)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree40" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -59.127, 8.69617, 27.4411)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree41" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -93.0137, 8.69617, 26.9878)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree42" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -83.8786, 8.69617, 28.139)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree43" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -74.5273, 8.69617, 29.832)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree44" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -73.5554, 8.69617, 34.0067)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree45" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -108.582, 8.69617, 32.0572)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree46" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -99.4466, 8.69617, 33.2084)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree47" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -90.0953, 8.69617, 34.9013)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree48" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -89.1234, 8.69617, 39.0761)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree49" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -30.3204, 8.69617, 24.1392)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree50" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -21.1853, 8.69617, 25.2904)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree51" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -11.8339, 8.69617, 26.9833)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree52" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -10.8621, 8.69617, 31.1581)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree53" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -44.7487, 8.69617, 30.7048)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree54" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -35.6136, 8.69617, 31.856)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree55" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -26.2623, 8.69617, 33.5489)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree56" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -25.2904, 8.69617, 37.7237)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree57" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -60.3168, 8.69617, 35.7742)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree58" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -51.1817, 8.69617, 36.9254)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree59" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -41.8303, 8.69617, 38.6183)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree60" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -40.8584, 8.69617, 42.7931)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree61" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 17.6796, 8.69617, 23.1392)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree62" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 26.8147, 8.69617, 24.2904)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree63" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 36.1661, 8.69617, 25.9833)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree64" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 37.1379, 8.69617, 30.1581)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree65" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 3.25125, 8.69617, 29.7048)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree66" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 12.3864, 8.69617, 30.856)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree67" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 21.7377, 8.69617, 32.5489)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree68" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 22.7096, 8.69617, 36.7237)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree69" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -12.3168, 8.69617, 34.7742)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree70" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, -3.18165, 8.69617, 35.9254)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree71" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 6.16968, 8.69617, 37.6183)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree72" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 7.14156, 8.69617, 41.7931)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree73" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 27.996, 8.69617, -52.2973)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree74" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 37.1311, 8.69617, -51.1462)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree75" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 46.4825, 8.69617, -49.4532)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree76" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 47.4543, 8.69617, -45.2784)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree77" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 13.5677, 8.69617, -45.7317)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree78" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 22.7028, 8.69617, -44.5806)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree79" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 32.0541, 8.69617, -42.8876)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree80" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 33.026, 8.69617, -38.7128)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree81" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 1.47489, 8.69617, -40.6624)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree82" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 10.61, 8.69617, -39.5112)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree83" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 19.9613, 8.69617, -37.8182)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree84" type="Sprite3D" parent="."]
+transform = Transform3D(0.428382, 0.103863, -0.996352, 0, 3.38442, 0.0322338, 1.84014, -0.0241793, 0.23195, 20.9332, 8.69617, -33.6435)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree85" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -77.8273, 8.69617, 7.27277)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree86" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -80.1506, 8.69617, 16.1822)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree87" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -83.039, 8.69617, 25.2359)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree88" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -87.3044, 8.69617, 25.6596)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree89" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -82.4712, 8.69617, -7.8837)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree90" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -84.7944, 8.69617, 1.02573)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree91" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -87.6829, 8.69617, 10.0795)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree92" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -91.9483, 8.69617, 10.5031)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree93" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -85.484, 8.69617, -23.9767)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree94" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -87.8072, 8.69617, -15.0673)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree95" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -90.6957, 8.69617, -6.01354)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree96" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, -94.9611, 8.69617, -5.5899)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree97" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 37.6571, 8.69617, -4.19712)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree98" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 35.3338, 8.69617, 4.71231)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree99" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 32.4454, 8.69617, 13.7661)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree100" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 28.18, 8.69617, 14.1897)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree101" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 33.0132, 8.69617, -19.3536)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree102" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 30.6899, 8.69617, -10.4442)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree103" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 27.8015, 8.69617, -1.39041)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree104" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 23.5361, 8.69617, -0.966768)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree105" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 30.0005, 8.69617, -35.4466)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree106" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 27.6771, 8.69617, -26.5372)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree107" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 24.7887, 8.69617, -17.4834)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree108" type="Sprite3D" parent="."]
+transform = Transform3D(-1.88009, 0.0105397, -0.101106, 0, 3.38442, 0.0322338, 0.18673, 0.106118, -1.01799, 20.5233, 8.69617, -17.0598)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree109" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 5.29624, 8.69617, 36.0531)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree110" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -3.90793, 8.69617, 35.8104)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree111" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -13.3808, 8.69617, 35.05)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree112" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -14.7605, 8.69617, 30.9917)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree113" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 19.005, 8.69617, 28.0937)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree114" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 9.80088, 8.69617, 27.851)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree115" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 0.328007, 8.69617, 27.0905)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree116" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -1.05173, 8.69617, 23.0323)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree117" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 33.9958, 8.69617, 21.5104)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree118" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 24.7917, 8.69617, 21.2678)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree119" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 15.3188, 8.69617, 20.5073)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree120" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 13.9391, 8.69617, 16.449)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree121" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 5.96799, 8.69617, -38.9719)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree122" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -3.23617, 8.69617, -39.2146)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree123" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -12.709, 8.69617, -39.975)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree124" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -14.0888, 8.69617, -44.0333)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree125" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 19.6768, 8.69617, -46.9314)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree126" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 10.4726, 8.69617, -47.1741)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree127" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 0.999763, 8.69617, -47.9345)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree128" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -0.379978, 8.69617, -51.9928)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree129" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 34.6676, 8.69617, -53.5146)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree130" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 25.4634, 8.69617, -53.7573)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree131" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 15.9905, 8.69617, -54.5177)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree132" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, 14.6108, 8.69617, -58.576)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree133" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -42.428, 8.69617, -37.9005)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree135" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -61.1051, 8.69617, -38.9036)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree137" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -28.7192, 8.69617, -45.8599)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree139" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -47.3963, 8.69617, -46.8631)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree141" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -13.7285, 8.69617, -52.4431)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree143" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -32.4055, 8.69617, -53.4463)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree144" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -33.7852, 8.69617, -57.5045)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree145" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -90.0942, 8.69617, -32.1614)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree146" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -99.2984, 8.69617, -32.4041)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree147" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -108.771, 8.69617, -33.1645)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree148" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -110.151, 8.69617, -37.2228)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree149" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -76.3854, 8.69617, -40.1208)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree150" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -85.5896, 8.69617, -40.3635)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree151" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -95.0624, 8.69617, -41.1239)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree152" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -96.4422, 8.69617, -45.1822)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree154" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -70.5988, 8.69617, -46.9467)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree155" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -80.0717, 8.69617, -47.7071)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree156" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -81.4514, 8.69617, -51.7654)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree157" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -92.9044, 8.69617, 43.9255)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree158" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -102.109, 8.69617, 43.6828)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree159" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -111.581, 8.69617, 42.9223)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree160" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -112.961, 8.69617, 38.8641)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree161" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -79.1956, 8.69617, 35.966)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree162" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -88.3998, 8.69617, 35.7233)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree163" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -97.8727, 8.69617, 34.9629)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree164" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -99.2524, 8.69617, 30.9046)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree165" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -67.6631, 8.69617, 29.7263)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree166" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -76.8673, 8.69617, 29.4836)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree167" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -86.3401, 8.69617, 28.7231)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="tree168" type="Sprite3D" parent="."]
+transform = Transform3D(-0.608152, -0.100965, 0.96855, 5.8956e-11, 3.38442, 0.0322338, -1.78879, 0.0343261, -0.329287, -87.7199, 8.69617, 24.6649)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("2_tlw80")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(14.5386, 0, 0, 0, 13.6287, 0.0371752, 0, -0.429431, 1.17982, -48.5221, 31.3779, -92.371)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("1_bb7to")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(14.5386, 0, 0, 0, 13.6287, 0.0371752, 0, -0.429431, 1.17982, -115.742, 31.3779, -83.4602)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 2
+texture = ExtResource("1_bb7to")
+
 [node name="epatraktor" parent="." instance=ExtResource("1_mojwp")]
-transform = Transform3D(-0.00968947, 0, 0.00247269, 0, 0.01, 0, -0.00247269, 0, -0.00968947, 3.42675, 1.07485, 2.69475)
+transform = Transform3D(-0.0193789, 0, 0.00494538, 0, 0.02, 0, -0.00494538, 0, -0.0193789, 7.30865, 1.81343, 3.39841)
 
 [node name="epatraktor4" parent="." instance=ExtResource("1_mojwp")]
-transform = Transform3D(-0.00769444, 0, -0.00638714, 0, 0.01, 0, 0.00638714, 0, -0.00769444, -2.36405, 1.07485, 2.34359)
+transform = Transform3D(-0.0153889, 0, -0.0127743, 0, 0.02, 0, 0.0127743, 0, -0.0153889, -5.88302, 1.64575, 9.34227)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.463853, -0.815956, 0.345047, 0, 0.389482, 0.921034, -0.885912, -0.427224, 0.180662, -51.4299, 1.42917, -7.90672)
+visible = false
+editor_only = true
 
 [node name="epatraktor2" parent="." instance=ExtResource("1_mojwp")]
-transform = Transform3D(0.000955889, -2.69329e-05, -0.00995417, 5.33753e-07, 0.00999996, -2.70055e-05, 0.00995421, 2.04993e-06, 0.000955887, -1.17882, 1.07485, -5.10345)
+transform = Transform3D(0.00191178, -5.38658e-05, -0.0199083, 1.06751e-06, 0.0199999, -5.40111e-05, 0.0199084, 4.10024e-06, 0.00191177, -7.55058, 1.64575, -4.52155)
 
 [node name="epatraktor3" parent="." instance=ExtResource("1_mojwp")]
-transform = Transform3D(-0.00747798, 0, -0.00663926, 0, 0.01, 0, 0.00663926, 0, -0.00747798, 2.619, 1.0909, -4.47696)
+transform = Transform3D(-0.014956, 0, -0.0132785, 0, 0.02, 0, 0.0132785, 0, -0.014956, 2.619, 1.6618, -4.47696)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bb7to")
@@ -65,7 +1220,7 @@ use_collision = true
 size = Vector3(148.082, 11.5996, 95.6023)
 
 [node name="Dunk" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(-0.0159024, 0.999631, -0.0220104, -0.0635137, -0.0229786, -0.997716, -0.997854, -0.0144681, 0.0638556, 3.17338, 1.29495, 2.60033)
+transform = Transform3D(-0.0159024, 0.999631, -0.0220104, -0.0635137, -0.0229786, -0.997716, -0.997854, -0.0144681, 0.0638557, 7.51775, 2.20762, 3.67783)
 stream = ExtResource("4_7eklt")
 max_db = 6.0
 autoplay = true
@@ -82,19 +1237,14 @@ autoplay = true
 panning_strength = 0.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0445261, 0.999008, 0, -0.999008, -0.0445261, 1.45939, 4.30796, -1.17078)
+transform = Transform3D(1, 0, 0, 0, -0.0445261, 0.999008, 0, -0.999008, -0.0445261, -1.12004, 9.88354, 0.666184)
 light_color = Color(1, 0.871665, 0.639309, 1)
 light_energy = 16.0
 light_indirect_energy = 5.909
 light_volumetric_fog_energy = 8.545
 shadow_enabled = true
-spot_range = 11.7028
+spot_range = 16.5831
 spot_angle = 66.0034
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SpotLight3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117789, -2.64277)
-light_volumetric_fog_energy = 5.664
-sky_mode = 2
-
 [node name="GuyDude" parent="." instance=ExtResource("6_4egxq")]
-transform = Transform3D(1, 0, 0, 0, 0.300767, 0, 0, 0, 1, -24.5104, 0.406748, -5.20718)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.4766, 0.56065, 10.8557)
