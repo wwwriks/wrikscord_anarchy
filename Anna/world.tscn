@@ -1,29 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1w7bjrerwfk"]
+[gd_scene load_steps=10 format=3 uid="uid://c1w7bjrerwfk"]
 
 [ext_resource type="PackedScene" uid="uid://cu6arx1xq7hnr" path="res://Anna/epatraktor.glb" id="1_mojwp"]
+[ext_resource type="Texture2D" uid="uid://c87gbabodlv5b" path="res://Anna/sky3.png" id="2_7eklt"]
+[ext_resource type="Texture2D" uid="uid://cab7s3124y214" path="res://Anna/gras.jpg" id="3_4egxq"]
+[ext_resource type="AudioStream" uid="uid://bntqc707in06w" path="res://Anna/dunk.wav" id="4_7eklt"]
+[ext_resource type="AudioStream" uid="uid://dyk6gwqbkh10d" path="res://Anna/ambience.wav" id="5_4egxq"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_01hg5"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n54rb"]
+resource_local_to_scene = true
+panorama = ExtResource("2_7eklt")
+
+[sub_resource type="Sky" id="Sky_n54rb"]
+sky_material = SubResource("PanoramaSkyMaterial_n54rb")
+radiance_size = 6
+
+[sub_resource type="Environment" id="Environment_bb7to"]
+background_mode = 2
+sky = SubResource("Sky_n54rb")
+sky_rotation = Vector3(0, 1.66853, 0)
+ambient_light_sky_contribution = 0.0
+ssao_radius = 5.25
+ssao_intensity = 9.5
+ssao_power = 0.494815
+glow_intensity = 8.0
+fog_light_color = Color(0.337255, 0.309804, 0.309804, 1)
+fog_light_energy = 0.0
+fog_density = 0.181
+fog_sky_affect = 0.0
+fog_height = 1024.0
+fog_height_density = -3.3684
+volumetric_fog_density = 0.578
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 971.73
+volumetric_fog_length = 71.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bb7to"]
+albedo_texture = ExtResource("3_4egxq")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
 
 [node name="World" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.315247, 0.0606542, -2.54782)
-size = Vector3(18.2034, 1, 17.814)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40717, 1.5535, 1.77563)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_01hg5")
-
 [node name="epatraktor" parent="." instance=ExtResource("1_mojwp")]
-transform = Transform3D(-0.00852549, 0, 0.00522647, 0, 0.01, 0, -0.00522647, 0, -0.00852549, 3.42675, 1.07485, 2.69475)
+transform = Transform3D(-0.00968947, 0, 0.00247269, 0, 0.01, 0, -0.00247269, 0, -0.00968947, 3.42675, 1.07485, 2.69475)
 
 [node name="epatraktor4" parent="." instance=ExtResource("1_mojwp")]
-transform = Transform3D(-0.0099122, 0, -0.00132222, 0, 0.01, 0, 0.00132222, 0, -0.0099122, 3.42675, 1.07485, -1.56695)
+transform = Transform3D(-0.00769444, 0, -0.00638714, 0, 0.01, 0, 0.00638714, 0, -0.00769444, -2.36405, 1.07485, 2.34359)
 
 [node name="epatraktor2" parent="." instance=ExtResource("1_mojwp")]
 transform = Transform3D(0.000955889, -2.69329e-05, -0.00995417, 5.33753e-07, 0.00999996, -2.70055e-05, 0.00995421, 2.04993e-06, 0.000955887, -1.17882, 1.07485, -5.10345)
 
 [node name="epatraktor3" parent="." instance=ExtResource("1_mojwp")]
 transform = Transform3D(-0.00747798, 0, -0.00663926, 0, 0.01, 0, 0.00663926, 0, -0.00747798, 2.619, 1.0909, -4.47696)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bb7to")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9614, 0.0606542, -6.36833)
+material_override = SubResource("StandardMaterial3D_bb7to")
+lod_bias = 0.001
+size = Vector3(148.082, 1, 95.6023)
+
+[node name="Dunk" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.0159024, 0.999631, -0.0220104, -0.0635137, -0.0229786, -0.997716, -0.997854, -0.0144681, 0.0638556, 3.17338, 1.29495, 2.60033)
+stream = ExtResource("4_7eklt")
+max_db = 6.0
+max_distance = 25.0
+emission_angle_degrees = 73.0
+attenuation_filter_db = -45.3
+doppler_tracking = 2
+
+[node name="Ambience" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.73516, 0, 0.624485)
+stream = ExtResource("5_4egxq")
+attenuation_model = 3
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0445261, 0.999008, 0, -0.999008, -0.0445261, 1.45939, 4.30796, -1.17078)
+light_color = Color(1, 0.871665, 0.639309, 1)
+light_energy = 16.0
+light_indirect_energy = 5.909
+light_volumetric_fog_energy = 8.545
+shadow_enabled = true
+spot_range = 11.7028
+spot_angle = 66.0034
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SpotLight3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117789, -2.64277)
+light_volumetric_fog_energy = 5.664
+sky_mode = 2
