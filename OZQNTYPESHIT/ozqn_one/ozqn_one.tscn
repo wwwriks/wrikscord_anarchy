@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm3krxqvjwrwt"]
+
+[ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_e718k"]
+[ext_resource type="PackedScene" uid="uid://btwml6prkv7hi" path="res://OZQNTYPESHIT/ozqn_one/guy_dude.tscn" id="2_jll4m"]
+
+[sub_resource type="Gradient" id="Gradient_jll4m"]
+offsets = PackedFloat32Array(0.182065, 0.663043)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jll4m"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kl0dm"]
+seamless = true
+color_ramp = SubResource("Gradient_jll4m")
+noise = SubResource("FastNoiseLite_jll4m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtbqp"]
+shader = ExtResource("1_e718k")
+shader_parameter/sun_size = 0.975
+shader_parameter/sky_color = Color(0, 0.17, 0.147333, 1)
+shader_parameter/ground_color = Color(0, 0, 0, 1)
+shader_parameter/ground_blend_start = 0.0
+shader_parameter/cloud_color = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/cloud_noise = SubResource("NoiseTexture2D_kl0dm")
+shader_parameter/cloud_size = 0.2
+shader_parameter/wind_dir = Vector2(1, 0.5)
+shader_parameter/wind_speed = 0.025
+
+[sub_resource type="Sky" id="Sky_1f4c6"]
+sky_material = SubResource("ShaderMaterial_xtbqp")
+
+[sub_resource type="Environment" id="Environment_tvbku"]
+background_mode = 2
+sky = SubResource("Sky_1f4c6")
+glow_bloom = 1.0
+fog_mode = 1
+fog_light_color = Color(0, 0.168627, 0.14902, 1)
+fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 25.0
+fog_depth_end = 50.0
+
+[node name="OzqnOne" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tvbku")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5)
+use_collision = true
+size = Vector3(5, 1, 18)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
+use_collision = true
+size = Vector3(7, 1, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+use_collision = true
+size = Vector3(7, 1, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 1, -6.5)
+use_collision = true
+size = Vector3(18, 1, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 1, -6.5)
+use_collision = true
+size = Vector3(18, 1, 1)
+
+[node name="GuyDude" parent="." instance=ExtResource("2_jll4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
