@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b65s83id18124"]
+
+[ext_resource type="Script" uid="uid://b1nhpaqru4rta" path="res://OZQNTYPESHIT/shaders/post_process_mesh.gd" id="1_rpbwm"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_w5oth"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="PostProcessMesh" type="MeshInstance3D"]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_w5oth")
+script = ExtResource("1_rpbwm")
