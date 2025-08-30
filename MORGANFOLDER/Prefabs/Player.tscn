@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5cdtd43eeyjb"]
+
+[ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/Prefabs/BallMovement.gd" id="1_o6v7y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tr0yl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_tr0yl"]
+
+[node name="Player" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_o6v7y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("SphereShape3D_tr0yl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("SphereMesh_tr0yl")
+
+[node name="Node3D" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 10)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)

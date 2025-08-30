@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://cyq0iwyu5wu5h"]
+[gd_scene load_steps=3 format=3 uid="uid://cyq0iwyu5wu5h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ksm85"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksm85"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Pillar" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+radius = 2.0
+height = 3.5
+
+[node name="Water" type="Node3D" parent="." groups=["Water"]]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50, 0)
+
+[node name="Area3D" type="Area3D" parent="Water"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Water/Area3D"]
+mesh = SubResource("BoxMesh_ksm85")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
+shape = SubResource("BoxShape3D_ksm85")
