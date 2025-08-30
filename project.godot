@@ -51,6 +51,11 @@ space={
 ]
 }
 
+[physics]
+
+common/physics_ticks_per_second=240
+common/physics_interpolation=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
