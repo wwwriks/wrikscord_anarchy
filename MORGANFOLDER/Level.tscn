@@ -27,7 +27,7 @@ emission = Color(0.184599, 0.903539, 0.385767, 1)
 emission_energy_multiplier = 0.25
 rim_enabled = true
 refraction_enabled = true
-uv1_scale = Vector3(50, 500, 500)
+uv1_scale = Vector3(500, 500, 500)
 proximity_fade_distance = 0.01
 distance_fade_mode = 1
 distance_fade_min_distance = 690.33
@@ -47,6 +47,7 @@ environment = SubResource("Environment_7jp7q")
 
 [node name="Pillar" parent="." instance=ExtResource("1_fl3j2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+radius = 42.0
 
 [node name="Water" type="Node3D" parent="." groups=["Water"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50, 0)
@@ -66,11 +67,11 @@ shape = SubResource("BoxShape3D_ksm85")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
 [node name="Pillar2" parent="." instance=ExtResource("1_fl3j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 10.125, 0)
-radius = 13.0
-height = 19.75
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 8.125, 0)
+radius = 16.0
+height = 16.0
 
 [node name="Pillar3" parent="." instance=ExtResource("1_fl3j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 10.125, 0)
-radius = 13.0
-height = 19.75
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 8.125, 0)
+radius = 16.0
+height = 16.0

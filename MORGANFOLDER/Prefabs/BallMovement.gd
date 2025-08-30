@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @export var moveSpeed = 6
-@export var maxSpeed = 24
-@export var acceleration = 4
+@export var maxSpeed = 96
+@export var acceleration = 48
 @export var jumpForce = 8
 @export var grav = 3
 
@@ -18,10 +18,15 @@ func _ready():
 	cam = $Node3D/Camera3D
 
 func _physics_process(delta: float) -> void:
-	var mDir = camPivot.rotation.normalized()
+	var forAxis = Input.get_axis("up","down")
+	var mDir = sign(forAxis) * camPivot.global_transform.basis.z.normalized()
 	var tDir = mDir * maxSpeed
+	if abs(velocity) > tDir:
+		mDir = Vector3.ZERO
 	velocity = velocity.move_toward(tDir,delta*acceleration)
 	velocity.y -= grav
+	if Input.is_action_just_pressed("space"):
+		velocity.y = jumpForce
 	move_and_slide()
 	pass
 # If an input is detected

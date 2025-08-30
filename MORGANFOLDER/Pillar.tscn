@@ -6,7 +6,10 @@
 albedo_texture = ExtResource("1_gi0o5")
 
 [node name="Pillar" type="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.125, 0)
 material_override = SubResource("StandardMaterial3D_7jp7q")
 use_collision = true
-radius = 41.0
-height = 3.5
+radius = 8.0
+height = 8.0
+
+[node name="Node3D" type="Node3D" parent="."]
