@@ -6,7 +6,7 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_tr0yl"]
 
-[node name="Player" type="Node3D"]
+[node name="Ball" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("1_o6v7y")

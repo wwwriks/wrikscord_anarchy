@@ -1,4 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyq0iwyu5wu5h"]
+[gd_scene load_steps=10 format=3 uid="uid://cyq0iwyu5wu5h"]
+
+[ext_resource type="PackedScene" uid="uid://ce62t08qsuaq8" path="res://MORGANFOLDER/Pillar.tscn" id="1_fl3j2"]
+[ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/Prefabs/Player.tscn" id="1_wsdsh"]
+[ext_resource type="Texture2D" uid="uid://bhys86obll6o3" path="res://MORGANFOLDER/rug1.png" id="2_7jp7q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsdsh"]
+sky_top_color = Color(0.494524, 0.391121, 0.744567, 1)
+sky_horizon_color = Color(0.935509, 0.894859, 0.71121, 1)
+ground_bottom_color = Color(0.412676, 0.630066, 0.837873, 1)
+ground_horizon_color = Color(1.39549, 1.43723, 1.54349, 1)
+energy_multiplier = 0.4
+
+[sub_resource type="Sky" id="Sky_fl3j2"]
+sky_material = SubResource("ProceduralSkyMaterial_wsdsh")
+
+[sub_resource type="Environment" id="Environment_7jp7q"]
+background_mode = 2
+sky = SubResource("Sky_fl3j2")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntmpf"]
+albedo_color = Color(8.56727e-06, 0.904926, 0.669181, 1)
+albedo_texture = ExtResource("2_7jp7q")
+emission_enabled = true
+emission = Color(0.184599, 0.903539, 0.385767, 1)
+emission_energy_multiplier = 0.25
+rim_enabled = true
+refraction_enabled = true
+uv1_scale = Vector3(50, 500, 500)
+proximity_fade_distance = 0.01
+distance_fade_mode = 1
+distance_fade_min_distance = 690.33
 
 [sub_resource type="BoxMesh" id="BoxMesh_ksm85"]
 
@@ -6,11 +38,15 @@
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Pillar" type="CSGCylinder3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7jp7q")
+
+[node name="Pillar" parent="." instance=ExtResource("1_fl3j2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-use_collision = true
-radius = 2.0
-height = 3.5
 
 [node name="Water" type="Node3D" parent="." groups=["Water"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50, 0)
@@ -18,8 +54,23 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50, 0)
 [node name="Area3D" type="Area3D" parent="Water"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Water/Area3D"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ntmpf")
 mesh = SubResource("BoxMesh_ksm85")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
 shape = SubResource("BoxShape3D_ksm85")
+
+[node name="Ball" parent="." instance=ExtResource("1_wsdsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="Pillar2" parent="." instance=ExtResource("1_fl3j2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 10.125, 0)
+radius = 13.0
+height = 19.75
+
+[node name="Pillar3" parent="." instance=ExtResource("1_fl3j2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 10.125, 0)
+radius = 13.0
+height = 19.75
