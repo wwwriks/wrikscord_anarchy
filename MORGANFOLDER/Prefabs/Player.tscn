@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5cdtd43eeyjb"]
+[gd_scene load_steps=6 format=3 uid="uid://c5cdtd43eeyjb"]
 
 [ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/Prefabs/BallMovement.gd" id="1_o6v7y"]
+[ext_resource type="Texture2D" uid="uid://dquunsrxj2yqr" path="res://MORGANFOLDER/fruit2.png" id="2_ndrxs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tr0yl"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47ujg"]
+albedo_color = Color(1, 0.646163, 0.807362, 1)
+albedo_texture = ExtResource("2_ndrxs")
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 0.35
+
 [sub_resource type="SphereMesh" id="SphereMesh_tr0yl"]
+material = SubResource("StandardMaterial3D_47ujg")
 
 [node name="Ball" type="Node3D"]
 

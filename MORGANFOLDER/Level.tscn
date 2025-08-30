@@ -46,7 +46,7 @@ shadow_enabled = true
 environment = SubResource("Environment_7jp7q")
 
 [node name="Pillar" parent="." instance=ExtResource("1_fl3j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 radius = 42.0
 
 [node name="Water" type="Node3D" parent="." groups=["Water"]]
@@ -64,7 +64,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("BoxShape3D_ksm85")
 
 [node name="Ball" parent="." instance=ExtResource("1_wsdsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 
 [node name="Pillar2" parent="." instance=ExtResource("1_fl3j2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 8.125, 0)
