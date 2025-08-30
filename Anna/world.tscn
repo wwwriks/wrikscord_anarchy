@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://c1w7bjrerwfk"]
+[gd_scene load_steps=3 format=3 uid="uid://c1w7bjrerwfk"]
+
+[ext_resource type="PackedScene" uid="uid://cu6arx1xq7hnr" path="res://Anna/epatraktor.glb" id="1_mojwp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_01hg5"]
 
 [node name="World" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.315247, 0.0606542, -2.54782)
+size = Vector3(18.2034, 1, 17.814)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40717, 1.5535, 1.77563)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_01hg5")
+
+[node name="epatraktor" parent="." instance=ExtResource("1_mojwp")]
+transform = Transform3D(-0.00852549, 0, 0.00522647, 0, 0.01, 0, -0.00522647, 0, -0.00852549, 3.42675, 1.07485, 2.69475)
+
+[node name="epatraktor4" parent="." instance=ExtResource("1_mojwp")]
+transform = Transform3D(-0.0099122, 0, -0.00132222, 0, 0.01, 0, 0.00132222, 0, -0.0099122, 3.42675, 1.07485, -1.56695)
+
+[node name="epatraktor2" parent="." instance=ExtResource("1_mojwp")]
+transform = Transform3D(0.000955889, -2.69329e-05, -0.00995417, 5.33753e-07, 0.00999996, -2.70055e-05, 0.00995421, 2.04993e-06, 0.000955887, -1.17882, 1.07485, -5.10345)
+
+[node name="epatraktor3" parent="." instance=ExtResource("1_mojwp")]
+transform = Transform3D(-0.00747798, 0, -0.00663926, 0, 0.01, 0, 0.00663926, 0, -0.00747798, 2.619, 1.0909, -4.47696)
