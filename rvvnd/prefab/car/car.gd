@@ -2,7 +2,8 @@
 class_name RewindCar extends CharacterBody3D
 
 @export_group("Movement/Acceleration & Speed")
-@export var acceleration := 40.0
+@export var accel := 40.0
+@export var accel_against := 110.0
 @export var max_speed := 150.0
 @export_group("Movement/Friction & Turning")
 @export var friction := 60.0
@@ -12,10 +13,10 @@ class_name RewindCar extends CharacterBody3D
 @export var gravity := 30.0
 @export var fall_gravity := 45.0
 
-@export_group("Camera/Settings")
+@export_group("Camera")
 @export var cam_smooth_speed := 5.0
 @export var cam_offset := Vector3(0, 4, -10)
-@export var cam_side_offset := 3
+@export var cam_side_offset := 1.0
 @export_group("Camera/Effects/FOV")
 @export var fov_min := 75.0
 @export var fov_max := 120.0
@@ -27,6 +28,7 @@ class_name RewindCar extends CharacterBody3D
 @onready var meshroot: Node3D = $meshroot
 @onready var cam: Camera3D = $Camera3D
 
+var input_dir := Vector2.ZERO
 var shake_offset := Vector3.ZERO
 
 func _ready():
@@ -35,8 +37,11 @@ func _ready():
 func _get_grav():
 	return gravity if velocity.y > 0.0 else fall_gravity
 
+func _handle_input():
+	input_dir = Input.get_vector("right","left","down","up")
+
 func _physics_process(delta):
-	var input_dir = Input.get_vector("right","left","down","up")
+	_handle_input()
 
 	if !is_on_floor():
 		velocity.y -= _get_grav() * delta
@@ -46,12 +51,25 @@ func _physics_process(delta):
 	forward = forward.normalized()
 
 	if input_dir.y != 0:
-		velocity += forward * input_dir.y * acceleration * delta
+		var forward_velocity = forward.dot(velocity)
+		var cur_accel = accel
+		if (input_dir.y > 0 and forward_velocity < 0) or \
+		   (input_dir.y < 0 and forward_velocity > 0):
+
+			cur_accel = accel_against
+
+		velocity += forward * input_dir.y * cur_accel * delta
 	else:
 		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
 
-	if velocity.length() > max_speed:
-		velocity = velocity.normalized() * max_speed
+	var right = transform.basis.x
+	var lateral_speed = right.dot(velocity)
+	velocity -= right * lateral_speed * 0.2
+
+	var speed = velocity.length()
+	if speed > max_speed:
+		var excess_speed = speed - max_speed
+		velocity -= velocity.normalized() * excess_speed * 5.0 * delta
 
 	if velocity.length() > 0.1:
 		var turn = input_dir.x * turn_speed * delta * (velocity.length() / max_speed)
@@ -60,11 +78,10 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	_update_mesh(delta, input_dir, get_floor_normal())
-	_update_cam(input_dir, delta)
-	_update_fov(delta)
+	_update_mesh(delta, get_floor_normal())
+	_update_cam(delta)
 
-func _update_mesh(delta, input_dir: Vector2, floor_normal: Vector3):
+func _update_mesh(delta, floor_normal: Vector3):
 	var target_bank = input_dir.x * deg_to_rad(bank_angle) * (velocity.length() / max_speed)
 
 	var forward = -transform.basis.z
@@ -81,9 +98,12 @@ func _update_mesh(delta, input_dir: Vector2, floor_normal: Vector3):
 	meshroot.rotation.x = lerp(meshroot.rotation.x, target_rot.x, 5.0 * delta) if true else target_rot.x
 	meshroot.rotation.z = lerp(meshroot.rotation.z, target_rot.z, 5.0 * delta) if true else target_rot.z
 
-func _update_cam(input_dir, delta):
+func _update_cam(delta):
+	var moving_forward = velocity.dot(-transform.basis.z) >= 0
+	var direction_multiplier = 1 if moving_forward else -1
+
 	var desired_pos = global_transform.origin \
-		+ (-global_transform.basis.z * cam_offset.z) \
+		+ (-global_transform.basis.z * cam_offset.z * direction_multiplier) \
 		+ (Vector3.UP * cam_offset.y)
 
 	if velocity.length() > shake_speed_threshold:
@@ -106,7 +126,6 @@ func _update_cam(input_dir, delta):
 	var side_offset = transform.basis.x * (input_dir.x * cam_side_offset * (velocity.length() / max_speed))
 	cam.global_transform.origin = cam.global_transform.origin.lerp((cam.global_transform.origin + side_offset), 5.0 * delta)
 
-func _update_fov(delta):
 	var speed_ratio = velocity.length() / max_speed
 	var target_fov = lerp(fov_min, fov_max, speed_ratio)
 	cam.fov = lerp(cam.fov, target_fov, fov_speed * delta)
