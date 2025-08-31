@@ -15,6 +15,10 @@ run/main_scene="uid://cyq0iwyu5wu5h"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+REWIND="*res://rvvnd/rewind.gd"
+
 [dotnet]
 
 project/assembly_name="wrikscord_anarchy"

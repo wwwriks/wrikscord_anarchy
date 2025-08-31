@@ -26,6 +26,7 @@ class_name RewindCar extends CharacterBody3D
 @export var shake_magnitude := 0.4
 
 @onready var meshroot: Node3D = $meshroot
+@onready var colshape: CollisionShape3D = $CollisionShape3D
 @onready var cam: Camera3D = $Camera3D
 
 var input_dir := Vector2.ZERO
@@ -43,51 +44,52 @@ func _handle_input():
 func _physics_process(delta):
 	_handle_input()
 
-	if !is_on_floor():
+	if not is_on_floor():
 		velocity.y -= _get_grav() * delta
 
-	var forward = -transform.basis.z
-	forward.y = 0
-	forward = forward.normalized()
+	var forward = (-transform.basis.z * REWIND.FLATTEN_MASK).normalized()
 
+	var horiz = velocity * REWIND.FLATTEN_MASK
 	if input_dir.y != 0:
-		var forward_velocity = forward.dot(velocity)
+		var forward_vel = forward.dot(horiz)
 		var cur_accel = accel
-		if (input_dir.y > 0 and forward_velocity < 0) or \
-		   (input_dir.y < 0 and forward_velocity > 0):
-
+		if (input_dir.y > 0 and forward_vel < 0) or (input_dir.y < 0 and forward_vel > 0):
 			cur_accel = accel_against
-
-		velocity += forward * input_dir.y * cur_accel * delta
+		horiz += forward * input_dir.y * cur_accel * delta
 	else:
-		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
+		horiz = horiz.move_toward(Vector3.ZERO, friction * delta)
+
+	velocity.x = horiz.x
+	velocity.z = horiz.z
 
 	var right = transform.basis.x
-	var lateral_speed = right.dot(velocity)
-	velocity -= right * lateral_speed * 0.2
+	var lateral = right.dot(velocity)
+	velocity -= right * lateral * 0.2
 
-	var speed = velocity.length()
-	if speed > max_speed:
-		var excess_speed = speed - max_speed
-		velocity -= velocity.normalized() * excess_speed * 5.0 * delta
+	var horiz_speed = (velocity * REWIND.FLATTEN_MASK).length()
+	if horiz_speed > max_speed:
+		var excess = horiz_speed - max_speed
+		var horiz_dir = (velocity * REWIND.FLATTEN_MASK).normalized()
+		velocity -= horiz_dir * excess * 5.0 * delta
 
-	if velocity.length() > 0.1:
-		var turn = input_dir.x * turn_speed * delta * (velocity.length() / max_speed)
+	if horiz_speed > 0.1:
+		var turn = input_dir.x * turn_speed * delta * (horiz_speed / max_speed)
 		rotation.y += turn
 		velocity = velocity.rotated(Vector3.UP, turn)
 
 	move_and_slide()
 
-	_update_mesh(delta, get_floor_normal())
+	_update_mesh(delta)
 	_update_cam(delta)
 
-func _update_mesh(delta, floor_normal: Vector3):
+func _update_mesh(delta):
 	var target_bank = input_dir.x * deg_to_rad(bank_angle) * (velocity.length() / max_speed)
 
 	var forward = -transform.basis.z
 	var right = transform.basis.x
 
 	# Project onto floor to find tilt
+	var floor_normal = get_floor_normal()
 	var tilt_x = forward.dot(floor_normal) # nose up/down
 	var tilt_z = right.dot(floor_normal)   # roll left/right
 
@@ -95,7 +97,7 @@ func _update_mesh(delta, floor_normal: Vector3):
 
 	var target_rot = Vector3(slope_tilt.x, meshroot.rotation.y, target_bank + slope_tilt.z)
 
-	meshroot.rotation.x = lerp(meshroot.rotation.x, target_rot.x, 5.0 * delta) if true else target_rot.x
+	meshroot.rotation.x = lerp(meshroot.rotation.x, target_rot.x, 50.0 * delta) if true else target_rot.x
 	meshroot.rotation.z = lerp(meshroot.rotation.z, target_rot.z, 5.0 * delta) if true else target_rot.z
 
 func _update_cam(delta):

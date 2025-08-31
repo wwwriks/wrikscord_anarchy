@@ -1,35 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://c58seyvj2x72b"]
+[gd_scene load_steps=12 format=3 uid="uid://c58seyvj2x72b"]
 
 [ext_resource type="PackedScene" uid="uid://cfyshqn8l3gnp" path="res://rvvnd/prefab/car/car.tscn" id="1_idl8n"]
+[ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_l1ous"]
+[ext_resource type="Texture2D" uid="uid://iq4csnlfjgsx" path="res://rvvnd/assets/img/templategrid_albedo.png" id="2_7c5u0"]
+[ext_resource type="Texture2D" uid="uid://clgu03tj0xf48" path="res://rvvnd/assets/img/templategrid_normal.png" id="3_rtvcb"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_idl8n"]
-sky_top_color = Color(0.684828, 0.617994, 0.888359, 1)
-sky_horizon_color = Color(0.935509, 0.894859, 0.71121, 1)
-ground_bottom_color = Color(0.412676, 0.630066, 0.837873, 1)
-ground_horizon_color = Color(1.39549, 1.43723, 1.54349, 1)
+[sub_resource type="Gradient" id="Gradient_rtvcb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+metadata/_snap_enabled = true
 
-[sub_resource type="Sky" id="Sky_3e7np"]
-sky_material = SubResource("ProceduralSkyMaterial_idl8n")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rtvcb"]
 
-[sub_resource type="Environment" id="Environment_7c5u0"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rtvcb"]
+seamless = true
+color_ramp = SubResource("Gradient_rtvcb")
+noise = SubResource("FastNoiseLite_rtvcb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtvcb"]
+shader = ExtResource("1_l1ous")
+shader_parameter/sun_size = 0.975
+shader_parameter/sky_color = Color(0.543224, 0.341885, 0.798208, 1)
+shader_parameter/ground_color = Color(0, 0, 0, 1)
+shader_parameter/ground_blend_start = 0.0
+shader_parameter/cloud_color = Color(0.507434, 0.781577, 1, 1)
+shader_parameter/cloud_noise = SubResource("NoiseTexture2D_rtvcb")
+shader_parameter/cloud_size = 0.2
+shader_parameter/wind_dir = Vector2(1, 0)
+shader_parameter/wind_speed = 0.025
+
+[sub_resource type="Sky" id="Sky_l1ous"]
+sky_material = SubResource("ShaderMaterial_rtvcb")
+
+[sub_resource type="Environment" id="Environment_l1ous"]
 background_mode = 2
-sky = SubResource("Sky_3e7np")
+sky = SubResource("Sky_l1ous")
 tonemap_mode = 2
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_idl8n"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c5u0"]
-albedo_texture = SubResource("PlaceholderTexture2D_idl8n")
-uv1_scale = Vector3(0.1, 0.1, 0.1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idl8n"]
+albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
+albedo_texture = ExtResource("2_7c5u0")
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("3_rtvcb")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_offset = Vector3(0, 0.125, 0)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 150.0
 uv1_world_triplanar = true
-texture_filter = 0
 
 [node name="Test" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7c5u0")
+environment = SubResource("Environment_l1ous")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -46,16 +69,16 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
 size = Vector3(5000, 0.1, 5000)
-material = SubResource("StandardMaterial3D_7c5u0")
+material = SubResource("StandardMaterial3D_idl8n")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.923676, 0.406042, -91.1412)
 radius = 29.539
 height = 3.0
 cone = true
-material = SubResource("StandardMaterial3D_7c5u0")
+material = SubResource("StandardMaterial3D_idl8n")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -64.664, 1.31958, -38.2464)
-size = Vector3(21.9162, 1, 19.9121)
-material = SubResource("StandardMaterial3D_7c5u0")
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -119.279, 15.9537, -38.2464)
+size = Vector3(135, 1, 19.9121)
+material = SubResource("StandardMaterial3D_idl8n")

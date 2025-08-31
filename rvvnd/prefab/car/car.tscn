@@ -10,14 +10,14 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.5
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1mdq2"]
-size = Vector3(4, 2, 6.8)
+[sub_resource type="SphereShape3D" id="SphereShape3D_s0cl8"]
+radius = 0.993733
 
 [node name="car" type="CharacterBody3D"]
 editor_description = "[rewind]"
 floor_constant_speed = true
 script = ExtResource("1_1mdq2")
-shake_speed_threshold = 150.0
+cam_side_offset = 5.0
 
 [node name="meshroot" type="Node3D" parent="."]
 editor_description = "[rewind]
@@ -34,7 +34,7 @@ skeleton = NodePath("../../../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 editor_description = "[rewind]"
-shape = SubResource("BoxShape3D_1mdq2")
+shape = SubResource("SphereShape3D_s0cl8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 fov = 1.0
