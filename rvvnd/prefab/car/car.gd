@@ -133,7 +133,7 @@ func _update_cam(delta):
 	var target_fov = lerp(fov_min, fov_max, speed_ratio)
 	cam.fov = lerp(cam.fov, target_fov, fov_speed * delta)
 
-func _update_ddraw(delta):
+func _update_ddraw(_delta):
 	if OS.has_feature("debug"):
 		DebugDraw2D.set_text("C:Speed", "%d (%d) | Scaled:%d | Y: %d | %d%% of desired" % \
 			[

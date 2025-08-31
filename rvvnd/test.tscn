@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c58seyvj2x72b"]
+[gd_scene load_steps=18 format=3 uid="uid://c58seyvj2x72b"]
 
 [ext_resource type="PackedScene" uid="uid://cfyshqn8l3gnp" path="res://rvvnd/prefab/car/car.tscn" id="1_idl8n"]
 [ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_l1ous"]
 [ext_resource type="Texture2D" uid="uid://iq4csnlfjgsx" path="res://rvvnd/assets/img/templategrid_albedo.png" id="2_7c5u0"]
 [ext_resource type="Texture2D" uid="uid://clgu03tj0xf48" path="res://rvvnd/assets/img/templategrid_normal.png" id="3_rtvcb"]
+[ext_resource type="Shader" uid="uid://b1wdc1ckhjawj" path="res://rvvnd/shaders/outline.gdshader" id="5_5asts"]
+[ext_resource type="Shader" uid="uid://dtawcy6gq2ppg" path="res://rvvnd/shaders/cel.gdshader" id="5_l1ous"]
 
 [sub_resource type="Gradient" id="Gradient_rtvcb"]
 interpolation_mode = 1
@@ -20,9 +22,9 @@ noise = SubResource("FastNoiseLite_rtvcb")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtvcb"]
 shader = ExtResource("1_l1ous")
 shader_parameter/sun_size = 0.975
-shader_parameter/sky_color = Color(0.543224, 0.341885, 0.798208, 1)
-shader_parameter/ground_color = Color(0, 0, 0, 1)
-shader_parameter/ground_blend_start = 0.0
+shader_parameter/sky_color = Color(0.425096, 0.153659, 0.657782, 1)
+shader_parameter/ground_color = Color(0, 0.266667, 0.4, 1)
+shader_parameter/ground_blend_start = 1.0
 shader_parameter/cloud_color = Color(0.507434, 0.781577, 1, 1)
 shader_parameter/cloud_noise = SubResource("NoiseTexture2D_rtvcb")
 shader_parameter/cloud_size = 0.2
@@ -35,6 +37,7 @@ sky_material = SubResource("ShaderMaterial_rtvcb")
 [sub_resource type="Environment" id="Environment_l1ous"]
 background_mode = 2
 sky = SubResource("Sky_l1ous")
+ambient_light_color = Color(0.377919, 0.377919, 0.377919, 1)
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idl8n"]
@@ -48,6 +51,37 @@ uv1_offset = Vector3(0, 0.125, 0)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 150.0
 uv1_world_triplanar = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgrb5"]
+render_priority = 0
+shader = ExtResource("5_5asts")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/outline_size = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1ous"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_bgrb5")
+shader = ExtResource("5_l1ous")
+shader_parameter/main_color = Color(0.999998, 0.559412, 0.273571, 1)
+shader_parameter/shadow_smooth_min = 0.01
+shader_parameter/shadow_smooth_max = 0.03
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = true
+shader_parameter/specular_power = 100.0
+shader_parameter/specular_smooth_min = 0.06
+shader_parameter/specular_smooth_max = 0.15
+shader_parameter/use_rim = true
+shader_parameter/rim_power = 12.0
+shader_parameter/rim_smooth_min = 0.01
+shader_parameter/rim_smooth_max = 0.02
+
+[sub_resource type="SphereMesh" id="SphereMesh_rtvcb"]
+material = SubResource("ShaderMaterial_l1ous")
+radius = 2.5
+height = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_5asts"]
+size = Vector3(5, 0.1, 5)
 
 [node name="Test" type="Node3D"]
 
@@ -82,3 +116,11 @@ material = SubResource("StandardMaterial3D_idl8n")
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -119.279, 15.9537, -38.2464)
 size = Vector3(135, 1, 19.9121)
 material = SubResource("StandardMaterial3D_idl8n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 4, -6)
+mesh = SubResource("SphereMesh_rtvcb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8, -11.2045)
+mesh = SubResource("BoxMesh_5asts")

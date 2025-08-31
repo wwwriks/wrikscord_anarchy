@@ -1,18 +1,17 @@
 shader_type spatial;
-render_mode cull_front, unshaded, ambient_light_disabled;
+render_mode blend_mix, cull_front, unshaded;
 
-uniform float outline_thickness : hint_range(0.0, 1.0, 0.001) = 0.005;
-uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float max_distance = 50.0;
+uniform vec4 color : source_color = vec4(0,0,0,1);
+uniform float outline_size : hint_range(0.0, 100.0, 0.1) = 6.0;
 
-void vertex()
-{
-    float dist = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz);
-    float scale = clamp(dist, 0.0, max_distance);
-    VERTEX += NORMAL * outline_thickness * scale * (1.0 / max_distance);
+void vertex() {
+    vec4 view_pos = MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
+    float pixel_world = (-view_pos.z / VIEWPORT_SIZE.y);
+    float offset = outline_size * pixel_world;
+    VERTEX += NORMAL * offset;
 }
 
-void fragment()
-{
-    ALBEDO = outline_color.rgb;
+void fragment() {
+    ALBEDO = color.rgb;
+    ALPHA = color.a;
 }

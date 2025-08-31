@@ -12,7 +12,6 @@ radius = 0.993733
 editor_description = "[rewind]"
 floor_constant_speed = true
 script = ExtResource("1_1mdq2")
-cam_side_offset = 5.0
 
 [node name="meshroot" type="Node3D" parent="."]
 editor_description = "[rewind]
