@@ -36,7 +36,7 @@ func _get_grav():
 	return gravity if velocity.y > 0.0 else fall_gravity
 
 func _physics_process(delta):
-	var input_dir = Input.get_vector("left","right","up","down")
+	var input_dir = Input.get_vector("left","right","down","up")
 
 	if !is_on_floor():
 		velocity.y -= _get_grav() * delta
