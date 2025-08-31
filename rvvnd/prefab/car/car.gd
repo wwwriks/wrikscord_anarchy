@@ -36,10 +36,7 @@ func _get_grav():
 	return gravity if velocity.y > 0.0 else fall_gravity
 
 func _physics_process(delta):
-	var input_dir = Vector2(
-		Input.get_axis("right","left"),
-		Input.get_axis("down","up")
-	)
+	var input_dir = Input.get_vector("left","right","up","down")
 
 	if !is_on_floor():
 		velocity.y -= _get_grav() * delta
@@ -64,7 +61,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 	_update_mesh(delta, input_dir, get_floor_normal())
-	_update_cam(delta, input_dir)
+	_update_cam(input_dir, delta)
 	_update_fov(delta)
 
 func _update_mesh(delta, input_dir: Vector2, floor_normal: Vector3):
