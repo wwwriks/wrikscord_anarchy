@@ -81,6 +81,7 @@ func _physics_process(delta):
 
 	_update_mesh(delta)
 	_update_cam(delta)
+	_update_ddraw(delta)
 
 func _update_mesh(delta):
 	var target_bank = input_dir.x * deg_to_rad(bank_angle) * (velocity.length() / max_speed)
@@ -131,3 +132,15 @@ func _update_cam(delta):
 	var speed_ratio = velocity.length() / max_speed
 	var target_fov = lerp(fov_min, fov_max, speed_ratio)
 	cam.fov = lerp(cam.fov, target_fov, fov_speed * delta)
+
+func _update_ddraw(delta):
+	if OS.has_feature("debug"):
+		DebugDraw2D.set_text("C:Speed", "%d (%d) | Scaled:%d | Y: %d | %d%% of desired" % \
+			[
+				self.velocity.length(),
+				(self.velocity * REWIND.FLATTEN_MASK).length(),
+				(self.velocity.length() / REWIND.Q_INVERSE_SCALE),
+				self.velocity.y,
+				round((velocity * REWIND.FLATTEN_MASK).length() / max_speed * 100)
+			]
+		)

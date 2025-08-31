@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 REWIND="*res://rvvnd/rewind.gd"
 
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
+
 [dotnet]
 
 project/assembly_name="wrikscord_anarchy"
