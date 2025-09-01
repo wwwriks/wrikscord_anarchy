@@ -26,7 +26,7 @@ void sky() {
 	vec2 sky_uv = EYEDIR.xz / sqrt(EYEDIR.y);
 	vec2 cloud_uv = sky_uv + (normalize(wind_dir)*TIME * wind_speed);
 	float above_horizon_mask = step(0.0, EYEDIR.y);
-	
+
 	if (AT_CUBEMAP_PASS){
 		float cloud = texture(cloud_noise, sky_uv).r * above_horizon_mask * EYEDIR.y;
 		vec3 cubemap_sky = (sky_color + horizon_color + ground_color) / 3.0;
@@ -37,17 +37,17 @@ void sky() {
 		float p3 = 1.0 - pow(min(1.0, 1.0 + p), exponent_factor_bottom);
 		float p2 = 1.0 - p1 - p3;
 		vec3 sky = (sky_color * p1) + (horizon_color * p2) + (ground_color * p3);
-		
+
 		float sun_distance = distance(LIGHT0_DIRECTION, EYEDIR);
 		float sun_power = 1.0 - clamp(sun_distance/sun_size, 0.0, 1.0);
 		float sun_disc = 0.0;
 		if (LIGHT0_ENABLED){
 			sun_disc = clamp(sun_power / sun_blur, sun_power, 1.0);
 		}
-		
+
 		float cloud_mask = above_horizon_mask * smoothstep(0.0, 0.3, EYEDIR.y);
 		float cloud = texture(cloud_noise, cloud_uv * cloud_size).r*cloud_mask;
-		
+
 		vec3 final_color = mix(mix(sky, LIGHT0_COLOR, sun_disc), cloud_color, cloud);
 		COLOR.rgb = final_color;
 	}

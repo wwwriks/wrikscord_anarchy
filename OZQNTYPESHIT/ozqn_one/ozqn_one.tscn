@@ -23,7 +23,7 @@ shader = ExtResource("1_e718k")
 shader_parameter/sun_size = 0.298
 shader_parameter/sun_blur = 0.747
 shader_parameter/sky_color = Color(0.48, 0.424, 0, 1)
-shader_parameter/horizon_color = Color(0.17, 0.133167, 0, 1)
+shader_parameter/horizon_color = Color(0.295187, 0.237861, 0, 1)
 shader_parameter/ground_color = Color(0, 0, 0, 1)
 shader_parameter/exponent_factor_top = 2.0
 shader_parameter/exponent_factor_bottom = 2.0
@@ -42,7 +42,6 @@ sky = SubResource("Sky_1f4c6")
 glow_enabled = true
 glow_intensity = 1.0
 glow_bloom = 1.0
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.168627, 0.133333, 0, 1)
 fog_density = 1.0
@@ -52,7 +51,7 @@ fog_height_density = 0.5
 
 [node name="OzqnOne" type="Node3D" node_paths=PackedStringArray("wind_audio")]
 script = ExtResource("1_owghi")
-wind_audio = NodePath("AudioStreamPlayer")
+wind_audio = NodePath("WindPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tvbku")
@@ -60,7 +59,7 @@ environment = SubResource("Environment_tvbku")
 [node name="GuyDude" parent="." instance=ExtResource("2_jll4m")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, -0.38965, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="WindPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kl0dm")
 volume_db = -30.033
 parameters/looping = true
