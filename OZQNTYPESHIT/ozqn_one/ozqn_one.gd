@@ -2,7 +2,6 @@ extends Node3D
 
 @export var wind_audio: AudioStreamPlayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	wind_audio.volume_db = -60.0
 	wind_audio.play()
