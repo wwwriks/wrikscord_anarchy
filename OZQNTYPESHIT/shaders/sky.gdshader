@@ -40,7 +40,10 @@ void sky() {
 		
 		float sun_distance = distance(LIGHT0_DIRECTION, EYEDIR);
 		float sun_power = 1.0 - clamp(sun_distance/sun_size, 0.0, 1.0);
-		float sun_disc = clamp(sun_power / sun_blur, sun_power, 1.0);
+		float sun_disc = 0.0;
+		if (LIGHT0_ENABLED){
+			sun_disc = clamp(sun_power / sun_blur, sun_power, 1.0);
+		}
 		
 		float cloud_mask = above_horizon_mask * smoothstep(0.0, 0.3, EYEDIR.y);
 		float cloud = texture(cloud_noise, cloud_uv * cloud_size).r*cloud_mask;

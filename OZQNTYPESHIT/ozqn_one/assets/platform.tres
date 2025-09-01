@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dmml1qshnyjjd"]
+
+[ext_resource type="Texture2D" uid="uid://dp4mg8we7wkem" path="res://OZQNTYPESHIT/ozqn_one/assets/stone.png" id="1_mqko2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2h13u"]
+
+[resource]
+resource_name = "Material.001"
+albedo_texture = ExtResource("1_mqko2")
+normal_scale = 0.25
+normal_texture = SubResource("CompressedTexture2D_2h13u")

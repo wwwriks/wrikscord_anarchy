@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= 20.0*delta
 	
 	var input := Input.get_vector("left", "right", "up", "down")
-	var direction := Vector3(input.x, 0.0, input.y).rotated(Vector3.UP, camera.rotation.y)
+	var direction := Vector3(input.x, 0.0, input.y).rotated(Vector3.UP, camera.global_rotation.y)
 	var h_vel := direction * MOVE_SPEED
 	
 	velocity = Vector3(h_vel.x, velocity.y, h_vel.z)
