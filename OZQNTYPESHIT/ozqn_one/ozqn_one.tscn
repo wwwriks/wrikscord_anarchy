@@ -42,10 +42,13 @@ sky = SubResource("Sky_1f4c6")
 glow_enabled = true
 glow_intensity = 1.0
 glow_bloom = 1.0
+fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0, 0.168627, 0.14902, 1)
+fog_light_color = Color(0.168627, 0.133333, 0, 1)
 fog_density = 1.0
 fog_sky_affect = 0.0
+fog_height = -1.0
+fog_height_density = 0.5
 
 [node name="OzqnOne" type="Node3D" node_paths=PackedStringArray("wind_audio")]
 script = ExtResource("1_owghi")
