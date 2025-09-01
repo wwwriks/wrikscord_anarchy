@@ -1,7 +1,8 @@
 shader_type sky;
 
 group_uniforms Sun;
-uniform float sun_size: hint_range(0.0, 1.0, 0.001) = 0.975;
+uniform float sun_size: hint_range(0.0, 1.0, 0.001) = 0.15;
+uniform float sun_blur: hint_range(0.01, 1.0, 0.011) = 0.5;
 group_uniforms;
 
 group_uniforms Sky;
@@ -27,12 +28,18 @@ void sky() {
 		float cloud = texture(cloud_noise, sky_uv).r * above_horizon_mask * EYEDIR.y;
 		COLOR = mix(sky_color, cloud_color, cloud);
 	} else{
+		
 		float color_delta = smoothstep(-1.0, ground_blend_start, EYEDIR.y);
 		vec3 sky = mix(ground_color, sky_color, color_delta);
-		float sun = smoothstep(sun_size, 1.0, dot(LIGHT0_DIRECTION, EYEDIR));
+		
+		float sun_distance = distance(LIGHT0_DIRECTION, EYEDIR);
+		float sun_power = 1.0 - clamp(sun_distance/sun_size, 0.0, 1.0);
+		float sun_disc = clamp(sun_power / sun_blur, sun_power, 1.0);
+		
 		float cloud_mask = above_horizon_mask * smoothstep(0.0, 0.3, EYEDIR.y);
 		float cloud = texture(cloud_noise, cloud_uv * cloud_size).r*cloud_mask;
-		vec3 final_color = mix(mix(sky, LIGHT0_COLOR, sun), cloud_color, cloud);
+		
+		vec3 final_color = mix(mix(sky, LIGHT0_COLOR, sun_disc), cloud_color, cloud);
 		COLOR.rgb = final_color;
 	}
 }
