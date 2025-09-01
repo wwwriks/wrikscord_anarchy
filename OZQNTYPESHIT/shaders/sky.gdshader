@@ -3,7 +3,7 @@ render_mode use_debanding;
 
 group_uniforms Sun;
 uniform float sun_size: hint_range(0.0, 1.0, 0.001) = 0.15;
-uniform float sun_blur: hint_range(0.01, 1.0, 0.011) = 0.5;
+uniform float sun_blur: hint_range(0.01, 1.0, 0.011) = 0.15;
 group_uniforms;
 
 group_uniforms Sky;
