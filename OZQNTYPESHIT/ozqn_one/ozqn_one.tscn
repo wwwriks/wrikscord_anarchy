@@ -18,8 +18,8 @@ noise = SubResource("FastNoiseLite_jll4m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtbqp"]
 shader = ExtResource("1_e718k")
-shader_parameter/sun_size = 0.127
-shader_parameter/sun_blur = 0.131
+shader_parameter/sun_size = 0.125
+shader_parameter/sun_blur = 0.15
 shader_parameter/sky_color = Color(0, 0.17, 0.147333, 1)
 shader_parameter/horizon_color = Color(0, 0.168627, 0.14902, 1)
 shader_parameter/ground_color = Color(0.0827415, 0.0827414, 0.0827414, 1)
