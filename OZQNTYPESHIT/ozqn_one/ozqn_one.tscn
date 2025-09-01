@@ -20,16 +20,16 @@ noise = SubResource("FastNoiseLite_jll4m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtbqp"]
 shader = ExtResource("1_e718k")
-shader_parameter/sun_size = 0.125
-shader_parameter/sun_blur = 0.15
-shader_parameter/sky_color = Color(0.17, 0.150167, 0, 1)
+shader_parameter/sun_size = 0.298
+shader_parameter/sun_blur = 0.747
+shader_parameter/sky_color = Color(0.48, 0.424, 0, 1)
 shader_parameter/horizon_color = Color(0.17, 0.133167, 0, 1)
 shader_parameter/ground_color = Color(0, 0, 0, 1)
 shader_parameter/exponent_factor_top = 2.0
 shader_parameter/exponent_factor_bottom = 2.0
-shader_parameter/cloud_color = Color(0.693429, 0.69343, 0.693429, 1)
+shader_parameter/cloud_color = Color(0.542981, 0.542982, 0.542981, 1)
 shader_parameter/cloud_noise = SubResource("NoiseTexture2D_kl0dm")
-shader_parameter/cloud_size = 0.2
+shader_parameter/cloud_size = 0.3
 shader_parameter/wind_dir = Vector2(1, 0.5)
 shader_parameter/wind_speed = 0.025
 
