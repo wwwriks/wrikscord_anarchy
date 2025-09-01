@@ -18,12 +18,14 @@ noise = SubResource("FastNoiseLite_jll4m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtbqp"]
 shader = ExtResource("1_e718k")
-shader_parameter/sun_size = 0.211
-shader_parameter/sun_blur = 0.252
+shader_parameter/sun_size = 0.127
+shader_parameter/sun_blur = 0.131
 shader_parameter/sky_color = Color(0, 0.17, 0.147333, 1)
-shader_parameter/ground_color = Color(0, 0, 0, 1)
-shader_parameter/ground_blend_start = 0.0
-shader_parameter/cloud_color = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/horizon_color = Color(0, 0.168627, 0.14902, 1)
+shader_parameter/ground_color = Color(0.0827415, 0.0827414, 0.0827414, 1)
+shader_parameter/exponent_factor_top = 2.0
+shader_parameter/exponent_factor_bottom = 2.0
+shader_parameter/cloud_color = Color(0.685146, 0.685146, 0.685145, 1)
 shader_parameter/cloud_noise = SubResource("NoiseTexture2D_kl0dm")
 shader_parameter/cloud_size = 0.2
 shader_parameter/wind_dir = Vector2(1, 0.5)
@@ -49,7 +51,7 @@ script = ExtResource("1_owghi")
 wind_audio = NodePath("AudioStreamPlayer")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, -0.220941, 0.779948, 0.585548, -0.448537, 0.451864, -0.771124, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
