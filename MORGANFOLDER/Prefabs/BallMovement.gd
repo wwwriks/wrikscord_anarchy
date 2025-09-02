@@ -5,7 +5,11 @@ extends CharacterBody3D
 @export var minSpeed = 24
 @export var acceleration = 48
 @export var jumpForce = 110
-@export var grav = 2.4
+@export var doubleJumpForce = 55
+@export var grav = .7
+
+@export var jumpMax = 1
+var jumps = 0
 
 @export var mouseSens = .002
 
@@ -31,8 +35,15 @@ func _physics_process(delta: float) -> void:
 	velocity.y -= grav
 	if is_on_floor() and velocity.y > 3:
 		velocity.y *= -1.1
-	if Input.is_action_just_pressed("space") and is_on_floor():
-		velocity.y = jumpForce
+	if is_on_floor():
+		jumps = jumpMax
+	if Input.is_action_just_pressed("space") and jumps > 0:
+		jumps -= 1
+		if is_on_floor():
+			velocity.y = jumpForce
+			jumps += 1
+		else:
+			velocity.y = doubleJumpForce
 	move_and_slide()
 	pass
 # If an input is detected
