@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://boueo1qfuf3nf"]
+
+[ext_resource type="Shader" uid="uid://dtawcy6gq2ppg" path="res://rvvnd/shaders/cel.gdshader" id="1_vcd3c"]
+[ext_resource type="Texture2D" uid="uid://b58muafl41nx6" path="res://rvvnd/assets/img/kenney_colormap.png" id="2_7syj2"]
+[ext_resource type="Texture2D" uid="uid://dqocv0840swm8" path="res://rvvnd/assets/img/shadowtex1.png" id="3_vcd3c"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vcd3c")
+shader_parameter/albedo_tex = ExtResource("2_7syj2")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_overlay = ExtResource("3_vcd3c")
+shader_parameter/shadow_overlay_intensity = 0.119
+shader_parameter/shadow_overlay_scale = 10.0
+shader_parameter/shadow_smoothness_min = 0.01
+shader_parameter/shadow_smoothness_max = 0.03
+shader_parameter/use_attenuation = true
+shader_parameter/attenuation_smoothness_min = 0.2
+shader_parameter/attenuation_smoothness_max = 0.25
+shader_parameter/use_specular = false
+shader_parameter/use_rim = true
+shader_parameter/rim_power = 25.0

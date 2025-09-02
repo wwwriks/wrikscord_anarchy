@@ -1,9 +1,13 @@
-# by rewind
-class_name RewindCar extends CharacterBody3D
+extends CharacterBody3D
+
+@onready var rightWheel: MeshInstance3D = $"Model/wheel-front-right"
+@onready var leftWheel: MeshInstance3D = $"Model/wheel-front-left"
+@onready var carBody: MeshInstance3D = $Model/body
+@onready var camera: Camera3D = $Camera
 
 @export_group("Movement/Acceleration & Speed")
 @export var accel := 40.0
-@export var accel_against := 110.0
+@export var accel_against := 160.0
 @export var max_speed := 150.0
 @export_group("Movement/Friction & Turning")
 @export var friction := 60.0
@@ -12,126 +16,86 @@ class_name RewindCar extends CharacterBody3D
 @export_group("Movement/Gravity")
 @export var gravity := 30.0
 @export var fall_gravity := 45.0
-
 @export_group("Camera")
-@export var cam_smooth_speed := 5.0
-@export var cam_offset := Vector3(0, 4, -10)
-@export var cam_side_offset := 1.0
-@export_group("Camera/Effects/FOV")
-@export var fov_min := 75.0
-@export var fov_max := 120.0
-@export var fov_speed := 1.5
-@export_group("Camera/Effects/Shake")
-@export var shake_speed_threshold := 120.0
-@export var shake_magnitude := 0.4
-
-@onready var meshroot: Node3D = $meshroot
-@onready var colshape: CollisionShape3D = $CollisionShape3D
-@onready var cam: Camera3D = $Camera3D
+@export var base_fov := 70.0
+@export var max_fov := 100.0
+@export var fov_lerp_speed := 5.0
+@export var camera_follow_smoothness := 5.0
+@export var camera_tilt_angle := 10.0
+@export var camera_offset_strength := 0.5
 
 var input_dir := Vector2.ZERO
-var shake_offset := Vector3.ZERO
+var accel_input := 0.0
+var steer_input := 0.0
 
-func _ready():
-	cam.fov = fov_min
-
-func _get_grav():
-	return gravity if velocity.y > 0.0 else fall_gravity
+## Internal running speed along car forward (u/s)
+var _speed := 0.0
 
 func _handle_input():
-	input_dir = Input.get_vector("right","left","down","up")
+	input_dir = Input.get_vector("left", "right", "up", "down")
+	accel_input = -input_dir.y
+	steer_input = input_dir.x
 
-func _physics_process(delta):
-	_handle_input()
+func _update_meshes(delta: float):
+	var wheel_spin = _speed * delta * 0.2
+	rightWheel.rotate_x(wheel_spin)
+	leftWheel.rotate_x(wheel_spin)
 
-	if not is_on_floor():
-		velocity.y -= _get_grav() * delta
+	var target_bank = deg_to_rad(-steer_input * bank_angle) * get_speed_percent()
+	carBody.rotation.z = lerp(carBody.rotation.z, target_bank, 8.0 * delta)
 
-	var forward = (-transform.basis.z * REWIND.FLATTEN_MASK).normalized()
+func _update_physics(delta: float):
+	var forward = -global_transform.basis.z.normalized()
+	var current_speed = _speed
 
-	var horiz = velocity * REWIND.FLATTEN_MASK
-	if input_dir.y != 0:
-		var forward_vel = forward.dot(horiz)
-		var cur_accel = accel
-		if (input_dir.y > 0 and forward_vel < 0) or (input_dir.y < 0 and forward_vel > 0):
-			cur_accel = accel_against
-		horiz += forward * input_dir.y * cur_accel * delta
+	if accel_input > 0.01:
+		current_speed += accel * delta * accel_input
+	elif accel_input < -0.01:
+		if current_speed > 0.0:
+			current_speed = max(0.0, current_speed - accel_against * delta * (-accel_input))
+		else:
+			current_speed -= accel * delta * (-accel_input)
 	else:
-		horiz = horiz.move_toward(Vector3.ZERO, friction * delta)
+		var friction_step = friction * delta
+		if abs(current_speed) <= friction_step:
+			current_speed = 0.0
+		else:
+			current_speed -= sign(current_speed) * friction_step
 
-	velocity.x = horiz.x
-	velocity.z = horiz.z
+	var max_reverse = max_speed * 0.5
+	current_speed = clamp(current_speed, -max_reverse, max_speed)
+	_speed = current_speed
 
-	var right = transform.basis.x
-	var lateral = right.dot(velocity)
-	velocity -= right * lateral * 0.2
+	var speed_factor = get_speed_percent()
+	var rot_amount = -steer_input * turn_speed * delta * speed_factor * sign(_speed) if _speed != 0.0 else 0.0
+	rotate_y(rot_amount)
 
-	var horiz_speed = (velocity * REWIND.FLATTEN_MASK).length()
-	if horiz_speed > max_speed:
-		var excess = horiz_speed - max_speed
-		var horiz_dir = (velocity * REWIND.FLATTEN_MASK).normalized()
-		velocity -= horiz_dir * excess * 5.0 * delta
+	# Gravity
+	if is_on_floor():
+		velocity.y = -0.1
+	else:
+		velocity.y -= fall_gravity * delta
 
-	if horiz_speed > 0.1:
-		var turn = input_dir.x * turn_speed * delta * (horiz_speed / max_speed)
-		rotation.y += turn
-		velocity = velocity.rotated(Vector3.UP, turn)
-
+	velocity.x = forward.x * _speed
+	velocity.z = forward.z * _speed
 	move_and_slide()
 
-	_update_mesh(delta)
-	_update_cam(delta)
-	_update_ddraw(delta)
+	if abs(_speed) < 0.01:
+		_speed = 0.0
 
-func _update_mesh(delta):
-	var target_bank = input_dir.x * deg_to_rad(bank_angle) * (velocity.length() / max_speed)
+func _update_camera(delta: float):
+	var target_fov = lerp(base_fov, max_fov, get_speed_percent())
+	camera.fov = lerp(camera.fov, target_fov, fov_lerp_speed * delta)
 
-	var forward = -transform.basis.z
-	var right = transform.basis.x
-
-	# Project onto floor to find tilt
-	var floor_normal = get_floor_normal()
-	var tilt_x = forward.dot(floor_normal) # nose up/down
-	var tilt_z = right.dot(floor_normal)   # roll left/right
-
-	var slope_tilt = Vector3(-tilt_x, 0, -tilt_z)
-
-	var target_rot = Vector3(slope_tilt.x, meshroot.rotation.y, target_bank + slope_tilt.z)
-
-	meshroot.rotation.x = lerp(meshroot.rotation.x, target_rot.x, 50.0 * delta) if true else target_rot.x
-	meshroot.rotation.z = lerp(meshroot.rotation.z, target_rot.z, 5.0 * delta) if true else target_rot.z
-
-func _update_cam(delta):
-	var moving_forward = velocity.dot(-transform.basis.z) >= 0
-	var direction_multiplier = 1 if moving_forward else -1
-
-	var desired_pos = global_transform.origin \
-		+ (-global_transform.basis.z * cam_offset.z * direction_multiplier) \
-		+ (Vector3.UP * cam_offset.y)
-
-	if velocity.length() > shake_speed_threshold:
-		var shake_strength = (velocity.length() / max_speed) * shake_magnitude
-		shake_offset = Vector3(
-			randf_range(-shake_strength, shake_strength),
-			randf_range(-shake_strength, shake_strength),
-			randf_range(-shake_strength, shake_strength)
-		)
-	else:
-		shake_offset = Vector3.ZERO
-
-	desired_pos += shake_offset
-
-	cam.global_transform.origin = cam.global_transform.origin.lerp(desired_pos, cam_smooth_speed * delta)
+	var base_offset = Vector3(0, 3, 8).rotated(Vector3.UP, rotation.y)
+	var side_offset = global_transform.basis.x * steer_input * get_speed_percent() * camera_offset_strength
+	var desired_pos = global_transform.origin + base_offset + side_offset
+	camera.global_transform.origin = camera.global_transform.origin.lerp(desired_pos, camera_follow_smoothness * delta)
 
 	var target_look = global_transform.origin + Vector3.UP * 1.5
-	cam.look_at(target_look, Vector3.UP)
-
-	var side_offset = transform.basis.x * (input_dir.x * cam_side_offset * (velocity.length() / max_speed))
-	cam.global_transform.origin = cam.global_transform.origin.lerp((cam.global_transform.origin + side_offset), 5.0 * delta)
-
-	var speed_ratio = velocity.length() / max_speed
-	var target_fov = lerp(fov_min, fov_max, speed_ratio)
-	cam.fov = lerp(cam.fov, target_fov, fov_speed * delta)
+	camera.look_at(target_look, Vector3.UP)
+	var tilt_target = deg_to_rad(-steer_input * camera_tilt_angle) * get_speed_percent()
+	camera.rotation.z = lerp(camera.rotation.z, tilt_target, 5.0 * delta)
 
 func _update_ddraw(_delta):
 	if OS.has_feature("debug"):
@@ -144,3 +108,13 @@ func _update_ddraw(_delta):
 				round((velocity * REWIND.FLATTEN_MASK).length() / max_speed * 100)
 			]
 		)
+
+func get_speed_percent() -> float:
+	return _speed / max_speed
+
+func _physics_process(delta: float) -> void:
+	_handle_input()
+	_update_meshes(delta)
+	_update_physics(delta)
+	_update_camera(delta)
+	_update_ddraw(delta)
