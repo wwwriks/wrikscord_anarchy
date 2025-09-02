@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlbdavq06qxew"
-path.s3tc="res://.godot/imported/sand2.png-a05265c90b43a344825d57946b9aec72.s3tc.ctex"
+uid="uid://csv05k6d76xjw"
+path.s3tc="res://.godot/imported/rocks1.png-b3492726d3b4cd02c9e910c45dce32e5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://MORGANFOLDER/sand2.png"
-dest_files=["res://.godot/imported/sand2.png-a05265c90b43a344825d57946b9aec72.s3tc.ctex"]
+source_file="res://MORGANFOLDER/Materials/rocks1.png"
+dest_files=["res://.godot/imported/rocks1.png-b3492726d3b4cd02c9e910c45dce32e5.s3tc.ctex"]
 
 [params]
 

@@ -12,9 +12,10 @@ extends CharacterBody3D
 var jumps = 0
 
 @export var mouseSens = .002
+@export var respawnPoint = Vector3.ZERO
 
-@export var camPivot = 0
-@export var cam = 0
+var camPivot = 0
+var cam = 0
 
 #Lock the mouse in the game window and make it invisible
 func _ready():
@@ -65,3 +66,6 @@ func _input(event):
 		# Now clamp our rotation so we can't look up or down infinitely.
 		camPivot.rotation.x = clampf(camPivot.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 		cam.rotation.x = clampf(cam.rotation.x, -deg_to_rad(270), deg_to_rad(250))
+
+func respawn():
+	position = respawnPoint

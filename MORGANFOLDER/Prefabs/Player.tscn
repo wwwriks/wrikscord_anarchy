@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5cdtd43eeyjb"]
 
 [ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/Prefabs/BallMovement.gd" id="1_o6v7y"]
-[ext_resource type="Texture2D" uid="uid://dquunsrxj2yqr" path="res://MORGANFOLDER/fruit2.png" id="2_ndrxs"]
+[ext_resource type="Texture2D" uid="uid://csv05k6d76xjw" path="res://MORGANFOLDER/Materials/rocks1.png" id="2_ndrxs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tr0yl"]
 
@@ -15,19 +15,17 @@ emission_energy_multiplier = 0.35
 [sub_resource type="SphereMesh" id="SphereMesh_tr0yl"]
 material = SubResource("StandardMaterial3D_47ujg")
 
-[node name="Ball" type="Node3D"]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Ball" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_o6v7y")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_tr0yl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_tr0yl")
 
-[node name="Node3D" type="Node3D" parent="CharacterBody3D"]
+[node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 10)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)

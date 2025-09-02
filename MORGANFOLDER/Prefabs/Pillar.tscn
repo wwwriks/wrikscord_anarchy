@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce62t08qsuaq8"]
 
-[ext_resource type="Texture2D" uid="uid://dlbdavq06qxew" path="res://MORGANFOLDER/sand2.png" id="1_gi0o5"]
+[ext_resource type="Texture2D" uid="uid://dlbdavq06qxew" path="res://MORGANFOLDER/Materials/sand2.png" id="1_gi0o5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jp7q"]
 albedo_texture = ExtResource("1_gi0o5")
