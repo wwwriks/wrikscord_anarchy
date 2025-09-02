@@ -4,7 +4,6 @@ class_name OzqnLoader
 static func load(resource_path: String, tree: SceneTree) -> Resource:
 	var progress: Array[int] = [0]
 	var resource: Resource
-	var progress_callback: Callable = func(_progress: Array) -> void: return
 	
 	ResourceLoader.load_threaded_request(resource_path)
 	
@@ -13,8 +12,6 @@ static func load(resource_path: String, tree: SceneTree) -> Resource:
 		if tree == null:
 			break
 		await tree.process_frame
-		if is_instance_valid(progress_callback):
-			progress_callback.call(progress)
 		match status:
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_INVALID_RESOURCE:
 				assert(false, "Given Resource Path is invalid!")

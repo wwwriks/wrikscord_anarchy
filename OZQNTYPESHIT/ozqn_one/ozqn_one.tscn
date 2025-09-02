@@ -8,7 +8,7 @@
 [ext_resource type="LightmapGIData" uid="uid://dy4iw8yunemrr" path="res://OZQNTYPESHIT/ozqn_one/assets/ozqn_one.lmbake" id="6_v3hoh"]
 
 [sub_resource type="Gradient" id="Gradient_jll4m"]
-offsets = PackedFloat32Array(0.365325, 0.767802)
+offsets = PackedFloat32Array(0.49226, 0.767802)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jll4m"]
 noise_type = 0
@@ -20,18 +20,20 @@ noise = SubResource("FastNoiseLite_jll4m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtbqp"]
 shader = ExtResource("1_e718k")
-shader_parameter/sun_size = 0.298
-shader_parameter/sun_blur = 0.747
-shader_parameter/sky_color = Color(0.48, 0.424, 0, 1)
-shader_parameter/horizon_color = Color(0.295187, 0.237861, 0, 1)
-shader_parameter/ground_color = Color(0, 0, 0, 1)
-shader_parameter/exponent_factor_top = 2.0
+shader_parameter/intensity = 0.6
+shader_parameter/sun_size = 0.15
+shader_parameter/sun_blur = 0.274
+shader_parameter/sun_modulate = Color(2, 2, 2, 1)
+shader_parameter/sky_color = Color(1, 0.619608, 0.0823529, 1)
+shader_parameter/horizon_color = Color(1, 0.827451, 0, 1)
+shader_parameter/ground_color = Color(0.309804, 0.121569, 0, 1)
+shader_parameter/exponent_factor_top = 7.0
 shader_parameter/exponent_factor_bottom = 2.0
-shader_parameter/cloud_color = Color(0.542981, 0.542982, 0.542981, 1)
+shader_parameter/cloud_color = Color(0.635799, 0.6358, 0.635799, 1)
 shader_parameter/cloud_noise = SubResource("NoiseTexture2D_kl0dm")
-shader_parameter/cloud_size = 0.3
-shader_parameter/wind_dir = Vector2(1, 0.5)
-shader_parameter/wind_speed = 0.025
+shader_parameter/cloud_size = 0.13
+shader_parameter/wind_dir = Vector2(1, 1)
+shader_parameter/wind_speed = 0.05
 
 [sub_resource type="Sky" id="Sky_1f4c6"]
 sky_material = SubResource("ShaderMaterial_xtbqp")
@@ -40,8 +42,8 @@ sky_material = SubResource("ShaderMaterial_xtbqp")
 background_mode = 2
 sky = SubResource("Sky_1f4c6")
 glow_enabled = true
-glow_intensity = 1.0
-glow_bloom = 1.0
+glow_intensity = 1.5
+glow_bloom = 0.71
 fog_mode = 1
 fog_light_color = Color(0.168627, 0.133333, 0, 1)
 fog_density = 1.0
@@ -56,17 +58,8 @@ wind_audio = NodePath("WindPlayer")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tvbku")
 
-[node name="GuyDude" parent="." instance=ExtResource("2_jll4m")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, -0.38965, 0)
-
-[node name="WindPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_kl0dm")
-volume_db = -30.033
-parameters/looping = true
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.0403601, -0.384, 0.922451, 0.0964224, 0.917397, 0.386115, -0.994522, 0.104529, -3.67704e-08, -1.06505, 6, 0)
-light_energy = 0.25
+transform = Transform3D(-0.0613103, -0.583329, 0.809919, 0.0846597, 0.805482, 0.586542, -0.994522, 0.104529, 5.52398e-08, -1.06505, 6, 0)
 light_bake_mode = 1
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
@@ -74,5 +67,13 @@ bounces = 5
 directional = true
 use_denoiser = false
 light_data = ExtResource("6_v3hoh")
+
+[node name="GuyDude" parent="." instance=ExtResource("2_jll4m")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, -0.38965, 0)
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kl0dm")
+volume_db = -30.033
+parameters/looping = true
 
 [node name="platform" parent="." instance=ExtResource("6_rhuii")]

@@ -1,9 +1,12 @@
 shader_type sky;
 render_mode use_debanding;
 
+uniform float intensity : hint_range(0.0, 1.0, 0.01) = 1.0;
+
 group_uniforms Sun;
 uniform float sun_size: hint_range(0.0, 1.0, 0.001) = 0.15;
 uniform float sun_blur: hint_range(0.01, 1.0, 0.011) = 0.15;
+uniform vec3 sun_modulate: source_color = vec3(1.0);
 group_uniforms;
 
 group_uniforms Sky;
@@ -29,7 +32,7 @@ void sky() {
 
 	if (AT_CUBEMAP_PASS){
 		float cloud = texture(cloud_noise, sky_uv).r * above_horizon_mask * EYEDIR.y;
-		vec3 cubemap_sky = (sky_color + horizon_color + ground_color) / 3.0;
+		vec3 cubemap_sky = ((sky_color + horizon_color + ground_color)*intensity) / 3.0;
 		COLOR = mix(cubemap_sky, cloud_color, cloud);
 	} else{
 		float p = EYEDIR.y;
@@ -48,7 +51,7 @@ void sky() {
 		float cloud_mask = above_horizon_mask * smoothstep(0.0, 0.3, EYEDIR.y);
 		float cloud = texture(cloud_noise, cloud_uv * cloud_size).r*cloud_mask;
 
-		vec3 final_color = mix(mix(sky, LIGHT0_COLOR, sun_disc), cloud_color, cloud);
+		vec3 final_color = mix(mix(sky * intensity, LIGHT0_COLOR * sun_modulate, sun_disc), cloud_color, cloud);
 		COLOR.rgb = final_color;
 	}
 }

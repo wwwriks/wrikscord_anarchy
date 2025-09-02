@@ -36,7 +36,9 @@ func on_level_option_selected(index: int) -> void:
 func level_change_pressed() -> void:
 	var tree := get_tree()
 	loading_screen.visible = true
+	
 	var new_scene := await OzqnLoader.load(levels[selected_level], tree) as PackedScene
+	
 	tree.change_scene_to_packed(new_scene)
 	loading_screen.visible = false
 	hide()
