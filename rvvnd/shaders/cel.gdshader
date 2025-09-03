@@ -5,7 +5,8 @@ uniform vec3 albedo_color : source_color = vec3(1.0);
 uniform sampler2D shadow_gradient : repeat_disable, source_color, filter_linear;
 
 uniform sampler2D shadow_overlay : source_color; 
-uniform float shadow_overlay_size = 1; uniform float shadow_overlay_mix : hint_range(0.0, 1.0) = 0.3; // 1 = ONLY crosshatched shadows, 0= only non crosshatched shadows
+uniform float shadow_overlay_size = 1; 
+uniform float shadow_overlay_mix : hint_range(0.0, 1.0) = 0.3;
 
 void vertex() {
 }
