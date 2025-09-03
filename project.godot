@@ -24,6 +24,14 @@ DebugPanel="*res://global stuff/debug_panel.tscn"
 
 settings/addon_root_folder="res://addons/debug_draw_3d"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=480
+window/size/window_width_override=1280
+window/size/window_height_override=960
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="wrikscord_anarchy"

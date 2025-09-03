@@ -43,4 +43,3 @@ void fragment() {
     // 输出最终颜色，RGB 为设定颜色，透明度为叠加结果
     COLOR = vec4(circle_color.rgb, alpha * circle_color.a);
 }
-
