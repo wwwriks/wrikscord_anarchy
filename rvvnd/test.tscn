@@ -1,11 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://c58seyvj2x72b"]
+[gd_scene load_steps=22 format=3 uid="uid://c58seyvj2x72b"]
 
 [ext_resource type="PackedScene" uid="uid://bu30akusaxmnu" path="res://rvvnd/prefab/car/car.tscn" id="1_idl8n"]
 [ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_l1ous"]
 [ext_resource type="Texture2D" uid="uid://iq4csnlfjgsx" path="res://rvvnd/assets/img/templategrid_albedo.png" id="2_7c5u0"]
 [ext_resource type="Texture2D" uid="uid://dqocv0840swm8" path="res://rvvnd/assets/img/shadowtex1.png" id="5_5asts"]
 [ext_resource type="Shader" uid="uid://dtawcy6gq2ppg" path="res://rvvnd/shaders/cel.gdshader" id="5_l1ous"]
-[ext_resource type="Shader" uid="uid://b1wdc1ckhjawj" path="res://rvvnd/shaders/outline.gdshader" id="6_bgrb5"]
 
 [sub_resource type="Gradient" id="Gradient_5asts"]
 offsets = PackedFloat32Array(0.428571, 1)
@@ -20,8 +19,8 @@ noise = SubResource("FastNoiseLite_rtvcb")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtvcb"]
 shader = ExtResource("1_l1ous")
 shader_parameter/intensity = 1.0
-shader_parameter/sun_size = 0.213
-shader_parameter/sun_blur = 0.01
+shader_parameter/sun_size = 0.15
+shader_parameter/sun_blur = 0.252
 shader_parameter/sun_modulate = Color(1, 1, 1, 1)
 shader_parameter/sky_color = Color(0.425096, 0.153659, 0.657782, 1)
 shader_parameter/horizon_color = Color(0.392157, 0.156863, 0.478431, 1)
@@ -32,7 +31,7 @@ shader_parameter/cloud_color = Color(0.507434, 0.781577, 1, 1)
 shader_parameter/cloud_noise = SubResource("NoiseTexture2D_rtvcb")
 shader_parameter/cloud_size = 0.2
 shader_parameter/wind_dir = Vector2(1, 0)
-shader_parameter/wind_speed = 1.025
+shader_parameter/wind_speed = 0.255
 
 [sub_resource type="Sky" id="Sky_l1ous"]
 sky_material = SubResource("ShaderMaterial_rtvcb")
@@ -44,8 +43,7 @@ ambient_light_color = Color(0.377919, 0.377919, 0.377919, 1)
 tonemap_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_bgrb5"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.5)
+offsets = PackedFloat32Array(0.5, 0.9)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m8pbo"]
 gradient = SubResource("Gradient_bgrb5")
@@ -55,16 +53,20 @@ render_priority = 0
 shader = ExtResource("5_l1ous")
 shader_parameter/albedo_tex = ExtResource("2_7c5u0")
 shader_parameter/albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
+shader_parameter/use_attenuation = true
 shader_parameter/shadow_gradient = SubResource("GradientTexture1D_m8pbo")
-shader_parameter/shadow_overlay = ExtResource("5_5asts")
 shader_parameter/shadow_overlay_size = 5.0
-shader_parameter/shadow_overlay_mix = 0.15
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5asts"]
-render_priority = -1
-shader = ExtResource("6_bgrb5")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/outline_size = 6.0
+shader_parameter/shadow_overlay_mix = 0.3
+shader_parameter/use_specular = false
+shader_parameter/specular_intensity = 0.8
+shader_parameter/specular_size = 32.0
+shader_parameter/specular_threshold = 0.5
+shader_parameter/specular_shadow_threshold = 0.35
+shader_parameter/specular_shadow_softness = 0.08
+shader_parameter/use_rimlight = false
+shader_parameter/rim_intensity = 1.0
+shader_parameter/rim_power = 12.0
+shader_parameter/rim_min_attenuation = 0.2
 
 [sub_resource type="Gradient" id="Gradient_l1ous"]
 offsets = PackedFloat32Array(0.5, 0.9)
@@ -75,14 +77,24 @@ gradient = SubResource("Gradient_l1ous")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1ous"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_5asts")
 shader = ExtResource("5_l1ous")
 shader_parameter/albedo_tex = ExtResource("2_7c5u0")
 shader_parameter/albedo_color = Color(0.999998, 0.559412, 0.273571, 1)
+shader_parameter/use_attenuation = true
 shader_parameter/shadow_gradient = SubResource("GradientTexture1D_5asts")
 shader_parameter/shadow_overlay = ExtResource("5_5asts")
 shader_parameter/shadow_overlay_size = 5.0
 shader_parameter/shadow_overlay_mix = 0.074
+shader_parameter/use_specular = true
+shader_parameter/specular_intensity = 0.8
+shader_parameter/specular_size = 32.0
+shader_parameter/specular_threshold = 0.5
+shader_parameter/specular_shadow_threshold = 0.35
+shader_parameter/specular_shadow_softness = 0.08
+shader_parameter/use_rimlight = true
+shader_parameter/rim_intensity = 1.0
+shader_parameter/rim_power = 12.0
+shader_parameter/rim_min_attenuation = 0.2
 
 [sub_resource type="SphereMesh" id="SphereMesh_rtvcb"]
 material = SubResource("ShaderMaterial_l1ous")
@@ -98,7 +110,7 @@ radius = 2.5
 height = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_5asts"]
-size = Vector3(5, 0.1, 5)
+size = Vector3(6, 0.1, 4)
 
 [node name="Test" type="Node3D"]
 
@@ -149,7 +161,7 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 mesh = SubResource("SphereMesh_ltfgi")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.8, 8, 14.6542)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 8, 13.8542)
 mesh = SubResource("BoxMesh_5asts")
 
 [node name="Car" parent="." instance=ExtResource("1_idl8n")]

@@ -2,7 +2,8 @@ extends CanvasLayer
 
 const levels: Dictionary[String, String] = {
 	"ozqn one" : "uid://cm3krxqvjwrwt",
-	"ball level" : "uid://cyq0iwyu5wu5h"
+	"ball level" : "uid://cyq0iwyu5wu5h",
+	"the car thing": "uid://c58seyvj2x72b",
 }
 
 @export var level_options: OptionButton
