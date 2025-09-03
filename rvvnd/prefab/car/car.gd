@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var accel := 40.0
 @export var accel_against := 160.0
 @export var max_speed := 150.0
+@export var min_turn_speed := 10.0
 @export_group("Movement/Friction & Turning")
 @export var friction := 60.0
 @export var turn_speed := 2.5
@@ -21,7 +22,6 @@ extends CharacterBody3D
 @export var max_fov := 100.0
 @export var fov_lerp_speed := 5.0
 @export var camera_follow_smoothness := 5.0
-@export var camera_tilt_angle := 10.0
 @export var camera_offset_strength := 0.5
 
 var input_dir := Vector2.ZERO
@@ -37,12 +37,19 @@ func _handle_input():
 	steer_input = input_dir.x
 
 func _update_meshes(delta: float):
-	var wheel_spin = _speed * delta * 0.2
-	rightWheel.rotate_x(wheel_spin)
-	leftWheel.rotate_x(wheel_spin)
+	var wheel_rotation = _speed * delta * 0.1
+	rightWheel.rotation.x += wheel_rotation
+	leftWheel.rotation.x += wheel_rotation
+
+	var steer_angle = deg_to_rad(25.0) * steer_input
+	rightWheel.rotation.y = -steer_angle
+	leftWheel.rotation.y = -steer_angle
 
 	var target_bank = deg_to_rad(-steer_input * bank_angle) * get_speed_percent()
 	carBody.rotation.z = lerp(carBody.rotation.z, target_bank, 8.0 * delta)
+
+	var accel_pitch = clamp(accel_input * 0.1, -0.15, 0.15)
+	carBody.rotation.x = lerp(carBody.rotation.x, accel_pitch, 3.0 * delta)
 
 func _update_physics(delta: float):
 	var forward = -global_transform.basis.z.normalized()
@@ -66,11 +73,11 @@ func _update_physics(delta: float):
 	current_speed = clamp(current_speed, -max_reverse, max_speed)
 	_speed = current_speed
 
-	var speed_factor = get_speed_percent()
+	var speed_factor = clamp(abs(_speed), min_turn_speed, max_speed)
+	speed_factor = (speed_factor - min_turn_speed) / (max_speed - min_turn_speed) # normalized 0-1
 	var rot_amount = -steer_input * turn_speed * delta * speed_factor * sign(_speed) if _speed != 0.0 else 0.0
 	rotate_y(rot_amount)
 
-	# Gravity
 	if is_on_floor():
 		velocity.y = -0.1
 	else:
@@ -94,8 +101,6 @@ func _update_camera(delta: float):
 
 	var target_look = global_transform.origin + Vector3.UP * 1.5
 	camera.look_at(target_look, Vector3.UP)
-	var tilt_target = deg_to_rad(-steer_input * camera_tilt_angle) * get_speed_percent()
-	camera.rotation.z = lerp(camera.rotation.z, tilt_target, 5.0 * delta)
 
 func _update_ddraw(_delta):
 	if OS.has_feature("debug"):
@@ -105,9 +110,11 @@ func _update_ddraw(_delta):
 				(self.velocity * REWIND.FLATTEN_MASK).length(),
 				(self.velocity.length() / REWIND.Q_INVERSE_SCALE),
 				self.velocity.y,
-				round((velocity * REWIND.FLATTEN_MASK).length() / max_speed * 100)
+				get_speed_percent() * 100
 			]
 		)
+		DebugDraw2D.set_text("C:Inputs", "Accel: %.2f | Steer: %.2f" % [accel_input, steer_input])
+		DebugDraw2D.set_text("C:WheelRot", "RightWheel: %.2f | LeftWheel: %.2f" % [rightWheel.rotation.x, leftWheel.rotation.x])
 
 func get_speed_percent() -> float:
 	return _speed / max_speed

@@ -211,11 +211,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f6y8c")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bj44q"]
-size = Vector3(1.2, 1.1, 2.6)
+size = Vector3(1.2, 1.05293, 2.4)
 
 [node name="Car" type="CharacterBody3D"]
 script = ExtResource("1_1mdq2")
 max_fov = 120.0
+fov_lerp_speed = 1.5
 camera_offset_strength = 5.0
 
 [node name="Model" type="Node3D" parent="."]
@@ -262,5 +263,5 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 2.98023e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57, 0)
 shape = SubResource("BoxShape3D_bj44q")

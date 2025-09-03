@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bu30akusaxmnu" path="res://rvvnd/prefab/car/car.tscn" id="1_idl8n"]
 [ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_l1ous"]
 [ext_resource type="Texture2D" uid="uid://iq4csnlfjgsx" path="res://rvvnd/assets/img/templategrid_albedo.png" id="2_7c5u0"]
+[ext_resource type="Material" uid="uid://lskcjrjfjco8" path="res://rvvnd/testmat.tres" id="2_bgrb5"]
 [ext_resource type="Texture2D" uid="uid://dqocv0840swm8" path="res://rvvnd/assets/img/shadowtex1.png" id="5_5asts"]
 [ext_resource type="Shader" uid="uid://dtawcy6gq2ppg" path="res://rvvnd/shaders/cel.gdshader" id="5_l1ous"]
+[ext_resource type="Shader" uid="uid://b1wdc1ckhjawj" path="res://rvvnd/shaders/outline.gdshader" id="6_bgrb5"]
 
 [sub_resource type="Gradient" id="Gradient_5asts"]
 offsets = PackedFloat32Array(0.428571, 1)
@@ -42,31 +44,11 @@ sky = SubResource("Sky_l1ous")
 ambient_light_color = Color(0.377919, 0.377919, 0.377919, 1)
 tonemap_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_bgrb5"]
-offsets = PackedFloat32Array(0.5, 0.9)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_m8pbo"]
-gradient = SubResource("Gradient_bgrb5")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgrb5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8pbo"]
 render_priority = 0
-shader = ExtResource("5_l1ous")
-shader_parameter/albedo_tex = ExtResource("2_7c5u0")
-shader_parameter/albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
-shader_parameter/use_attenuation = true
-shader_parameter/shadow_gradient = SubResource("GradientTexture1D_m8pbo")
-shader_parameter/shadow_overlay_size = 5.0
-shader_parameter/shadow_overlay_mix = 0.3
-shader_parameter/use_specular = false
-shader_parameter/specular_intensity = 0.8
-shader_parameter/specular_size = 32.0
-shader_parameter/specular_threshold = 0.5
-shader_parameter/specular_shadow_threshold = 0.35
-shader_parameter/specular_shadow_softness = 0.08
-shader_parameter/use_rimlight = false
-shader_parameter/rim_intensity = 1.0
-shader_parameter/rim_power = 12.0
-shader_parameter/rim_min_attenuation = 0.2
+shader = ExtResource("6_bgrb5")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/thickness = 0.2
 
 [sub_resource type="Gradient" id="Gradient_l1ous"]
 offsets = PackedFloat32Array(0.5, 0.9)
@@ -77,9 +59,15 @@ gradient = SubResource("Gradient_l1ous")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1ous"]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_m8pbo")
 shader = ExtResource("5_l1ous")
 shader_parameter/albedo_tex = ExtResource("2_7c5u0")
 shader_parameter/albedo_color = Color(0.999998, 0.559412, 0.273571, 1)
+shader_parameter/use_triplanar = false
+shader_parameter/use_world_triplanar = true
+shader_parameter/uv1_blend_sharpness = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/use_attenuation = true
 shader_parameter/shadow_gradient = SubResource("GradientTexture1D_5asts")
 shader_parameter/shadow_overlay = ExtResource("5_5asts")
@@ -128,29 +116,29 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
 size = Vector3(5000, 0.1, 5000)
-material = SubResource("ShaderMaterial_bgrb5")
+material = ExtResource("2_bgrb5")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.923676, 0.406042, -91.1412)
 radius = 29.539
 height = 3.0
 cone = true
-material = SubResource("ShaderMaterial_bgrb5")
+material = ExtResource("2_bgrb5")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -119.279, 15.9537, -38.2464)
 size = Vector3(135, 1, 19.9121)
-material = SubResource("ShaderMaterial_bgrb5")
+material = ExtResource("2_bgrb5")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 3, -11)
 size = Vector3(15, 8, 1)
-material = SubResource("ShaderMaterial_bgrb5")
+material = ExtResource("2_bgrb5")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -68, 3, -6)
 size = Vector3(15, 8, 1)
-material = SubResource("ShaderMaterial_bgrb5")
+material = ExtResource("2_bgrb5")
 
 [node name="celtest" type="MeshInstance3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -36.4749, 4, 19.0251)

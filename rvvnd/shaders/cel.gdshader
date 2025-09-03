@@ -3,6 +3,17 @@ shader_type spatial;
 uniform sampler2D albedo_tex : source_color;
 uniform vec3 albedo_color : source_color = vec3(1.0);
 
+uniform bool use_triplanar = false;
+uniform bool use_world_triplanar = true;
+
+varying vec3 uv1_triplanar_pos;
+
+uniform float uv1_blend_sharpness : hint_range(1.0, 150.0, 0.001) = 1;
+varying vec3 uv1_power_normal;
+
+uniform vec3 uv1_scale = vec3(1);
+uniform vec3 uv1_offset;
+
 group_uniforms Shadows;
 uniform bool use_attenuation = true;
 uniform sampler2D shadow_gradient : repeat_disable, source_color, filter_linear;
@@ -25,10 +36,51 @@ uniform float rim_intensity : hint_range(0.0, 2.0) = 1.0;
 uniform float rim_power : hint_range(1.0, 32.0) = 12.0;
 uniform float rim_min_attenuation : hint_range(0.0, 1.0) = 0.2;
 
-void fragment() {
-	vec4 tex_color = texture(albedo_tex, UV);
-	ALBEDO = tex_color.rgb * albedo_color;
+
+void vertex() {
+    vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
+
+    TANGENT = vec3(0.0, 0.0, -1.0) * abs(normal.x);
+    TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.y);
+    TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.z);
+    TANGENT = inverse(MODEL_NORMAL_MATRIX) * normalize(TANGENT);
+
+    BINORMAL = vec3(0.0, 1.0, 0.0) * abs(normal.x);
+    BINORMAL += vec3(0.0, 0.0, -1.0) * abs(normal.y);
+    BINORMAL += vec3(0.0, 1.0, 0.0) * abs(normal.z);
+    BINORMAL = inverse(MODEL_NORMAL_MATRIX) * normalize(BINORMAL);
+
+    if (use_triplanar) {
+        uv1_power_normal = pow(abs(normal), vec3(uv1_blend_sharpness));
+        uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
+
+        if (use_world_triplanar) {
+            uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset;
+        } else {
+            uv1_triplanar_pos = VERTEX * uv1_scale + uv1_offset;
+        }
+
+        uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
+    }
 }
+
+vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
+	vec4 samp = vec4(0.0);
+	samp += texture(p_sampler, p_triplanar_pos.xy) * p_weights.z;
+	samp += texture(p_sampler, p_triplanar_pos.xz) * p_weights.y;
+	samp += texture(p_sampler, p_triplanar_pos.zy * vec2(-1.0, 1.0)) * p_weights.x;
+	return samp;
+}
+
+void fragment() {
+    if (use_triplanar) {
+        vec4 tex_color = triplanar_texture(albedo_tex, uv1_power_normal, uv1_triplanar_pos);
+        ALBEDO = tex_color.rgb * albedo_color;
+    } else {
+        ALBEDO = texture(albedo_tex, UV).rgb * albedo_color; // Standard UV mapping
+    }
+}
+
 
 float sample_gradient(float pos) {
 	return texture(shadow_gradient, vec2(pos, 0.0)).r;
