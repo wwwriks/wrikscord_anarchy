@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c58seyvj2x72b"]
+[gd_scene load_steps=22 format=3 uid="uid://c58seyvj2x72b"]
 
 [ext_resource type="PackedScene" uid="uid://bu30akusaxmnu" path="res://rvvnd/prefab/car/car.tscn" id="1_idl8n"]
 [ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_l1ous"]
@@ -56,25 +56,34 @@ shader = ExtResource("6_bgrb5")
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/outline_size = 6.0
 
+[sub_resource type="Gradient" id="Gradient_l1ous"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5asts"]
+gradient = SubResource("Gradient_l1ous")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1ous"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_5asts")
 shader = ExtResource("5_l1ous")
+shader_parameter/albedo_tex = ExtResource("2_7c5u0")
 shader_parameter/albedo_color = Color(0.999998, 0.559412, 0.273571, 1)
+shader_parameter/shadow_gradient = SubResource("GradientTexture1D_5asts")
 shader_parameter/shadow_overlay = ExtResource("5_5asts")
-shader_parameter/shadow_overlay_intensity = 0.1
-shader_parameter/shadow_overlay_scale = 14.0
-shader_parameter/shadow_smoothness_min = 0.0
-shader_parameter/shadow_smoothness_max = 0.0
-shader_parameter/use_attenuation = true
-shader_parameter/attenuation_smoothness_min = 0.2
-shader_parameter/attenuation_smoothness_max = 0.25
-shader_parameter/use_specular = true
-shader_parameter/use_rim = true
-shader_parameter/rim_power = 12.0
+shader_parameter/shadow_overlay_mix = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_rtvcb"]
 material = SubResource("ShaderMaterial_l1ous")
+radius = 2.5
+height = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1ous"]
+albedo_color = Color(1, 0.560784, 0.27451, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ltfgi"]
+material = SubResource("StandardMaterial3D_l1ous")
 radius = 2.5
 height = 5.0
 
@@ -122,11 +131,15 @@ size = Vector3(15, 8, 1)
 material = SubResource("StandardMaterial3D_5asts")
 
 [node name="celtest" type="MeshInstance3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 4, -8)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -36.4749, 4, 19.0251)
 mesh = SubResource("SphereMesh_rtvcb")
 
+[node name="celtest2" type="MeshInstance3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -31.5251, 4, 23.9749)
+mesh = SubResource("SphereMesh_ltfgi")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8, -12.7458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.8, 8, 14.6542)
 mesh = SubResource("BoxMesh_5asts")
 
 [node name="Car" parent="." instance=ExtResource("1_idl8n")]

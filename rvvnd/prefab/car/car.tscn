@@ -258,7 +258,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_s0cl8")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4, 10)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.5, 5.005)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
