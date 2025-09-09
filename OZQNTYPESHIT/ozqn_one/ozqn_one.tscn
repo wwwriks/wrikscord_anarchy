@@ -1,10 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cm3krxqvjwrwt"]
+[gd_scene load_steps=13 format=3 uid="uid://cm3krxqvjwrwt"]
 
 [ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_e718k"]
 [ext_resource type="Script" uid="uid://cmueollksuoyq" path="res://OZQNTYPESHIT/ozqn_one/ozqn_one.gd" id="1_owghi"]
-[ext_resource type="PackedScene" uid="uid://btwml6prkv7hi" path="res://OZQNTYPESHIT/ozqn_one/guy_dude.tscn" id="2_jll4m"]
 [ext_resource type="AudioStream" uid="uid://djbbsh6835jve" path="res://OZQNTYPESHIT/ozqn_one/wind.mp3" id="3_kl0dm"]
-[ext_resource type="Texture2D" uid="uid://yh2j6gkmhr80" path="res://OZQNTYPESHIT/ozqn_one/assets/Star.png" id="5_rhuii"]
 [ext_resource type="PackedScene" uid="uid://ddl1kukgck407" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.blend" id="6_rhuii"]
 [ext_resource type="LightmapGIData" uid="uid://dy4iw8yunemrr" path="res://OZQNTYPESHIT/ozqn_one/assets/ozqn_one.lmbake" id="6_v3hoh"]
 
@@ -52,55 +50,10 @@ fog_sky_affect = 0.0
 fog_height = -1.0
 fog_height_density = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3hoh"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_rhuii")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_rhuii"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.750733, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_o2wqe"]
-curve = SubResource("Curve_rhuii")
-
-[sub_resource type="Curve" id="Curve_o08xi"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.252199, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_63af4"]
-curve = SubResource("Curve_o08xi")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v3hoh"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.5
-emission_ring_radius = 14.0
-emission_ring_inner_radius = 3.0
-emission_ring_cone_angle = 90.0
-angle_min = 1.07288e-05
-angle_max = 180.0
-direction = Vector3(0, 1, 0)
-spread = 0.0
-initial_velocity_min = 0.5
-initial_velocity_max = 0.5
-angular_velocity_min = 30.0
-angular_velocity_max = 30.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.25
-scale_max = 0.25
-scale_curve = SubResource("CurveTexture_63af4")
-alpha_curve = SubResource("CurveTexture_o2wqe")
-turbulence_enabled = true
-turbulence_noise_scale = 1.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_rhuii"]
+[sub_resource type="BoxMesh" id="BoxMesh_tm6nm"]
+lightmap_size_hint = Vector2i(14, 41)
+add_uv2 = true
+size = Vector3(1, 3.055, 1)
 
 [node name="OzqnOne" type="Node3D" node_paths=PackedStringArray("wind_audio")]
 script = ExtResource("1_owghi")
@@ -114,23 +67,10 @@ transform = Transform3D(-0.0613103, -0.583329, 0.809919, 0.0846597, 0.805482, 0.
 light_bake_mode = 1
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
-bounces = 5
+supersampling = true
 directional = true
 use_denoiser = false
 light_data = ExtResource("6_v3hoh")
-
-[node name="GuyDude" parent="." instance=ExtResource("2_jll4m")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, -0.38965, 0)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="GuyDude"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_v3hoh")
-cast_shadow = 0
-emitting = false
-amount = 64
-lifetime = 3.0
-process_material = SubResource("ParticleProcessMaterial_v3hoh")
-draw_pass_1 = SubResource("QuadMesh_rhuii")
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kl0dm")
@@ -138,3 +78,7 @@ volume_db = -30.033
 parameters/looping = true
 
 [node name="platform" parent="." instance=ExtResource("6_rhuii")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_tm6nm")
