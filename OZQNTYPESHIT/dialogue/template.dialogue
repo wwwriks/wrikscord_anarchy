@@ -1,0 +1,8 @@
+~ start
+Ozqn: This is template dialogue that pops up when you don't give a filepath.
+Ozqn: You can use the Dialogue panel at the top to make new dialogue
+Ozqn: Then you can start the dialogue in a script using the DialogueUI.start(file_path: String) function.
+Ozqn: For more information see the online documentation.
+- Start again => start
+- End the conversation => END
+=> END
