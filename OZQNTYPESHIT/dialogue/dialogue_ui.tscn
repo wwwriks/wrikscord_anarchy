@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xh1ont82km0l"]
+[gd_scene load_steps=17 format=3 uid="uid://xh1ont82km0l"]
 
 [ext_resource type="Script" uid="uid://br1j3k504lbrx" path="res://OZQNTYPESHIT/dialogue/ozqndialogue.gd" id="1_4ehdh"]
 [ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="1_cnr8k"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="4_8scbx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8scbx"]
-content_margin_left = 5.0
-bg_color = Color(0.0943044, 0.0943044, 0.0943043, 1)
+content_margin_left = 7.0
+content_margin_right = 7.0
+bg_color = Color(0.094, 0.094, 0.094, 0.628)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -28,6 +29,8 @@ content_margin_left = 15.0
 [sub_resource type="LabelSettings" id="LabelSettings_xyq5t"]
 font = ExtResource("1_cnr8k")
 font_size = 24
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yu6r"]
 bg_color = Color(0.066755, 0.066755, 0.066755, 1)
@@ -109,11 +112,66 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("character_label", "dialogue_label", "response_menu")]
+[sub_resource type="Animation" id="Animation_7yu6r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8scbx"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.241484, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xyq5t"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1.1487),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65xb3"]
+_data = {
+&"RESET": SubResource("Animation_7yu6r"),
+&"fade_in": SubResource("Animation_8scbx"),
+&"fade_out": SubResource("Animation_xyq5t")
+}
+
+[node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("character_label", "dialogue_label", "response_menu", "animator")]
 script = ExtResource("1_4ehdh")
 character_label = NodePath("Control/MarginContainer/Panel/VBoxContainer/Label")
 dialogue_label = NodePath("Control/MarginContainer/Panel/VBoxContainer/DialogueLabel")
 response_menu = NodePath("Control/MarginContainer2/DialogueResponsesMenu")
+animator = NodePath("AnimationPlayer")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -131,7 +189,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 320
+theme_override_constants/margin_top = 350
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 20
 
@@ -150,8 +208,11 @@ label_settings = SubResource("LabelSettings_xyq5t")
 
 [node name="DialogueLabel" parent="Control/MarginContainer/Panel/VBoxContainer" instance=ExtResource("3_4ehdh")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 1
 theme_override_fonts/normal_font = ExtResource("1_cnr8k")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 20
 text = "Testing some dialogue out for testing."
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control"]
@@ -161,9 +222,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 120
+theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 220
-theme_override_constants/margin_right = 120
+theme_override_constants/margin_right = 80
 
 [node name="DialogueResponsesMenu" type="Container" parent="Control/MarginContainer2" node_paths=PackedStringArray("container_parent", "response_template")]
 layout_mode = 2
@@ -180,7 +241,6 @@ theme_override_constants/separation = 25
 alignment = 1
 
 [node name="Button" type="Button" parent="Control/MarginContainer2/HBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cnr8k")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_7yu6r")
@@ -189,3 +249,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_65xb3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3j37s")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wdiyq")
 text = "Response template"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_65xb3")
+}
