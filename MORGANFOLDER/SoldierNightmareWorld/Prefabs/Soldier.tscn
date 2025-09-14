@@ -19,17 +19,6 @@ material = SubResource("StandardMaterial3D_47ujg")
 
 [node name="Soldier" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_68v36")
-moveSpeed = null
-maxSpeed = null
-minSpeed = null
-acceleration = null
-jumpForce = null
-doubleJumpForce = null
-grav = null
-jumpMax = null
-mouseSens = null
-controlSens = null
-respawnPoint = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_tr0yl")
@@ -57,4 +46,4 @@ spot_range = 13.2393
 spot_angle = 31.6945
 
 [node name="BARREL" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146535, -0.553641)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2209, 0.146535, -0.360253)

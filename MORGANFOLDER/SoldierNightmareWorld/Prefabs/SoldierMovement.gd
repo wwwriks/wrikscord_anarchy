@@ -12,7 +12,7 @@ extends CharacterBody3D
 var jumps = 0
 
 @export var mouseSens = .002
-@export var controlSens = .002
+@export var controlSens = .01
 @export var respawnPoint = Vector3.ZERO
 
 var camPivot = 0
@@ -43,6 +43,20 @@ func _ready():
 	cam = $Node3D/Camera3D
 	sprDisplay = $Sprite3D
 	barrelPosition = $BARREL
+
+func controllerLooking():
+	# Rotate This transform's y by our event's relative x (distance moved) multipled by our mouse sensitivity (distance * multiplier)
+	# This rotates via top view (so left and right)
+	var input = Input.get_vector("lookleft", "lookright", "lookup", "lookdown")
+	var _x = input.x;
+	var _y = input.y;
+	#print(str(_x)+" : "+str(_y))
+	rotate_y(-_x * controlSens)
+	# Rotate our camera according to that as well
+	camPivot.rotate_x(-_y * controlSens)
+	# Now clamp our rotation so we can't look up or down infinitely.
+	camPivot.rotation.x = clampf(camPivot.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+	cam.rotation.x = clampf(cam.rotation.x, -deg_to_rad(270), deg_to_rad(250))
 
 func _physics_process(delta: float) -> void:
 	var input = Input.get_vector("left", "right", "up", "down")
@@ -81,7 +95,11 @@ func _physics_process(delta: float) -> void:
 			runTimer = 0
 		sprDisplay.texture = runFrames[floor(ind)]
 	
+	#CONTROLLER LOOKING
+	controllerLooking()
+	
 	move_and_slide()
+	
 	var zoom = 2;
 	if Input.is_action_pressed("m2"):
 		zoom = -3
@@ -92,10 +110,10 @@ func _physics_process(delta: float) -> void:
 	cooldown-=1*delta
 	if Input.is_action_pressed("m1") and cooldown<=0:
 		var b = bulletScene.instantiate()
+		b.global_rotation = cam.global_rotation * Vector3(-1,1,1)
 		b.position = barrelPosition.global_position
-		b.setVelocity(cam.global_rotation,bulletSpeed)
-		b.damage = bulletDamage
-		get_tree().root.add_child(b)
+		b.rotation += Vector3(0,-PI,0)
+		add_sibling(b)
 		cooldown = 12*delta;
 		pass
 
@@ -109,23 +127,6 @@ func _input(event):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	# Is that input the mouse moving? And are we inside the actual game window
-	var inputMotion
-	if event is InputEventJoypadMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		# Rotate This transform's y by our event's relative x (distance moved) multipled by our mouse sensitivity (distance * multiplier)
-		# This rotates via top view (so left and right)
-		#InputEventJoypadMotion.joyAxis
-		Input.get_vector()
-		var _x =  JOY_AXIS_RIGHT_X;
-		var _y = JOY_AXIS_RIGHT_Y;
-		print(str(_x)+" : "+str(_y))
-		rotate_y(-_x * controlSens)
-		# Rotate our camera according to that as well
-		camPivot.rotate_x(-_y * controlSens)
-		# Now clamp our rotation so we can't look up or down infinitely.
-		camPivot.rotation.x = clampf(camPivot.rotation.x, -deg_to_rad(70), deg_to_rad(70))
-		cam.rotation.x = clampf(cam.rotation.x, -deg_to_rad(270), deg_to_rad(250))
 	
 	# Is that input the mouse moving? And are we inside the actual game window
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
