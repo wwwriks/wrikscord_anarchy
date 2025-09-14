@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://boq1uy7ic0iu0"]
+
+[ext_resource type="Script" uid="uid://dfvixqb48yuse" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/bullet.gd" id="1_hoyy7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xwhw"]
+height = 4.65232
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 0
+script = ExtResource("1_hoyy7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_1xwhw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.835294, 0, 1)
+omni_range = 2.01709

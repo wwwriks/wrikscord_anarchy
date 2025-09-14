@@ -15,12 +15,14 @@ var jumps = 0
 @export var respawnPoint = Vector3.ZERO
 
 var camPivot = 0
+var camPivotPosition = Vector3.ZERO
 var cam = 0
 
 #Lock the mouse in the game window and make it invisible
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camPivot = $Node3D
+	camPivotPosition = camPivot.position
 	cam = $Node3D/Camera3D
 
 func _physics_process(delta: float) -> void:
@@ -46,6 +48,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y = doubleJumpForce
 	move_and_slide()
+	var spd = .35*(abs(velocity.x)+abs(velocity.z))
+	var tar = camPivotPosition + Vector3(0,spd*.07,spd*.25)
+	camPivot.position = lerp(camPivot.position,tar,.08)
 	pass
 # If an input is detected
 func _input(event):

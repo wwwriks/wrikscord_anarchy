@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlbdavq06qxew"
-path.s3tc="res://.godot/imported/sand2.png-3d91515342ba21f4521c638f25e23475.s3tc.ctex"
+uid="uid://b0u73y5qh51ox"
+path.s3tc="res://.godot/imported/wood3.png-c05f6c1f2519b50b9eeb98275e922859.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://MORGANFOLDER/Materials/sand2.png"
-dest_files=["res://.godot/imported/sand2.png-3d91515342ba21f4521c638f25e23475.s3tc.ctex"]
+source_file="res://MORGANFOLDER/SoldierNightmareWorld/Materials/wood3.png"
+dest_files=["res://.godot/imported/wood3.png-c05f6c1f2519b50b9eeb98275e922859.s3tc.ctex"]
 
 [params]
 

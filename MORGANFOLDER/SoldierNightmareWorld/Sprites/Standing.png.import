@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csv05k6d76xjw"
-path.s3tc="res://.godot/imported/rocks1.png-b3492726d3b4cd02c9e910c45dce32e5.s3tc.ctex"
+uid="uid://dcm37s3vk8moe"
+path.s3tc="res://.godot/imported/Standing.png-37f7779c68c75c5e9cbc6774577f9602.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://MORGANFOLDER/Materials/rocks1.png"
-dest_files=["res://.godot/imported/rocks1.png-b3492726d3b4cd02c9e910c45dce32e5.s3tc.ctex"]
+source_file="res://MORGANFOLDER/SoldierNightmareWorld/Sprites/Standing.png"
+dest_files=["res://.godot/imported/Standing.png-37f7779c68c75c5e9cbc6774577f9602.s3tc.ctex"]
 
 [params]
 
