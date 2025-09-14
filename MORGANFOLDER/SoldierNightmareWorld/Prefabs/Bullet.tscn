@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://boq1uy7ic0iu0"]
+[gd_scene load_steps=10 format=3 uid="uid://boq1uy7ic0iu0"]
 
 [ext_resource type="Script" uid="uid://dfvixqb48yuse" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/bullet.gd" id="1_hoyy7"]
+[ext_resource type="Texture2D" uid="uid://fdlh780clham" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/FireGradient.tres" id="2_b3bl6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xwhw"]
 height = 4.65232
@@ -11,6 +12,29 @@ shading_mode = 0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hoyy7"]
 material = SubResource("StandardMaterial3D_hoyy7")
 flip_faces = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3bl6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hoyy7"]
+particle_flag_rotate_y = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+inherit_velocity_ratio = 1.0
+gravity = Vector3(0, 0, 0)
+scale_over_velocity_min = 0.1
+scale_over_velocity_max = 0.1
+color_ramp = ExtResource("2_b3bl6")
+color_initial_ramp = ExtResource("2_b3bl6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nq2vo"]
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_71drd"]
+material = SubResource("StandardMaterial3D_nq2vo")
 
 [node name="Area3D" type="Area3D"]
 collision_layer = 0
@@ -27,5 +51,15 @@ mesh = SubResource("CapsuleMesh_hoyy7")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 0.835294, 0, 1)
 omni_range = 1.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_b3bl6")
+emitting = false
+amount = 20
+lifetime = 0.25
+one_shot = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_hoyy7")
+draw_pass_1 = SubResource("QuadMesh_71drd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

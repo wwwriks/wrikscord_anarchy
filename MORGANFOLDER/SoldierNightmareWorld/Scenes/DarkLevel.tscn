@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://1nrb26ihn13g"]
+[gd_scene load_steps=6 format=3 uid="uid://1nrb26ihn13g"]
 
 [ext_resource type="Texture2D" uid="uid://b0u73y5qh51ox" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/wood3.png" id="1_y6r4g"]
 [ext_resource type="PackedScene" uid="uid://g5wrmp3qt216" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Soldier.tscn" id="2_xekco"]
+[ext_resource type="PackedScene" uid="uid://cg8jtkubnbfhg" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Lantern.tscn" id="3_gyift"]
 
 [sub_resource type="Environment" id="Environment_mglq0"]
 background_mode = 1
@@ -39,3 +40,24 @@ sky_mode = 1
 
 [node name="Soldier" parent="." instance=ExtResource("2_xekco")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.838204, -0.161648, -0.520849, 0, 0.955061, -0.296408, 0.545356, 0.248451, 0.800537, -23.0465, -1.72309, -16.9336)
+material_override = SubResource("StandardMaterial3D_xekco")
+use_collision = true
+size = Vector3(15, 10, 25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.61103, -0.0534279, -0.789803, -1.49012e-08, 0.99772, -0.067493, 0.791608, -0.0412401, -0.609636, -9.2551, 0.784292, -26.5003)
+material_override = SubResource("StandardMaterial3D_xekco")
+use_collision = true
+size = Vector3(15, 10, 25.7657)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.838204, -0.161648, -0.520849, 0.52542, -0.0165032, 0.850683, -0.146107, -0.986711, 0.0710999, -12.8681, -5.23267, -27.2216)
+material_override = SubResource("StandardMaterial3D_xekco")
+use_collision = true
+size = Vector3(15, 10, 25)
+
+[node name="Lantern" parent="." instance=ExtResource("3_gyift")]
+transform = Transform3D(0.980491, -0.190567, 0.0481749, 0.196562, 0.950587, -0.240306, 0, 0.245087, 0.969501, -12.7835, 6.65142, -20.938)

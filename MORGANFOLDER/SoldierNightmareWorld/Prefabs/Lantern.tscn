@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg8jtkubnbfhg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67q6r"]
+size = Vector3(1, 0.208496, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ylcof"]
+size = Vector3(0.192383, 5.04822, 0.157349)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t6tb8"]
+size = Vector3(1, 0.375732, 1)
+
+[node name="Lantern" type="StaticBody3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.400879, 0)
+size = Vector3(1, 0.198242, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6468, 0)
+size = Vector3(0.2, 4, 0.2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.60464, 0)
+size = Vector3(0.4, 0.198, 0.4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.49348, 0)
+size = Vector3(1, 0.198242, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6646, 0)
+size = Vector3(0.75, 0.198, 0.75)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05105, 0)
+light_color = Color(1, 0.863247, 0.507991, 1)
+light_energy = 15.0
+omni_range = 10.0751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.395752, 0)
+shape = SubResource("BoxShape3D_67q6r")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0112305, 2.21797, -0.0137329)
+shape = SubResource("BoxShape3D_ylcof")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.57221, 0)
+shape = SubResource("BoxShape3D_t6tb8")

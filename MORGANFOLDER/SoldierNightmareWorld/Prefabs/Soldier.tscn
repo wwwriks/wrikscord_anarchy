@@ -39,11 +39,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.923701, 0.944046, 2.12438)
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.996646, 0.0818341, 0, -0.0818341, 0.996646, 0, 0, 0)
-light_energy = 4.0
-spot_range = 13.2393
-spot_angle = 31.6945
-
 [node name="BARREL" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2209, 0.146535, -0.360253)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0453212, 0.466778, 0.11774)
+omni_range = 1.02612
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.992349, 0.123463, 0, -0.123463, 0.992349, 0.259392, 0.511376, 0.267793)
+light_color = Color(1, 0.745098, 0, 1)
+light_energy = 12.0
+spot_range = 13.2393
+spot_angle = 31.6945

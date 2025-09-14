@@ -7,9 +7,8 @@ var lifetime = 3
 
 var hit = false
 
-func setVelocity(dir,mag):
-	rotation = dir
-	pass
+func _ready() -> void:
+	$GPUParticles3D.emitting = true
 
 func _physics_process(delta: float) -> void:
 	var forward_dir = global_transform.basis.z.normalized()
@@ -18,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	if lifetime<=0: queue_free()
 
 func _on_body_entered(body: Node) -> void:
-	if hit: pass
+	#if hit: pass
 	if body.is_in_group("player"):
 		pass
 	else:
