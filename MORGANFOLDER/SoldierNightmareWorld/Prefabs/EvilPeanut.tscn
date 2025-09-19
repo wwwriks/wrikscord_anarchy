@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://chraur827s10q"]
+
+[ext_resource type="Script" uid="uid://cmjj0wusdlqdk" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/ChasePlayer.gd" id="1_5bj6a"]
+[ext_resource type="Material" uid="uid://bgnsy0elmxpli" path="res://MORGANFOLDER/peanuttexture.tres" id="1_qjtf3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5bj6a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0k4gh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0k4gh"]
+size = Vector3(1.49243, 2.48444, 1.57596)
+
+[node name="EvilPeanut" type="RigidBody3D"]
+script = ExtResource("1_5bj6a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.476115, 0)
+shape = SubResource("BoxShape3D_5bj6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("1_qjtf3")
+mesh = SubResource("BoxMesh_0k4gh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.75, -0.25, 0.612372, 0.612372, 0.612372, -0.5, -0.25, 0.75, 0.612372, 0, 0.523885, 0)
+shape = SubResource("BoxShape3D_5bj6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D2"]
+material_override = ExtResource("1_qjtf3")
+mesh = SubResource("BoxMesh_0k4gh")
+
+[node name="KillZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0169678, 0.0743103, -0.0154572)
+shape = SubResource("BoxShape3D_0k4gh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.665604, 1.96133e-06, 4.33177e-07, 1)
+light_energy = 0.25
+light_size = 5.0
+
+[connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]

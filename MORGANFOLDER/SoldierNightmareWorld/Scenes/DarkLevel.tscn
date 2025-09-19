@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://1nrb26ihn13g"]
+[gd_scene load_steps=8 format=3 uid="uid://1nrb26ihn13g"]
 
 [ext_resource type="Texture2D" uid="uid://b0u73y5qh51ox" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/wood3.png" id="1_y6r4g"]
 [ext_resource type="PackedScene" uid="uid://g5wrmp3qt216" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Soldier.tscn" id="2_xekco"]
 [ext_resource type="PackedScene" uid="uid://cg8jtkubnbfhg" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Lantern.tscn" id="3_gyift"]
+[ext_resource type="Script" uid="uid://cb26whdx7jveg" path="res://MORGANFOLDER/SoldierNightmareWorld/Scenes/SpawnPeanut.gd" id="4_fg2m7"]
 
 [sub_resource type="Environment" id="Environment_mglq0"]
 background_mode = 1
@@ -21,6 +22,9 @@ fog_sky_affect = 0.35
 albedo_color = Color(0.238122, 1.86507e-07, 0.0513952, 1)
 albedo_texture = ExtResource("1_y6r4g")
 uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8l77j"]
+radius = 7.66075
 
 [node name="DarkLevel" type="Node3D"]
 
@@ -61,3 +65,12 @@ size = Vector3(15, 10, 25)
 
 [node name="Lantern" parent="." instance=ExtResource("3_gyift")]
 transform = Transform3D(0.980491, -0.190567, 0.0481749, 0.196562, 0.950587, -0.240306, 0, 0.245087, 0.969501, -12.7835, 6.65142, -20.938)
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("4_fg2m7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.149, 0, -14.5877)
+shape = SubResource("SphereShape3D_8l77j")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

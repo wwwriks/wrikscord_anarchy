@@ -31,6 +31,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
+uv1_scale = Vector3(0.2, 0.2, 0.2)
 disable_receive_shadows = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_71drd"]
@@ -55,8 +56,8 @@ omni_range = 1.0
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_b3bl6")
 emitting = false
-amount = 20
-lifetime = 0.25
+amount = 1
+lifetime = 0.05
 one_shot = true
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_hoyy7")

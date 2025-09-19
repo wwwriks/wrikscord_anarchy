@@ -110,7 +110,7 @@ func _physics_process(delta: float) -> void:
 	cooldown-=1*delta
 	if Input.is_action_pressed("m1") and cooldown<=0:
 		var b = bulletScene.instantiate()
-		b.global_rotation = cam.global_rotation * Vector3(-1,1,1)
+		b.rotation = cam.global_rotation * Vector3(-1,1,1)
 		b.position = barrelPosition.global_position
 		b.rotation += Vector3(0,-PI,0)
 		add_sibling(b)
