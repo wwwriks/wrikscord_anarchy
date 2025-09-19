@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bgnsy0elmxpli"]
+
+[ext_resource type="Texture2D" uid="uid://cjkndiddbhu4" path="res://MORGANFOLDER/rust3.png" id="1_l83ij"]
+
+[resource]
+albedo_color = Color(1, 0.817606, 0.582142, 1)
+albedo_texture = ExtResource("1_l83ij")
