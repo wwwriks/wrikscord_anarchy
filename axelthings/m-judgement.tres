@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cqwvp7rdfdtkf"]
+
+[ext_resource type="Texture2D" uid="uid://b0u73y5qh51ox" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/wood3.png" id="1_yxl3e"]
+
+[resource]
+resource_name = "m-judgement"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.5, 0.5, 1)
+albedo_texture = ExtResource("1_yxl3e")
+uv1_scale = Vector3(0.155, 0.155, 0.155)
+uv1_triplanar = true

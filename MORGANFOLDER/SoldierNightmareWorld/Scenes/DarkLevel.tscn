@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://1nrb26ihn13g"]
+[gd_scene load_steps=9 format=3 uid="uid://1nrb26ihn13g"]
 
 [ext_resource type="Texture2D" uid="uid://b0u73y5qh51ox" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/wood3.png" id="1_y6r4g"]
 [ext_resource type="PackedScene" uid="uid://g5wrmp3qt216" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Soldier.tscn" id="2_xekco"]
 [ext_resource type="PackedScene" uid="uid://cg8jtkubnbfhg" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Lantern.tscn" id="3_gyift"]
 [ext_resource type="Script" uid="uid://cb26whdx7jveg" path="res://MORGANFOLDER/SoldierNightmareWorld/Scenes/SpawnPeanut.gd" id="4_fg2m7"]
+[ext_resource type="PackedScene" uid="uid://3peb3vpgxxfr" path="res://axelthings/mesh-judgement.glb" id="5_8l77j"]
 
 [sub_resource type="Environment" id="Environment_mglq0"]
 background_mode = 1
@@ -72,5 +73,8 @@ script = ExtResource("4_fg2m7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.149, 0, -14.5877)
 shape = SubResource("SphereShape3D_8l77j")
+
+[node name="mesh-judgement" parent="." instance=ExtResource("5_8l77j")]
+transform = Transform3D(-3.90597, 0, 3.41471e-07, 0, 3.90597, 0, -3.41471e-07, 0, -3.90597, -1.00747, -0.499999, 26.6924)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
