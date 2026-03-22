@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d2cdu5yqlv7cd"]
+
+[ext_resource type="Shader" uid="uid://crxfrfl1hi7r8" path="res://MORGANFOLDER/MarbleGame/Materials/Water_D.gdshader" id="1_1xjsq"]
+[ext_resource type="Texture2D" uid="uid://bhys86obll6o3" path="res://MORGANFOLDER/MarbleGame/Materials/rug1.png" id="2_kn2ua"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1xjsq")
+shader_parameter/albedo = Color(0, 0.670588, 0.552941, 0.788235)
+shader_parameter/texture_albedo = ExtResource("2_kn2ua")
+shader_parameter/distance_fade_min = 1986.15
+shader_parameter/distance_fade_max = 0.0
+shader_parameter/albedo_texture_size = Vector2i(1024, 1024)
+shader_parameter/point_size = 0.1
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0, 0.878431, 0.752941, 1)
+shader_parameter/emission_energy = 0.25
+shader_parameter/texture_refraction = ExtResource("2_kn2ua")
+shader_parameter/refraction = 0.436
+shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/rim = 1.0
+shader_parameter/rim_tint = 0.0
+shader_parameter/uv1_scale = Vector3(500, 500, 500)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/warp_uv_scale = 0.881

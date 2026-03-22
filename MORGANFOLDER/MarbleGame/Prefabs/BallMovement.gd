@@ -1,4 +1,7 @@
 extends CharacterBody3D
+	
+@onready var ball_mesh: Node3D = $MeshInstance3D
+@export var ball_radius: float = 0.5
 
 @export var moveSpeed = 6
 @export var maxSpeed = 56
@@ -17,6 +20,7 @@ var jumps = 0
 var camPivot = 0
 var camPivotPosition = Vector3.ZERO
 var cam = 0
+var lastContactNormal: Vector3 = Vector3.UP;
 
 #Lock the mouse in the game window and make it invisible
 func _ready():
@@ -26,8 +30,12 @@ func _ready():
 	cam = $Node3D/Camera3D
 
 func _physics_process(delta: float) -> void:
-	var forAxis = Input.get_axis("up","down")
-	var mDir = sign(forAxis) * camPivot.global_transform.basis.z.normalized()
+	#var forAxis = Input.get_axis("up","down")
+	#var mDir = sign(forAxis) * camPivot.global_transform.basis.z.normalized()
+	
+	var input = Input.get_vector("left", "right", "up", "down")
+	var mDir = transform.basis * Vector3(input.x, 0, input.y)
+	
 	var tDir = mDir * maxSpeed
 	var tempAccel = 1
 	if velocity.length() > maxSpeed:
@@ -47,11 +55,25 @@ func _physics_process(delta: float) -> void:
 			jumps += 1
 		else:
 			velocity.y = doubleJumpForce
+	
 	move_and_slide()
+
+	# Camera stuff
 	var spd = .35*(abs(velocity.x)+abs(velocity.z))
 	var tar = camPivotPosition + Vector3(0,spd*.07,spd*.25)
 	camPivot.position = lerp(camPivot.position,tar,.08)
-	pass
+
+	# Make the ball mesh rotate in the direction of the movement velocity - D
+	if is_on_floor():# or is_on_wall():
+		lastContactNormal = get_floor_normal()
+	var movement := Vector3(velocity.x, 0.0, velocity.z)
+	var distance := movement.length()
+	if distance >= 0.001: # don't do the rotation if movement distance is too small
+		var angle := distance * delta / ball_radius
+		var rotation_axis_world := lastContactNormal.cross(movement).normalized()
+		var rotation_axis_local := basis.inverse() * rotation_axis_world
+		ball_mesh.quaternion = (Quaternion(rotation_axis_local, angle) * ball_mesh.quaternion).normalized()
+
 # If an input is detected
 func _input(event):
 	# If escaping, bring back the mouse

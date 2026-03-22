@@ -1,0 +1,8 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://y45y8kamv3x"]
+
+[ext_resource type="Sky" uid="uid://c3ccoaaa0ykls" path="res://MORGANFOLDER/MarbleGame/Materials/Env/Marble_Sky.tres" id="1_q6fqc"]
+
+[resource]
+background_mode = 2
+sky = ExtResource("1_q6fqc")
+tonemap_mode = 2

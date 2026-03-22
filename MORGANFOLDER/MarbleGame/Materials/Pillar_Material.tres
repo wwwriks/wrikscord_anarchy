@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cvw47qfya50k1"]
+
+[ext_resource type="Texture2D" uid="uid://dlbdavq06qxew" path="res://MORGANFOLDER/MarbleGame/Materials/sand2.png" id="1_43mok"]
+
+[resource]
+albedo_texture = ExtResource("1_43mok")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_offset = Vector3(0.235, 0, 0)
+uv1_triplanar = true

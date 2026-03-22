@@ -1,38 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyq0iwyu5wu5h"]
+[gd_scene load_steps=10 format=3 uid="uid://cyq0iwyu5wu5h"]
 
 [ext_resource type="Script" uid="uid://dquxog7mjcw0p" path="res://MORGANFOLDER/MarbleGame/Prefabs/WATER.gd" id="1_67kkr"]
-[ext_resource type="Texture2D" uid="uid://bhys86obll6o3" path="res://MORGANFOLDER/MarbleGame/Materials/rug1.png" id="2_e65tj"]
+[ext_resource type="Environment" uid="uid://y45y8kamv3x" path="res://MORGANFOLDER/MarbleGame/Materials/Env/Marble_Env.tres" id="1_e4btg"]
+[ext_resource type="Material" uid="uid://d2cdu5yqlv7cd" path="res://MORGANFOLDER/MarbleGame/Materials/Water_Material.tres" id="2_e65tj"]
 [ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/MarbleGame/Prefabs/Player.tscn" id="3_ab4jp"]
 [ext_resource type="PackedScene" uid="uid://ce62t08qsuaq8" path="res://MORGANFOLDER/MarbleGame/Prefabs/Pillar.tscn" id="4_e4btg"]
 [ext_resource type="Texture2D" uid="uid://our4l3kyinc4" path="res://MORGANFOLDER/MarbleGame/Materials/middlefingerer.png" id="5_0t54p"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsdsh"]
-sky_top_color = Color(0.494524, 0.391121, 0.744567, 1)
-sky_horizon_color = Color(0.935509, 0.894859, 0.71121, 1)
-ground_bottom_color = Color(0.412676, 0.630066, 0.837873, 1)
-ground_horizon_color = Color(1.39549, 1.43723, 1.54349, 1)
-energy_multiplier = 0.4
-
-[sub_resource type="Sky" id="Sky_fl3j2"]
-sky_material = SubResource("ProceduralSkyMaterial_wsdsh")
-
-[sub_resource type="Environment" id="Environment_7jp7q"]
-background_mode = 2
-sky = SubResource("Sky_fl3j2")
-tonemap_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntmpf"]
-albedo_color = Color(8.56727e-06, 0.904926, 0.669181, 1)
-albedo_texture = ExtResource("2_e65tj")
-emission_enabled = true
-emission = Color(0.184599, 0.903539, 0.385767, 1)
-emission_energy_multiplier = 0.25
-rim_enabled = true
-refraction_enabled = true
-uv1_scale = Vector3(500, 500, 500)
-proximity_fade_distance = 0.01
-distance_fade_mode = 1
-distance_fade_min_distance = 690.33
+[ext_resource type="PackedScene" uid="uid://b0kvrwfil7ksv" path="res://MORGANFOLDER/MarbleGame/Prefabs/exit_portal.tscn" id="7_ab4jp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ksm85"]
 
@@ -47,7 +21,7 @@ light_energy = 1.35
 light_bake_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7jp7q")
+environment = ExtResource("1_e4btg")
 
 [node name="Water" type="Node3D" parent="." groups=["Water"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50, 0)
@@ -57,7 +31,7 @@ script = ExtResource("1_67kkr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Water/Area3D"]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_ntmpf")
+material_override = ExtResource("2_e65tj")
 mesh = SubResource("BoxMesh_ksm85")
 skeleton = NodePath("../../..")
 
@@ -72,23 +46,24 @@ respawnPoint = Vector3(0, 2.25, 0)
 [node name="PillarsArea" type="Node3D" parent="."]
 
 [node name="Pillar" parent="PillarsArea" instance=ExtResource("4_e4btg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -47.0027, 0)
 radius = 42.0
+height = 96.0054
 
 [node name="Pillar2" parent="PillarsArea" instance=ExtResource("4_e4btg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 16.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, -1.28394, 0)
 radius = 16.0
-height = 32.0
+height = 66.8179
 
 [node name="Pillar3" parent="PillarsArea" instance=ExtResource("4_e4btg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 8.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, -13.5504, 0)
 radius = 16.0
-height = 16.0
+height = 59.3508
 
 [node name="Pillar4" parent="PillarsArea" instance=ExtResource("4_e4btg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.625, 38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8506, 38)
 radius = 16.0
-height = 53.0
+height = 80.5488
 
 [node name="Pillar5" parent="PillarsArea" instance=ExtResource("4_e4btg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.875, -38)
@@ -116,17 +91,21 @@ radius = 12.0
 height = 54.0781
 
 [node name="Pillar10" parent="PillarsArea" instance=ExtResource("4_e4btg")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -29.4219, 111.781, -38.75)
+transform = Transform3D(7.71666e-08, 1, -8.07681e-08, 0.92388, -4.03841e-08, 0.382683, 0.382683, -1.0415e-07, -0.92388, -29.4219, 111.781, -38.75)
 radius = 12.0
 height = 93.1563
 
 [node name="Pillar11" parent="PillarsArea" instance=ExtResource("4_e4btg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, -42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36.7261, -42)
 radius = 19.0
+height = 59.4521
 
 [node name="TheMiddleFingerer" type="Sprite3D" parent="PillarsArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -3, -51)
 billboard = 1
 texture = ExtResource("5_0t54p")
+
+[node name="exit_portal" parent="." instance=ExtResource("7_ab4jp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.8804, 128.335, -38.8487)
 
 [connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]
