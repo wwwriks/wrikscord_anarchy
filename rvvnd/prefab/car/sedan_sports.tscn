@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://df8hy0qei0vxc"]
+
+[ext_resource type="PackedScene" uid="uid://cwo14ionaj3qb" path="res://rvvnd/assets/kenney_sedan-sports.glb" id="1_sx8sc"]
+[ext_resource type="Material" uid="uid://k77cug4xj80o" path="res://rvvnd/prefab/car/material.tres" id="2_8kx3e"]
+
+[node name="sedan-sports" instance=ExtResource("1_sx8sc")]
+
+[node name="body" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_8kx3e")
+
+[node name="spoiler" parent="body" index="0"]
+surface_material_override/0 = ExtResource("2_8kx3e")
+
+[node name="wheel-back-left" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_8kx3e")
+
+[node name="wheel-back-right" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_8kx3e")
+
+[node name="wheel-front-left" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_8kx3e")
+
+[node name="wheel-front-right" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_8kx3e")

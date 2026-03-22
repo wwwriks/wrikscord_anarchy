@@ -42,11 +42,11 @@ func next(next_id: String = "") -> void:
 		line = await current_text.get_next_dialogue_line(next_id)
 	else:
 		line = await current_text.get_next_dialogue_line(line.next_id)
-	
+
 	if line == null:
 		end()
 		return
-	
+
 	dialogue_label.dialogue_line = line
 	character_label.text = line.character
 	dialogue_label.type_out()

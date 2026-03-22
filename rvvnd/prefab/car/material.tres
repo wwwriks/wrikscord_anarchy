@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://k77cug4xj80o"]
+
+[ext_resource type="Shader" uid="uid://v0bkv5mu4ifu" path="res://rvvnd/shaders/screenspace_tt.gdshader" id="1_ldlpp"]
+[ext_resource type="Texture2D" uid="uid://cumm7a5apue35" path="res://rvvnd/assets/img/trigger_32x32px.png" id="2_ldlpp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ldlpp")
+shader_parameter/tiling_texture = ExtResource("2_ldlpp")
+shader_parameter/tiling_scale = 50.0
+shader_parameter/scroll_speed = Vector2(0, 0)

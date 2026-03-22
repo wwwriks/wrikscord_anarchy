@@ -1,127 +1,141 @@
-extends CharacterBody3D
+extends Node3D
 
-@onready var rightWheel: MeshInstance3D = $"Model/wheel-front-right"
-@onready var leftWheel: MeshInstance3D = $"Model/wheel-front-left"
-@onready var carBody: MeshInstance3D = $Model/body
-@onready var camera: Camera3D = $Camera
+# nodes
 
-@export_group("Movement/Acceleration & Speed")
-@export var accel := 40.0
-@export var accel_against := 160.0
-@export var max_speed := 150.0
-@export var min_turn_speed := 10.0
-@export_group("Movement/Friction & Turning")
-@export var friction := 60.0
-@export var turn_speed := 2.5
-@export var bank_angle := 15.0
-@export_group("Movement/Gravity")
-@export var gravity := 30.0
-@export var fall_gravity := 45.0
-@export_group("Camera")
-@export var base_fov := 70.0
-@export var max_fov := 100.0
-@export var fov_lerp_speed := 5.0
-@export var camera_follow_smoothness := 5.0
-@export var camera_offset_strength := 0.5
+@onready var sphere: RigidBody3D = $Sphere
+@onready var raycast: RayCast3D = $Ground
 
-var input_dir := Vector2.ZERO
-var accel_input := 0.0
-var steer_input := 0.0
+# vehicle elements
 
-## Internal running speed along car forward (u/s)
-var _speed := 0.0
+@onready var vehicle_model = $Container
+@onready var vehicle_body = $Container/Model/body
 
-func _handle_input():
-	input_dir = Input.get_vector("left", "right", "up", "down")
-	accel_input = -input_dir.y
-	steer_input = input_dir.x
+@onready var wheel_fl = $"Container/Model/wheel-front-left"
+@onready var wheel_fr = $"Container/Model/wheel-front-right"
+@onready var wheel_bl = $"Container/Model/wheel-back-left"
+@onready var wheel_br = $"Container/Model/wheel-back-right"
 
-func _update_meshes(delta: float):
-	var wheel_rotation = _speed * delta * 0.1
-	rightWheel.rotation.x += wheel_rotation
-	leftWheel.rotation.x += wheel_rotation
+# fx
 
-	var steer_angle = deg_to_rad(25.0) * steer_input
-	rightWheel.rotation.y = -steer_angle
-	leftWheel.rotation.y = -steer_angle
+@onready var trail_left: GPUParticles3D = $Container/TrailLeft
+@onready var trail_right: GPUParticles3D = $Container/TrailRight
 
-	var target_bank = deg_to_rad(-steer_input * bank_angle) * get_speed_percent()
-	carBody.rotation.z = lerp(carBody.rotation.z, target_bank, 8.0 * delta)
+var input: Vector3
+var normal: Vector3
 
-	var accel_pitch = clamp(accel_input * 0.1, -0.15, 0.15)
-	carBody.rotation.x = lerp(carBody.rotation.x, accel_pitch, 3.0 * delta)
+var acceleration: float
+var angular_speed: float
+var linear_speed: float
 
-func _update_physics(delta: float):
-	var forward = -global_transform.basis.z.normalized()
-	var current_speed = _speed
+var colliding: bool
 
-	if accel_input > 0.01:
-		current_speed += accel * delta * accel_input
-	elif accel_input < -0.01:
-		if current_speed > 0.0:
-			current_speed = max(0.0, current_speed - accel_against * delta * (-accel_input))
-		else:
-			current_speed -= accel * delta * (-accel_input)
+# Functions
+
+func _physics_process(delta):
+
+	handle_input(delta)
+
+	var direction = sign(linear_speed)
+	if direction == 0: direction = sign(input.z) if abs(input.z) > 0.1 else 1
+
+	var steering_grip = clamp(abs(linear_speed), 0.2, 1.0)
+
+	var target_angular = -input.x * steering_grip * 4 * direction
+	angular_speed = lerp(angular_speed, target_angular, delta * 4)
+
+	vehicle_model.rotate_y(angular_speed * delta)
+
+	# Ground alignment
+
+	if raycast.is_colliding():
+		if !colliding:
+			vehicle_body.position = Vector3(0, 0.1, 0) # Bounce
+			input.z = 0
+
+		normal = raycast.get_collision_normal()
+
+		# Orient model to colliding normal
+
+		if normal.dot(vehicle_model.global_basis.y) > 0.5:
+			var xform = align_with_y(vehicle_model.global_transform, normal)
+			vehicle_model.global_transform = vehicle_model.global_transform.interpolate_with(xform, 0.2).orthonormalized()
+
+	colliding = raycast.is_colliding()
+
+	var target_speed = input.z
+
+	if (target_speed < 0 and linear_speed > 0.01):
+		linear_speed = lerp(linear_speed, 0.0, delta * 8)
 	else:
-		var friction_step = friction * delta
-		if abs(current_speed) <= friction_step:
-			current_speed = 0.0
+		if (target_speed < 0):
+			linear_speed = lerp(linear_speed, target_speed / 2, delta * 2)
 		else:
-			current_speed -= sign(current_speed) * friction_step
+			linear_speed = lerp(linear_speed, target_speed, delta * 6)
 
-	var max_reverse = max_speed * 0.5
-	current_speed = clamp(current_speed, -max_reverse, max_speed)
-	_speed = current_speed
+	acceleration = lerpf(acceleration, linear_speed + (abs(sphere.angular_velocity.length() * linear_speed) / 100), delta * 1)
 
-	var speed_factor = clamp(abs(_speed), min_turn_speed, max_speed)
-	speed_factor = (speed_factor - min_turn_speed) / (max_speed - min_turn_speed) # normalized 0-1
-	var rot_amount = -steer_input * turn_speed * delta * speed_factor * sign(_speed) if _speed != 0.0 else 0.0
-	rotate_y(rot_amount)
+	# Match vehicle model to physics sphere
 
-	if is_on_floor():
-		velocity.y = -0.1
-	else:
-		velocity.y -= fall_gravity * delta
+	vehicle_model.position = sphere.position - Vector3(0, 0.65, 0)
+	raycast.position = sphere.position
 
-	velocity.x = forward.x * _speed
-	velocity.z = forward.z * _speed
-	move_and_slide()
+	# Visual and audio effects
 
-	if abs(_speed) < 0.01:
-		_speed = 0.0
+	effect_body(delta)
+	effect_wheels(delta)
+	effect_trails()
 
-func _update_camera(delta: float):
-	var target_fov = lerp(base_fov, max_fov, get_speed_percent())
-	camera.fov = lerp(camera.fov, target_fov, fov_lerp_speed * delta)
+# Handle input when vehicle is colliding with ground
 
-	var base_offset = Vector3(0, 3, 8).rotated(Vector3.UP, rotation.y)
-	var side_offset = global_transform.basis.x * steer_input * get_speed_percent() * camera_offset_strength
-	var desired_pos = global_transform.origin + base_offset + side_offset
-	camera.global_transform.origin = camera.global_transform.origin.lerp(desired_pos, camera_follow_smoothness * delta)
+func handle_input(delta):
 
-	var target_look = global_transform.origin + Vector3.UP * 1.5
-	camera.look_at(target_look, Vector3.UP)
+	if raycast.is_colliding():
+		input.x = Input.get_axis("left", "right")
+		input.z = Input.get_axis("down", "up")
 
-func _update_ddraw(_delta):
-	if OS.has_feature("debug"):
-		DebugDraw2D.set_text("C:Speed", "%d (%d) | Scaled:%d | Y: %d | %d%% of desired" % \
-			[
-				self.velocity.length(),
-				(self.velocity * REWIND.FLATTEN_MASK).length(),
-				(self.velocity.length() / REWIND.Q_INVERSE_SCALE),
-				self.velocity.y,
-				get_speed_percent() * 100
-			]
-		)
-		DebugDraw2D.set_text("C:Inputs", "Accel: %.2f | Steer: %.2f" % [accel_input, steer_input])
-		DebugDraw2D.set_text("C:WheelRot", "RightWheel: %.2f | LeftWheel: %.2f" % [rightWheel.rotation.x, leftWheel.rotation.x])
+	sphere.angular_velocity += vehicle_model.get_global_transform().basis.x * (linear_speed * 100) * delta
 
-func get_speed_percent() -> float:
-	return _speed / max_speed
+func effect_body(delta):
 
-func _physics_process(delta: float) -> void:
-	_handle_input()
-	_update_meshes(delta)
-	_update_physics(delta)
-	_update_camera(delta)
-	_update_ddraw(delta)
+	# Slightly tilt body based on acceleration and steering
+
+	vehicle_body.rotation.x = lerp_angle(vehicle_body.rotation.x, -(linear_speed - acceleration) / 6, delta * 10)
+	vehicle_body.rotation.z = lerp_angle(vehicle_body.rotation.z, -input.x / 5 * linear_speed, delta * 5)
+
+	# Change the body position so wheels don't clip through the body when tilting
+
+	vehicle_body.position = vehicle_body.position.lerp(Vector3(0, 0.2, 0), delta * 5)
+
+func effect_wheels(delta):
+
+	# Rotate wheels based on acceleration
+
+	for wheel in [wheel_fl, wheel_fr, wheel_bl, wheel_br]:
+		wheel.rotation.x += acceleration
+
+	# Rotate front wheels based on steering direction
+
+	wheel_fl.rotation.y = lerp_angle(wheel_fl.rotation.y, -input.x / 1.5, delta * 10)
+	wheel_fr.rotation.y = lerp_angle(wheel_fr.rotation.y, -input.x / 1.5, delta * 10)
+
+# Show trails
+
+func effect_trails():
+
+	var drift_intensity = abs(linear_speed - acceleration) + (abs(vehicle_body.rotation.z) * 2.0)
+	var should_emit = drift_intensity > 0.25
+
+	trail_left.emitting = should_emit
+	trail_right.emitting = should_emit
+
+	var target_volume = -80.0
+	if should_emit: target_volume = remap(clamp(drift_intensity, 0.25, 2.0), 0.25, 2.0, -10.0, 0.0)
+
+# Align vehicle with normal
+
+func align_with_y(xform, new_y):
+
+	xform.basis.y = new_y
+	xform.basis.x = -xform.basis.z.cross(new_y)
+	xform.basis = xform.basis.orthonormalized()
+	return xform

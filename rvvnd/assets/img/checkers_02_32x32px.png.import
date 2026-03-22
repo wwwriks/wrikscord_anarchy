@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo6fm64kyy6ww"
-path.s3tc="res://.godot/imported/templategrid_orm.png-3369f28c0913b7ae967a99a1bb8a7817.s3tc.ctex"
+uid="uid://bs2k2gro04evv"
+path.s3tc="res://.godot/imported/checkers_02_32x32px.png-3ad17580acb887088562882789a7c898.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rvvnd/assets/img/templategrid_orm.png"
-dest_files=["res://.godot/imported/templategrid_orm.png-3369f28c0913b7ae967a99a1bb8a7817.s3tc.ctex"]
+source_file="res://rvvnd/assets/img/checkers_02_32x32px.png"
+dest_files=["res://.godot/imported/checkers_02_32x32px.png-3ad17580acb887088562882789a7c898.s3tc.ctex"]
 
 [params]
 
