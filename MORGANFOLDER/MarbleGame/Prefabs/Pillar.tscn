@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ce62t08qsuaq8"]
 
-[ext_resource type="Material" uid="uid://cvw47qfya50k1" path="res://MORGANFOLDER/MarbleGame/Materials/Pillar_Material.tres" id="1_p5lko"]
+[ext_resource type="Material" path="res://MORGANFOLDER/MarbleGame/Materials/Pillar_Material.tres" id="1_p5lko"]
 
 [node name="Pillar" type="CSGCylinder3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.125, 0)

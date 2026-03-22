@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dquxog7mjcw0p" path="res://MORGANFOLDER/MarbleGame/Scripts/WATER.gd" id="1_67kkr"]
 [ext_resource type="Environment" uid="uid://y45y8kamv3x" path="res://MORGANFOLDER/MarbleGame/Materials/Env/Marble_Env.tres" id="1_e4btg"]
-[ext_resource type="Material" uid="uid://d2cdu5yqlv7cd" path="res://MORGANFOLDER/MarbleGame/Materials/Water_Material.tres" id="2_e65tj"]
+[ext_resource type="Material" path="res://MORGANFOLDER/MarbleGame/Materials/Water_Material.tres" id="2_e65tj"]
 [ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/MarbleGame/Prefabs/Player.tscn" id="3_ab4jp"]
 [ext_resource type="PackedScene" uid="uid://ce62t08qsuaq8" path="res://MORGANFOLDER/MarbleGame/Prefabs/Pillar.tscn" id="4_e4btg"]
 [ext_resource type="Texture2D" uid="uid://our4l3kyinc4" path="res://MORGANFOLDER/MarbleGame/Materials/middlefingerer.png" id="5_0t54p"]

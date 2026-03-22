@@ -1,12 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5cdtd43eeyjb"]
+[gd_scene load_steps=11 format=3 uid="uid://c5cdtd43eeyjb"]
 
 [ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/MarbleGame/Scripts/BallMovement.gd" id="1_o6v7y"]
-[ext_resource type="Material" uid="uid://2pkf2v6djibp" path="res://MORGANFOLDER/MarbleGame/Materials/Player_Material.tres" id="2_k26kv"]
+[ext_resource type="Material" uid="uid://dnbp3ym05opmv" path="res://MORGANFOLDER/MarbleGame/Materials/Player_Material.tres" id="2_k26kv"]
+[ext_resource type="Script" uid="uid://cvri7rgii2cf" path="res://MORGANFOLDER/MarbleGame/Prefabs/blobshadow.gd" id="3_4dhtx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tr0yl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tr0yl"]
 material = ExtResource("2_k26kv")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k26kv"]
+
+[sub_resource type="Gradient" id="Gradient_k26kv"]
+offsets = PackedFloat32Array(0.5, 0.7)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4dhtx"]
+gradient = SubResource("Gradient_k26kv")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu0v8"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_4dhtx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_k26kv"]
+material = SubResource("StandardMaterial3D_eu0v8")
+flip_faces = true
 
 [node name="Ball" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_o6v7y")
@@ -23,3 +45,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35202, 1.34662, 3.31662)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.931234, 0.364422, 0, -0.364422, 0.931234, 0, 1.94498, 2.99358)
+
+[node name="blobshadow" type="ShapeCast3D" parent="." node_paths=PackedStringArray("shadow")]
+shape = SubResource("SphereShape3D_k26kv")
+target_position = Vector3(0, -100, 0)
+max_results = 1
+script = ExtResource("3_4dhtx")
+shadow = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blobshadow"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_k26kv")
