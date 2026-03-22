@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5cdtd43eeyjb"]
 
-[ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/MarbleGame/Prefabs/BallMovement.gd" id="1_o6v7y"]
+[ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/MarbleGame/Scripts/BallMovement.gd" id="1_o6v7y"]
 [ext_resource type="Material" uid="uid://2pkf2v6djibp" path="res://MORGANFOLDER/MarbleGame/Materials/Player_Material.tres" id="2_k26kv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tr0yl"]

@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8trcly2pcega"]
+
+[ext_resource type="Shader" uid="uid://c6seuansretfm" path="res://DDDs_Stuff/Materials/sludge_shader.tres" id="1_wisi3"]
+[ext_resource type="Texture2D" uid="uid://dmbc87muhvtp5" path="res://DDDs_Stuff/tropic_swamp_a.png" id="2_a4lgl"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wisi3")
+shader_parameter/albedo_mul = Color(0.584314, 0.560784, 0.611765, 1)
+shader_parameter/texture_albedo = ExtResource("2_a4lgl")
+shader_parameter/uv1_scale = Vector3(500, 500, 500)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/clip_high = 0.0
+shader_parameter/warp_uv_scale = 0.372
+shader_parameter/warp_uv_scroll = Vector2(0.1, -0.13)
+shader_parameter/warp_uv_scroll_speed = 0.0100005
+shader_parameter/distance_color = Color(0.406431, 0.546047, 0.319414, 1)
+shader_parameter/distance_fade_min = 0.0
+shader_parameter/distance_fade_max = 3306.59
+shader_parameter/alpha_fade_min = 4096.0
+shader_parameter/alpha_fade_max = 3321.48
