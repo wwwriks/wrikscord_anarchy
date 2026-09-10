@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c58seyvj2x72b"]
+[gd_scene load_steps=10 format=3 uid="uid://c58seyvj2x72b"]
 
 [ext_resource type="Texture2D" uid="uid://bs2k2gro04evv" path="res://rvvnd/assets/img/checkers_02_32x32px.png" id="1_3e7np"]
 [ext_resource type="PackedScene" uid="uid://hxfb0031ue0v" path="res://rvvnd/prefab/car/car.tscn" id="1_idl8n"]
+[ext_resource type="PackedScene" uid="uid://b0kvrwfil7ksv" path="res://DDDs_Stuff/exit_portal.tscn" id="3_7c5u0"]
+[ext_resource type="PackedScene" uid="uid://cyq0iwyu5wu5h" path="res://MORGANFOLDER/MarbleGame/Levels/Level.tscn" id="4_l1ous"]
+[ext_resource type="PackedScene" uid="uid://chraur827s10q" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/EvilPeanut.tscn" id="4_rtvcb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rtvcb"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -62,3 +65,10 @@ size = Vector3(15, 8, 1)
 material = SubResource("StandardMaterial3D_bgrb5")
 
 [node name="Car" parent="." instance=ExtResource("1_idl8n")]
+
+[node name="exit_portal" parent="." instance=ExtResource("3_7c5u0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.81, 32.9548, -41.118)
+next_scene = ExtResource("4_l1ous")
+
+[node name="EvilPeanut" parent="." instance=ExtResource("4_rtvcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139, 4, -66)

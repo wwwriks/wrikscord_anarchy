@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://p00hxhwvxf73"]
+
+[ext_resource type="Material" uid="uid://cnuf0kwafj270" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/DarkLevelGround.tres" id="1_cdhr4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_itnqj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cdhr4"]
+
+[node name="Meshcollider" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_itnqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_cdhr4")
+mesh = SubResource("BoxMesh_cdhr4")
+skeleton = NodePath("../..")

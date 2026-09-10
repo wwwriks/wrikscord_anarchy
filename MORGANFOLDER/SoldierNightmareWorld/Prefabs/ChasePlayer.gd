@@ -7,7 +7,11 @@ var moveSpeed = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if tar == null:
+		#FIND PLAYER
+		var players = get_tree().get_nodes_in_group("player")
+		for player in players:
+			tar = player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -15,8 +19,7 @@ func _process(delta: float) -> void:
 		#FIND PLAYER
 		var players = get_tree().get_nodes_in_group("player")
 		for player in players:
-			if player is CharacterBody3D:
-				tar = player
+			tar = player
 	#MOVE TOWARDS THEM
 	if tar != null:
 		var dis = (tar.global_position - global_position).length();

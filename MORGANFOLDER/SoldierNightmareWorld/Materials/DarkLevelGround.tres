@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cnuf0kwafj270"]
+
+[ext_resource type="Texture2D" uid="uid://b0u73y5qh51ox" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/wood3.png" id="1_f8hp5"]
+
+[resource]
+albedo_color = Color(0.238122, 1.86507e-07, 0.0513952, 1)
+albedo_texture = ExtResource("1_f8hp5")
+metallic = 0.89
+roughness = 0.44
+roughness_texture = ExtResource("1_f8hp5")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true

@@ -64,10 +64,10 @@ alpha_curve = SubResource("CurveTexture_quw2k")
 
 [sub_resource type="QuadMesh" id="QuadMesh_bj44q"]
 
-[node name="Car" type="Node3D"]
+[node name="Car" type="Node3D" groups=["player"]]
 script = ExtResource("1_1mdq2")
 
-[node name="Sphere" type="RigidBody3D" parent="."]
+[node name="Sphere" type="RigidBody3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_tcsno")
@@ -79,7 +79,7 @@ linear_damp = 0.1
 angular_damp_mode = 1
 angular_damp = 4.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sphere"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sphere" groups=["player"]]
 shape = SubResource("SphereShape3D_tcsno")
 
 [node name="Ground" type="RayCast3D" parent="."]

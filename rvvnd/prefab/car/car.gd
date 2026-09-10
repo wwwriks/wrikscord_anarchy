@@ -29,6 +29,9 @@ var linear_speed: float
 
 var colliding: bool
 
+#MORGAN ADDITION
+var SPEED: int = 500
+
 # Functions
 
 func _physics_process(delta):
@@ -93,7 +96,7 @@ func handle_input(delta):
 		input.x = Input.get_axis("left", "right")
 		input.z = Input.get_axis("down", "up")
 
-	sphere.angular_velocity += vehicle_model.get_global_transform().basis.x * (linear_speed * 100) * delta
+	sphere.angular_velocity += vehicle_model.get_global_transform().basis.x * (linear_speed * SPEED) * delta
 
 func effect_body(delta):
 

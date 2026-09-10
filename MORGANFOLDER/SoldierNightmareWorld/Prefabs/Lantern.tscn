@@ -31,12 +31,6 @@ size = Vector3(1, 0.198242, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6646, 0)
 size = Vector3(0.75, 0.198, 0.75)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05105, 0)
-light_color = Color(1, 0.863247, 0.507991, 1)
-light_energy = 15.0
-omni_range = 10.0751
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.395752, 0)
 shape = SubResource("BoxShape3D_67q6r")
