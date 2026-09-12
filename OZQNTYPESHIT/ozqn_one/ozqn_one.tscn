@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cm3krxqvjwrwt"]
+[gd_scene load_steps=19 format=3 uid="uid://cm3krxqvjwrwt"]
 
 [ext_resource type="Shader" uid="uid://c7x01orw64gkt" path="res://OZQNTYPESHIT/shaders/sky.gdshader" id="1_e718k"]
 [ext_resource type="Script" uid="uid://cmueollksuoyq" path="res://OZQNTYPESHIT/ozqn_one/ozqn_one.gd" id="1_owghi"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://btwml6prkv7hi" path="res://OZQNTYPESHIT/ozqn_one/guy_dude.tscn" id="6_o2wqe"]
 [ext_resource type="PackedScene" uid="uid://bgntd3x34u5d7" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.gltf" id="6_rhuii"]
 [ext_resource type="LightmapGIData" uid="uid://dy4iw8yunemrr" path="res://OZQNTYPESHIT/ozqn_one/assets/ozqn_one.lmbake" id="6_v3hoh"]
+[ext_resource type="Texture2D" uid="uid://yh2j6gkmhr80" path="res://OZQNTYPESHIT/ozqn_one/assets/Star.png" id="7_rhuii"]
 
 [sub_resource type="Gradient" id="Gradient_jll4m"]
 offsets = PackedFloat32Array(0.49226, 0.767802)
@@ -51,6 +52,40 @@ fog_sky_affect = 0.0
 fog_height = -1.0
 fog_height_density = 0.5
 
+[sub_resource type="Curve" id="Curve_rhuii"]
+_data = [Vector2(0, 0), 0.0, 1.93812, 0, 0, Vector2(0.227147, 1), 0.0, 0.0, 0, 0, Vector2(0.3241, 0.922451), 0.0, 0.0, 0, 0, Vector2(0.415513, 1), 0.0, 0.0, 0, 0, Vector2(0.506925, 0.915401), 0.0, 0.0, 0, 0, Vector2(0.573407, 1), 0.0, 0.0, 0, 0, Vector2(0.67313, 0.915401), 0.0, 0.0, 0, 0, Vector2(0.795014, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="CurveTexture" id="CurveTexture_o2wqe"]
+curve = SubResource("Curve_rhuii")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v3hoh"]
+emission_shape_offset = Vector3(6, -1.72, 0)
+emission_shape = 3
+emission_box_extents = Vector3(12, 1.49, 6)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_o2wqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3hoh"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_rhuii")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rhuii"]
+material = SubResource("StandardMaterial3D_v3hoh")
+size = Vector2(1, 1)
+orientation = 2
+
 [node name="OzqnOne" type="Node3D" node_paths=PackedStringArray("wind_audio")]
 script = ExtResource("1_owghi")
 wind_audio = NodePath("WindPlayer")
@@ -78,3 +113,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.
 
 [node name="platform" parent="." instance=ExtResource("6_rhuii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37632, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85456, 3.54542, 0)
+amount = 16
+lifetime = 5.0
+visibility_aabb = AABB(-4, -4, -4, 19.525, 3.83, 8)
+process_material = SubResource("ParticleProcessMaterial_v3hoh")
+draw_pass_1 = SubResource("PlaneMesh_rhuii")

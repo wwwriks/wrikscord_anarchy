@@ -8,13 +8,10 @@
 		{
 			"extras":{
 				"GodotPipelineProps":{
-					"string_setter_UI":0,
-					"path_UI":0,
+					"mesh_data":0,
 					"export_UI":1,
 					"save_path":"/home/ozqn/Projects/godot/wrikscord_anarchy/OZQNTYPESHIT/ozqn_one/assets/platform.gltf",
-					"counter":5,
-					"global_UI":0,
-					"collision_UI":0
+					"counter":1
 				}
 			},
 			"name":"Scene",

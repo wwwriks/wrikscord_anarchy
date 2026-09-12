@@ -12,7 +12,7 @@ var in_dialogue: bool = false
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("progress_dialogue"):
-		if self.visible:
+		if self.visible and in_dialogue:
 			if dialogue_label.is_typing:
 				dialogue_label.skip_typing()
 				return

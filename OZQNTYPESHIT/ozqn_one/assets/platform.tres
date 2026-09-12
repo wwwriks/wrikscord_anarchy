@@ -9,3 +9,6 @@ resource_name = "Material.001"
 albedo_texture = ExtResource("1_mqko2")
 normal_scale = 0.25
 normal_texture = SubResource("CompressedTexture2D_2h13u")
+uv1_triplanar_sharpness = 25.1067
+uv1_world_triplanar = true
+point_size = 128.0
