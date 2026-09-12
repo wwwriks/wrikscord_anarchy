@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1nrb26ihn13g"]
+[gd_scene load_steps=14 format=3 uid="uid://1nrb26ihn13g"]
 
 [ext_resource type="Material" uid="uid://cnuf0kwafj270" path="res://MORGANFOLDER/SoldierNightmareWorld/Materials/DarkLevelGround.tres" id="1_5em1n"]
 [ext_resource type="PackedScene" uid="uid://g5wrmp3qt216" path="res://MORGANFOLDER/SoldierNightmareWorld/Prefabs/Soldier.tscn" id="2_xekco"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://cb26whdx7jveg" path="res://MORGANFOLDER/SoldierNightmareWorld/Scenes/SpawnPeanut.gd" id="4_fg2m7"]
 [ext_resource type="PackedScene" uid="uid://3peb3vpgxxfr" path="res://axelthings/mesh-judgement.glb" id="5_8l77j"]
 [ext_resource type="PackedScene" uid="uid://b0kvrwfil7ksv" path="res://DDDs_Stuff/exit_portal.tscn" id="6_s5t0h"]
-[ext_resource type="PackedScene" uid="uid://c58seyvj2x72b" path="res://rvvnd/test.tscn" id="7_jpv1o"]
 
 [sub_resource type="Environment" id="Environment_mglq0"]
 background_mode = 1
@@ -102,7 +101,7 @@ omni_attenuation = 0.4
 
 [node name="exit_portal" parent="GOAL" instance=ExtResource("6_s5t0h")]
 transform = Transform3D(-1.5299e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, -11.2615, 1.44948, -14.2395)
-next_scene = ExtResource("7_jpv1o")
+scene = "uid://c58seyvj2x72b"
 
 [node name="PeanutSpawner" type="Area3D" parent="." node_paths=PackedStringArray("marker")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.3057, 0, 0)
