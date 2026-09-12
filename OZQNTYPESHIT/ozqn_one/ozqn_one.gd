@@ -1,10 +1,12 @@
 extends Node3D
 
 @export var wind_audio: AudioStreamPlayer
+var started: bool = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("progress_dialogue") and DialogueUI.visible == false:
+	if event.is_action_pressed("progress_dialogue") and DialogueUI.visible == false and not started:
 		DialogueUI.start()
+		started = true
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return

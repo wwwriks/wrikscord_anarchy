@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cmueollksuoyq" path="res://OZQNTYPESHIT/ozqn_one/ozqn_one.gd" id="1_owghi"]
 [ext_resource type="AudioStream" uid="uid://djbbsh6835jve" path="res://OZQNTYPESHIT/ozqn_one/wind.mp3" id="3_kl0dm"]
 [ext_resource type="PackedScene" uid="uid://btwml6prkv7hi" path="res://OZQNTYPESHIT/ozqn_one/guy_dude.tscn" id="6_o2wqe"]
-[ext_resource type="PackedScene" uid="uid://ddl1kukgck407" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.blend" id="6_rhuii"]
+[ext_resource type="PackedScene" uid="uid://bgntd3x34u5d7" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.gltf" id="6_rhuii"]
 [ext_resource type="LightmapGIData" uid="uid://dy4iw8yunemrr" path="res://OZQNTYPESHIT/ozqn_one/assets/ozqn_one.lmbake" id="6_v3hoh"]
 
 [sub_resource type="Gradient" id="Gradient_jll4m"]
@@ -73,7 +73,8 @@ stream = ExtResource("3_kl0dm")
 volume_db = -30.033
 parameters/looping = true
 
-[node name="platform" parent="." instance=ExtResource("6_rhuii")]
-
 [node name="GuyDude" parent="." instance=ExtResource("6_o2wqe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.26166, 0)
+
+[node name="platform" parent="." instance=ExtResource("6_rhuii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37632, 0, 0)

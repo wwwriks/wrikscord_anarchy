@@ -1,7 +1,10 @@
-extends RefCounted
 class_name OzqnLoader
+extends RefCounted
 
 static func load(resource_path: String, tree: SceneTree) -> Resource:
+	if ResourceLoader.has_cached(resource_path):
+		return ResourceLoader.get_cached_ref(resource_path)
+	
 	var progress: Array[int] = [0]
 	var resource: Resource
 	
