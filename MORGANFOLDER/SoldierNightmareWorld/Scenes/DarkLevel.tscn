@@ -43,8 +43,7 @@ size = Vector3(1, 14.918, 299.874)
 
 [node name="DESTROY ME" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997508, -0.00184574, -0.0705332, -0.0705574, 0.0260942, 0.997166, 0, 0.999658, -0.0261594, 0, 40.042, 0)
-visible = false
-light_energy = 70.0
+light_energy = 5.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mglq0")

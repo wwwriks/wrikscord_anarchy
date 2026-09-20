@@ -11,3 +11,4 @@ emission_energy_multiplier = 0.35
 uv1_scale = Vector3(0.545, 0.545, 0.545)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 150.0
+texture_filter = 0

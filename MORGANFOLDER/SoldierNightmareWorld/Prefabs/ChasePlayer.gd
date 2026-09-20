@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 			linear_velocity = dir*15
 	#LIGHT CHANGES BASED ON SPEED
 	var a = linear_velocity.length()
-	$OmniLight3D.light_energy = a*3
+	$OmniLight3D.light_energy = a
 	$OmniLight3D.omni_range = a*15
 
 func _on_kill_zone_body_entered(body: Node3D) -> void:

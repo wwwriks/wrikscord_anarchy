@@ -38,12 +38,17 @@ func _physics_process(delta: float) -> void:
 	var mDir = transform.basis * Vector3(input.x, 0, input.y)
 	
 	var tDir = mDir * maxSpeed
+	var boostDir = mDir * maxSpeed*2
 	var tempAccel = 1
 	if velocity.length() > maxSpeed:
 		mDir = Vector3.ZERO
 	if velocity.length() < minSpeed and mDir.length()>0:
 		tempAccel = 3
-	velocity = velocity.move_toward(tDir,delta*acceleration*tempAccel)
+	if velocity.length() < maxSpeed:
+		velocity = velocity.move_toward(tDir,delta*acceleration*tempAccel)
+	if velocity.length() >= maxSpeed:
+		tDir = boostDir
+		velocity = velocity.move_toward(tDir,delta*acceleration*.5)
 	velocity.y -= grav
 	if is_on_floor() and velocity.y > 3:
 		velocity.y *= -1.1
@@ -51,6 +56,7 @@ func _physics_process(delta: float) -> void:
 		jumps = jumpMax
 	if Input.is_action_just_pressed("space") and jumps > 0:
 		jumps -= 1
+		velocity = velocity.move_toward(tDir,delta*acceleration*12)
 		if is_on_floor():
 			velocity.y = jumpForce
 			jumps += 1
