@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=14 format=3 uid="uid://pe10ussqe68f"]
 
+[ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
 [ext_resource type="AudioStream" uid="uid://b67j3sobj8kcu" path="res://Soup-o-Folder/media/sfx/sound/toy_gun.wav" id="2_4c4mo"]
+[ext_resource type="Shader" uid="uid://dax5v27eddowm" path="res://Soup-o-Folder/scripts/shaders/pixel_poster.gdshader" id="3_m1tae"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lwqse"]
 
@@ -72,49 +74,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
-
-[sub_resource type="Animation" id="Animation_bm35r"]
-resource_name = "machingun_shoot"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("machine_gun/FuckingCandyShotgun:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0411485, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.107358), Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.153433)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("machine_gun/FuckingCandyShotgun:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.63225), Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("items_sound")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 13.2309,
-"start_offset": 13.8419,
-"stream": ExtResource("2_4c4mo")
-}],
-"times": PackedFloat32Array(0.00798114)
-}
-tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_4c4mo"]
 resource_name = "machingan_up"
@@ -199,6 +158,49 @@ tracks/5/keys = {
 }
 tracks/5/use_blend = true
 
+[sub_resource type="Animation" id="Animation_bm35r"]
+resource_name = "machingun_shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("machine_gun/FuckingCandyShotgun:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0411485, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.107358), Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.153433)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("machine_gun/FuckingCandyShotgun:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.63225), Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("items_sound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 13.2309,
+"start_offset": 13.8419,
+"stream": ExtResource("2_4c4mo")
+}],
+"times": PackedFloat32Array(0.00798114)
+}
+tracks/2/use_blend = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k21j4"]
 _data = {
 &"RESET": SubResource("Animation_m1tae"),
@@ -206,7 +208,21 @@ _data = {
 &"machingun_shoot": SubResource("Animation_bm35r")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm35r"]
+shader = ExtResource("3_m1tae")
+shader_parameter/pixelation = 0.003
+shader_parameter/opacity = 1.0
+shader_parameter/screen_width = 640.0
+shader_parameter/red_color = 20.0
+shader_parameter/green_color = 20.0
+shader_parameter/blue_color = 20.0
+shader_parameter/dither_strength = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m1tae"]
+radius = 0.600143
+
 [node name="player" type="CharacterBody3D"]
+script = ExtResource("1_bm35r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918847, 0)
@@ -238,8 +254,23 @@ mesh = SubResource("BoxMesh_tso2o")
 libraries = {
 &"": SubResource("AnimationLibrary_k21j4")
 }
+autoplay = "machingan_up"
 
 [node name="items_sound" type="AudioStreamPlayer" parent="Camera3D/items"]
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -2)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_bm35r")
+custom_minimum_size = Vector2(640, 480)
+offset_left = -15.0
+offset_top = -6.0
+offset_right = 660.0
+offset_bottom = 495.0
+mouse_filter = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511044, 0)
+shape = SubResource("SphereShape3D_m1tae")

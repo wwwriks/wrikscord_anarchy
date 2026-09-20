@@ -13,7 +13,7 @@ config_version=5
 config/name="wrikscord_anarchy"
 run/main_scene="uid://di4drfathugwv"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://drv0hhq64261t"
 
 [autoload]
 
