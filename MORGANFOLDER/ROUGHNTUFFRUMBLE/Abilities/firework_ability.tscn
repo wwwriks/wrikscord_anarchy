@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cudpv0tk2vq3e"]
+
+[ext_resource type="Script" uid="uid://bs7tdnwxa7kkh" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Scenes/AbilityClass.gd" id="1_74cxo"]
+
+[node name="FireworkAbility" type="Node3D"]
+script = ExtResource("1_74cxo")

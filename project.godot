@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="wrikscord_anarchy"
-run/main_scene="uid://c7ipa4jfeh133"
+run/main_scene="uid://di4drfathugwv"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -40,7 +40,7 @@ project/assembly_name="wrikscord_anarchy"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MagicaVoxel_Importer_with_Extensions/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 

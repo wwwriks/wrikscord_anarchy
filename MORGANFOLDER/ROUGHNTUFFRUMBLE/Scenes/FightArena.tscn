@@ -1,0 +1,222 @@
+[gd_scene load_steps=17 format=3 uid="uid://di4drfathugwv"]
+
+[ext_resource type="Script" uid="uid://dquxog7mjcw0p" path="res://MORGANFOLDER/MarbleGame/Scripts/WATER.gd" id="1_qkoiw"]
+[ext_resource type="Material" uid="uid://d2cdu5yqlv7cd" path="res://MORGANFOLDER/MarbleGame/Materials/Water_Material.tres" id="2_5jkd3"]
+[ext_resource type="PackedScene" uid="uid://6plbcrpj0b3d" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/TerrenceRumbler.tscn" id="3_5jkd3"]
+[ext_resource type="Environment" uid="uid://y45y8kamv3x" path="res://MORGANFOLDER/MarbleGame/Materials/Env/Marble_Env.tres" id="4_b0wcv"]
+[ext_resource type="PackedScene" uid="uid://cudpv0tk2vq3e" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Abilities/firework_ability.tscn" id="4_lvi2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvi2v"]
+albedo_color = Color(0.733333, 0.905882, 0.737255, 1)
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_364nb"]
+material = SubResource("StandardMaterial3D_lvi2v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l1hn0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0wcv"]
+albedo_color = Color(0.9967, 0.726958, 0, 1)
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_sqgts"]
+material = SubResource("StandardMaterial3D_b0wcv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_364nb"]
+albedo_color = Color(5.10186e-06, 0.620035, 1.92523e-07, 1)
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="TorusMesh" id="TorusMesh_b0wcv"]
+material = SubResource("StandardMaterial3D_364nb")
+rings = 5
+ring_segments = 6
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvi2v"]
+size = Vector3(1.16513, 0.434814, 0.368713)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0wcv"]
+size = Vector3(0.74614, 0.434814, 0.360138)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cnuao"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2opli"]
+size = Vector3(100, 1, 100)
+
+[node name="FightArena" type="Node3D"]
+
+[node name="LEVELGEOM" type="Node3D" parent="."]
+
+[node name="GROUND" type="MeshInstance3D" parent="LEVELGEOM"]
+transform = Transform3D(60, 0, 0, 0, 20, 0, 0, 0, 60, 0, -8.63322, 0)
+mesh = SubResource("BoxMesh_364nb")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/GROUND"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/GROUND/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="JengaTower" type="Node3D" parent="LEVELGEOM"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6625, -3.8147e-06, 12.4629)
+
+[node name="GROUND2" type="MeshInstance3D" parent="LEVELGEOM/JengaTower"]
+transform = Transform3D(11, 0, 0, 0, 3.667, 0, 0, 0, 20.398, 0.150611, 2.7159, 0.649244)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/JengaTower/GROUND2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/JengaTower/GROUND2/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="GROUND3" type="MeshInstance3D" parent="LEVELGEOM/JengaTower"]
+transform = Transform3D(10.2159, 0, 0, 0, 3.667, 0, 0, 0, 5.56241, -3.9713, 6.29695, 0.649244)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/JengaTower/GROUND3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/JengaTower/GROUND3/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="GROUND4" type="MeshInstance3D" parent="LEVELGEOM/JengaTower"]
+transform = Transform3D(-4.80825e-07, 0, 4.20957, 0, 3.667, 0, -11, 0, -1.84006e-07, 0.238266, 9.96395, 0.649244)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/JengaTower/GROUND4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/JengaTower/GROUND4/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="TallStructure" type="Node3D" parent="LEVELGEOM"]
+transform = Transform3D(-6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0, 0, 1.5, 9, 6.58055, -10.3849)
+
+[node name="GROUND5" type="MeshInstance3D" parent="LEVELGEOM/TallStructure"]
+transform = Transform3D(11, 0, 0, -5.68434e-14, 3.667, 0, 0, 0, 11.6744, 2.81587, 2.71591, 1.15087)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/TallStructure/GROUND5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/TallStructure/GROUND5/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="GROUND6" type="MeshInstance3D" parent="LEVELGEOM/TallStructure"]
+transform = Transform3D(10.2159, 0, 0, 0, 3.667, 0, 0, 0, 5.56241, -3.94384, 6.29695, 4.32634)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/TallStructure/GROUND6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/TallStructure/GROUND6/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="GROUND7" type="MeshInstance3D" parent="LEVELGEOM/TallStructure"]
+transform = Transform3D(-7.77817, -2.59296, -3.68012e-07, -7.77817, 2.59296, 2.84217e-14, 6.7999e-07, 2.26684e-07, -4.20957, 0.967822, 8.80881, 4.32634)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/TallStructure/GROUND7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/TallStructure/GROUND7/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="GROUND8" type="MeshInstance3D" parent="LEVELGEOM/TallStructure"]
+transform = Transform3D(-2.31983e-07, -3.667, 0, 5.30716, -1.6029e-07, 0, 0, 0, 5.56241, 2.05616, 1.84923, -5.94146)
+mesh = SubResource("BoxMesh_sqgts")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/TallStructure/GROUND8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/TallStructure/GROUND8/StaticBody3D"]
+shape = SubResource("BoxShape3D_l1hn0")
+
+[node name="Staple" type="MeshInstance3D" parent="LEVELGEOM"]
+transform = Transform3D(9.8995, 9.8995, 4.32721e-07, 0, -6.11959e-07, 14, 9.8995, -9.8995, -4.32721e-07, -17.1043, 0.193464, -17.3383)
+mesh = SubResource("TorusMesh_b0wcv")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/Staple"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/Staple/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, -0.000747681, 0.00280757, 0.61165)
+shape = SubResource("BoxShape3D_lvi2v")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LEVELGEOM/Staple/StaticBody3D"]
+transform = Transform3D(0.297775, -4.17285e-08, 0.954636, 4.17283e-08, 1, 3.06953e-08, -0.954636, 3.06952e-08, 0.297775, 0.5211, 0.0010497, 0.379825)
+shape = SubResource("BoxShape3D_b0wcv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LEVELGEOM/Staple/StaticBody3D"]
+transform = Transform3D(0.297375, 0, -0.954761, 0, 1, 1.77636e-15, 0.954761, -7.10543e-15, 0.297375, -0.526975, 0.0010497, 0.379825)
+shape = SubResource("BoxShape3D_b0wcv")
+
+[node name="CornerTorus" type="MeshInstance3D" parent="LEVELGEOM"]
+transform = Transform3D(11.8329, -7.48217, -3.27056e-07, 2.31649e-14, -6.11959e-07, 14, -7.48217, -11.8329, -5.17232e-07, 17.3633, 0.19346, 18.876)
+mesh = SubResource("TorusMesh_b0wcv")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LEVELGEOM/CornerTorus"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LEVELGEOM/CornerTorus/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, -0.000747681, 0.00280757, 0.61165)
+shape = SubResource("BoxShape3D_lvi2v")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LEVELGEOM/CornerTorus/StaticBody3D"]
+transform = Transform3D(0.297775, -4.17285e-08, 0.954636, 4.17283e-08, 1, 3.06953e-08, -0.954636, 3.06952e-08, 0.297775, 0.5211, 0.0010497, 0.379825)
+shape = SubResource("BoxShape3D_b0wcv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LEVELGEOM/CornerTorus/StaticBody3D"]
+transform = Transform3D(0.297375, 0, -0.954761, 0, 1, 1.77636e-15, 0.954761, -7.10543e-15, 0.297375, -0.526975, 0.0010497, 0.379825)
+shape = SubResource("BoxShape3D_b0wcv")
+
+[node name="Water" type="Node3D" parent="." groups=["Water"]]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, -21.0396, 0)
+script = ExtResource("1_qkoiw")
+
+[node name="Area3D" type="Area3D" parent="Water"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Water/Area3D"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+material_override = ExtResource("2_5jkd3")
+mesh = SubResource("BoxMesh_cnuao")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28, 0)
+shape = SubResource("BoxShape3D_2opli")
+
+[node name="Ball" parent="." instance=ExtResource("3_5jkd3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+maxSpeed = 32
+maxAirSpeed = 19
+minSpeed = 6
+acceleration = 92
+jumpForce = 52
+doubleJumpForce = 48
+
+[node name="FireworkAbility" parent="Ball" node_paths=PackedStringArray("user") instance=ExtResource("4_lvi2v")]
+user = NodePath("..")
+chargable = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_b0wcv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 1.35
+light_bake_mode = 1
+
+[connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]
