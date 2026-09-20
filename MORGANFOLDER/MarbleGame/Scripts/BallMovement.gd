@@ -42,10 +42,14 @@ func _physics_process(delta: float) -> void:
 	var tempAccel = 1
 	if velocity.length() > maxSpeed:
 		mDir = Vector3.ZERO
+	#FASTER ACCELERATION FOR SLOWER MOVEMENT
 	if velocity.length() < minSpeed and mDir.length()>0:
 		tempAccel = 3
+	#FIRST GEAR! DECENT SPEED AND CONTROL
 	if velocity.length() < maxSpeed:
 		velocity = velocity.move_toward(tDir,delta*acceleration*tempAccel)
+	#SECOND GEAR! HIGHER MAX SPEED, LOWER ACCELERATION (INTENDED FOR STRAIGHTAWAYS)
+	#LOWER ACCELERATION MEANS WORSE HANDLING, GOOD LUCK
 	if velocity.length() >= maxSpeed:
 		tDir = boostDir
 		velocity = velocity.move_toward(tDir,delta*acceleration*.5)
