@@ -95,4 +95,8 @@ horizontal_alignment = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange"]
 shape = SubResource("SphereShape3D_b8y7d")
 
+[node name="SOUNDS" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SOUNDS"]
+
 [connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]

@@ -118,6 +118,6 @@ func respawn():
 
 func _on_pickup_range_body_entered(body: Node3D) -> void:
 	if body.is_in_group("scorePickup") and body.canCollect:
-		body.collected()
-		score+=100
+		body.collected(self)
+		score+=1
 		scoreLabel.text = "SCORE: "+str(score)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://di4drfathugwv"]
+[gd_scene load_steps=20 format=3 uid="uid://di4drfathugwv"]
 
 [ext_resource type="Script" uid="uid://dquxog7mjcw0p" path="res://MORGANFOLDER/MarbleGame/Scripts/WATER.gd" id="1_qkoiw"]
 [ext_resource type="Material" uid="uid://d2cdu5yqlv7cd" path="res://MORGANFOLDER/MarbleGame/Materials/Water_Material.tres" id="2_5jkd3"]
@@ -6,6 +6,8 @@
 [ext_resource type="Environment" uid="uid://y45y8kamv3x" path="res://MORGANFOLDER/MarbleGame/Materials/Env/Marble_Env.tres" id="4_b0wcv"]
 [ext_resource type="PackedScene" uid="uid://cudpv0tk2vq3e" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Abilities/firework_ability.tscn" id="4_lvi2v"]
 [ext_resource type="PackedScene" uid="uid://c8aayx1cjuc7j" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Scenes/Pickup.tscn" id="6_364nb"]
+[ext_resource type="Script" uid="uid://ceg5ctk7424dt" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Scenes/unlockPortal.gd" id="7_kotgf"]
+[ext_resource type="PackedScene" uid="uid://b0kvrwfil7ksv" path="res://DDDs_Stuff/exit_portal.tscn" id="8_75e5p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvi2v"]
 albedo_color = Color(0.733333, 0.905882, 0.737255, 1)
@@ -202,7 +204,7 @@ shape = SubResource("BoxShape3D_2opli")
 [node name="Ball" parent="." instance=ExtResource("3_5jkd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 maxSpeed = 32
-maxAirSpeed = 19
+maxAirSpeed = 28
 minSpeed = 6
 acceleration = 92
 jumpForce = 52
@@ -224,26 +226,64 @@ light_bake_mode = 1
 
 [node name="Pickup" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4022, 14.3044, 13.2715)
+unlocksPortal = true
+unlockAmount = 25
 
 [node name="Pickup2" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0815, 3.16837, -17.3165)
+unlocksPortal = true
+unlockAmount = 25
 
 [node name="Pickup3" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9555, 12.4432, -4.29929)
+unlocksPortal = true
+unlockAmount = 25
 
-[node name="Pickup4" parent="." instance=ExtResource("6_364nb")]
+[node name="Pickup4" parent="." node_paths=PackedStringArray("portalUnlock") instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4326, 22.7239, -4.29929)
+unlocksPortal = true
+unlockAmount = 25
+portalUnlock = NodePath("../UnlockedPortal")
 
 [node name="Pickup5" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6793, 8.43264, -19.8928)
+unlocksPortal = true
+unlockAmount = 25
 
 [node name="Pickup6" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4326, 2.48256, -4.29929)
+unlocksPortal = true
+unlockAmount = 25
 
 [node name="Pickup7" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9207, 3.16837, 18.5038)
+unlocksPortal = true
+unlockAmount = 25
 
 [node name="Pickup8" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8494, 9.24869, 13.2715)
+unlocksPortal = true
+unlockAmount = 25
+
+[node name="UnlockedPortal" type="Node3D" parent="." node_paths=PackedStringArray("portal")]
+script = ExtResource("7_kotgf")
+portal = NodePath("exit_portal")
+
+[node name="exit_portal" parent="UnlockedPortal" instance=ExtResource("8_75e5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127701, 6.36679, 24.9467)
+visible = false
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.3236, 6.17618, -7.65463)
+texture_filter = 0
+text = "WASD to move.
+Space to jump.
+
+Hold Left click to charge your DASH.
+Release Left Click to cast.
+
+Pick up the blue collectibles."
+font_size = 140
+outline_size = 36
 
 [connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]

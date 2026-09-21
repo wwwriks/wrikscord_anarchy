@@ -41,7 +41,7 @@ size = Vector3(1, 14.918, 299.874)
 
 [node name="DarkLevel" type="Node3D"]
 
-[node name="DESTROY ME" type="DirectionalLight3D" parent="."]
+[node name="Lovely" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997508, -0.00184574, -0.0705332, -0.0705574, 0.0260942, 0.997166, 0, 0.999658, -0.0261594, 0, 40.042, 0)
 light_energy = 5.0
 
@@ -49,7 +49,7 @@ light_energy = 5.0
 environment = SubResource("Environment_mglq0")
 
 [node name="Ground" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7244, -1, 0)
+transform = Transform3D(1.89042, 0, 0, 0, 1, 0, 0, 0, 1, 23.7244, -1, 0)
 material_override = ExtResource("1_5em1n")
 use_collision = true
 size = Vector3(297.449, 1, 250)
@@ -61,10 +61,10 @@ light_energy = 1.5
 sky_mode = 1
 
 [node name="Soldier" parent="." instance=ExtResource("2_xekco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.991, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -205.907, 0, -1)
 
 [node name="GOAL" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.81196, 0, 1, 0, -4.37114e-08, 140.429, 0, 11.5443)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.81196, 0, 1, 0, -4.37114e-08, 253.997, 0, 11.5443)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="GOAL"]
 transform = Transform3D(0.838204, -0.161648, -0.520849, 0, 0.955061, -0.296408, 0.545356, 0.248451, 0.800537, -23.0465, -1.72309, -16.9336)
@@ -103,21 +103,22 @@ transform = Transform3D(-1.5299e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08,
 scene = "uid://c58seyvj2x72b"
 
 [node name="PeanutSpawner" type="Area3D" parent="." node_paths=PackedStringArray("marker")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.3057, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.222, 0, 0)
 script = ExtResource("4_fg2m7")
 marker = NodePath("Marker3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PeanutSpawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.20313, -8.76779)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.412, 4.20313, -8.76779)
 shape = SubResource("BoxShape3D_8l77j")
 
 [node name="Marker3D" type="Marker3D" parent="PeanutSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1675, 7.62461, 0)
 
 [node name="mesh-judgement" parent="." instance=ExtResource("5_8l77j")]
-transform = Transform3D(0.00756743, 0, 3.90596, 0, 3.90597, 0, -3.90596, 0, 0.00756743, -115.399, -0.499999, -1.18966)
+transform = Transform3D(0.00756743, 0, 3.90596, 0, 3.90597, 0, -3.90596, 0, 0.00756743, -217.285, -0.499999, -1.32789)
 
 [node name="WORLDBOUNDS" type="Node3D" parent="."]
+transform = Transform3D(1.7168, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WORLDBOUNDS"]
 
@@ -138,6 +139,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.123
 shape = SubResource("BoxShape3D_vnrhh")
 
 [node name="LEVELGEOMETRY" type="Node3D" parent="."]
+transform = Transform3D(1.7168, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="GROUNDBUMPS" type="Node3D" parent="LEVELGEOMETRY"]
 

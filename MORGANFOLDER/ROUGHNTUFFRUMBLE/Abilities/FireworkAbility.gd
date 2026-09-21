@@ -8,8 +8,10 @@ func _enter_tree() -> void:
 
 func abilityEffect():
 	if user==null: return false
-	user.velocity *= 3
-	user.velocity.y *= .5
+	var dir = user.velocity.normalized()
+	user.velocity += dir*user.maxSpeed*1.5
+	#user.velocity *= 3
+	#user.velocity.y *= .5
 	
 	fx.visible = true
 	fxTimer.start(1)
