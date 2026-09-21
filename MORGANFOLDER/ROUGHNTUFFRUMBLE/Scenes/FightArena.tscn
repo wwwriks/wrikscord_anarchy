@@ -223,10 +223,10 @@ light_energy = 1.35
 light_bake_mode = 1
 
 [node name="Pickup" parent="." instance=ExtResource("6_364nb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4022, 14.3044, 14.001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4022, 14.3044, 13.2715)
 
 [node name="Pickup2" parent="." instance=ExtResource("6_364nb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0714, 3.16837, -13.0667)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0815, 3.16837, -17.3165)
 
 [node name="Pickup3" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9555, 12.4432, -4.29929)
@@ -236,5 +236,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4326, 22.7239, -4.29929)
 
 [node name="Pickup5" parent="." instance=ExtResource("6_364nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6793, 8.43264, -19.8928)
+
+[node name="Pickup6" parent="." instance=ExtResource("6_364nb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4326, 2.48256, -4.29929)
+
+[node name="Pickup7" parent="." instance=ExtResource("6_364nb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9207, 3.16837, 18.5038)
+
+[node name="Pickup8" parent="." instance=ExtResource("6_364nb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8494, 9.24869, 13.2715)
 
 [connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]

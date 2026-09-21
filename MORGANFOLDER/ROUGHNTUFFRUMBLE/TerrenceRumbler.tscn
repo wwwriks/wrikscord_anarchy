@@ -32,7 +32,7 @@ material = SubResource("StandardMaterial3D_eu0v8")
 flip_faces = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8y7d"]
-radius = 1.2
+radius = 1.8
 
 [node name="Terrence" type="CharacterBody3D" node_paths=PackedStringArray("scoreLabel") groups=["player"]]
 script = ExtResource("1_t4m3e")
@@ -76,14 +76,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -46.0
 offset_top = -40.0
-offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="SCORE" type="Label" parent="Container"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 22
 text = "Score: 0"
 horizontal_alignment = 1
 
