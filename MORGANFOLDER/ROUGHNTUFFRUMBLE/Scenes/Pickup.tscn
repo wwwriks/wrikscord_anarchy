@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8aayx1cjuc7j"]
+
+[ext_resource type="Texture2D" uid="uid://cklxfmfho5fjs" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Abilities/Light.png" id="1_yld1c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yld1c"]
+radius = 0.593522
+
+[node name="Pickup" type="RigidBody3D"]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_yld1c")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+modulate = Color(0.513914, 0.689098, 0.92919, 1)
+billboard = 1
+texture = ExtResource("1_yld1c")

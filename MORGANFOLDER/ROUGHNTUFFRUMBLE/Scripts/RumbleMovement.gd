@@ -18,10 +18,15 @@ var jumps = 0
 @export var mouseSens = .002
 @export var respawnPoint : Node3D = null
 
+var score = 0
+@export var scoreLabel : Label
+
 var camPivot = 0
 var camPivotPosition = Vector3.ZERO
 var cam = 0
 var lastContactNormal: Vector3 = Vector3.UP;
+
+var tDir : Vector3 = Vector3.ZERO
 
 #Lock the mouse in the game window and make it invisible
 func _ready():
@@ -38,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	var input = Input.get_vector("left", "right", "up", "down")
 	var mDir = transform.basis * Vector3(input.x, 0, input.y)
 	
-	var tDir = mDir * maxSpeed
+	tDir = mDir * maxSpeed
 	if !is_on_floor():
 		tDir = mDir * maxAirSpeed
 	var tempAccel = 1
@@ -74,15 +79,15 @@ func _physics_process(delta: float) -> void:
 	camPivot.position = lerp(camPivot.position,tar,.08)
 
 	# Make the ball mesh rotate in the direction of the movement velocity - D
-	if is_on_floor():# or is_on_wall():
-		lastContactNormal = get_floor_normal()
-	var movement := Vector3(velocity.x, 0.0, velocity.z)
-	var distance := movement.length()
-	if distance >= 0.001: # don't do the rotation if movement distance is too small
-		var angle := distance * delta / ball_radius
-		var rotation_axis_world := lastContactNormal.cross(movement).normalized()
-		var rotation_axis_local := basis.inverse() * rotation_axis_world
-		ball_mesh.quaternion = (Quaternion(rotation_axis_local, angle) * ball_mesh.quaternion).normalized()
+	#if is_on_floor():# or is_on_wall():
+		#lastContactNormal = get_floor_normal()
+	#var movement := Vector3(velocity.x, 0.0, velocity.z)
+	#var distance := movement.length()
+	#if distance >= 0.001: # don't do the rotation if movement distance is too small
+		#var angle := distance * delta / ball_radius
+		#var rotation_axis_world := lastContactNormal.cross(movement).normalized()
+		#var rotation_axis_local := basis.inverse() * rotation_axis_world
+		#ball_mesh.quaternion = (Quaternion(rotation_axis_local, angle) * ball_mesh.quaternion).normalized()
 
 # If an input is detected
 func _input(event):
@@ -109,3 +114,10 @@ func respawn():
 		position = respawnPoint.global_position
 	else:
 		position = Vector3.ZERO
+
+
+func _on_pickup_range_body_entered(body: Node3D) -> void:
+	if body.is_in_group("scorePickup"):
+		body.queue_free()
+		score+=100
+		scoreLabel.text = "SCORE: "+str(score)

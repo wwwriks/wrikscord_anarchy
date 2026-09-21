@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://6plbcrpj0b3d"]
+[gd_scene load_steps=13 format=3 uid="uid://6plbcrpj0b3d"]
 
 [ext_resource type="Script" uid="uid://ewbnl8tltlg5" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Scripts/RumbleMovement.gd" id="1_t4m3e"]
+[ext_resource type="Texture2D" uid="uid://bvqihf6pstvpv" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Terrence.png" id="2_b8y7d"]
 [ext_resource type="Material" uid="uid://dnbp3ym05opmv" path="res://MORGANFOLDER/MarbleGame/Materials/Player_Material.tres" id="2_bbqc4"]
 [ext_resource type="Script" uid="uid://cvri7rgii2cf" path="res://MORGANFOLDER/MarbleGame/Prefabs/blobshadow.gd" id="3_ugti3"]
 
@@ -30,13 +31,25 @@ albedo_texture = SubResource("GradientTexture2D_4dhtx")
 material = SubResource("StandardMaterial3D_eu0v8")
 flip_faces = true
 
-[node name="Ball" type="CharacterBody3D" groups=["player"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_b8y7d"]
+radius = 1.2
+
+[node name="Terrence" type="CharacterBody3D" node_paths=PackedStringArray("scoreLabel") groups=["player"]]
 script = ExtResource("1_t4m3e")
+scoreLabel = NodePath("Container/SCORE")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_tr0yl")
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+render_priority = 3
+texture = ExtResource("2_b8y7d")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_tr0yl")
 surface_material_override/0 = ExtResource("2_bbqc4")
 
@@ -44,7 +57,7 @@ surface_material_override/0 = ExtResource("2_bbqc4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35202, 1.34662, 3.31662)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999523, 0.0308702, 0, -0.0308702, 0.999523, -0.345054, -0.026979, 1.56368)
+transform = Transform3D(1, 0, 0, 0, 0.999523, 0.0308702, 0, -0.0308702, 0.999523, -0.345054, 0.0506724, 1.94)
 
 [node name="blobshadow" type="ShapeCast3D" parent="." node_paths=PackedStringArray("shadow")]
 shape = SubResource("SphereShape3D_k26kv")
@@ -56,3 +69,27 @@ shadow = NodePath("MeshInstance3D")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blobshadow"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_k26kv")
+
+[node name="Container" type="Container" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SCORE" type="Label" parent="Container"]
+layout_mode = 2
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="PickupRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange"]
+shape = SubResource("SphereShape3D_b8y7d")
+
+[connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]

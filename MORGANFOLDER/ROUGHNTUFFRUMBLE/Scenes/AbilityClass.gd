@@ -2,6 +2,7 @@ extends Node
 class_name RumbleAbility
 
 @export var user : CharacterBody3D
+@export var nodeself : Node = null
 @export var cooldownTimer : Timer
 @export var abilityCooldown : float = 8
 @export var chargable : bool = false
@@ -14,13 +15,16 @@ var cooldownOff = true
 var chargeTimer : float = 0
 
 func _ready() -> void:
+	#GET UR OWN NODE IN THE TREE (SO WE CAN REFERENCE IT)
+	nodeself = $"."
+	
 	cooldownTimer = Timer.new()
 	cooldownTimer.one_shot = true
 	call_deferred("add_child", cooldownTimer)
 	cooldownTimer.timeout.connect(_time_out)
 	
 	if chargable:
-		var chargeTimer : float = 0
+		chargeTimer = 0
 
 func _time_out() -> void:
 	cooldownOff = true
@@ -43,5 +47,3 @@ func _process(delta) -> void:
 
 func abilityEffect():
 	print("ABILITY ACTIVATED")
-	if user==null: return false
-	user.velocity
