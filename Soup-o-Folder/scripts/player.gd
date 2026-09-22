@@ -19,6 +19,7 @@ var rotation_y=0.0
 var rotation_x=0.0
 
 var bob_time=0.0
+var last_step=0
 
 var bob_speed=10.0
 var bob_amount=0.025
@@ -48,7 +49,7 @@ func blood_handler():
 			$ui/blood.modulate="#96969600"
 		2:
 			$ui/blood.modulate="#969696a1"
-		3:
+		1:
 			$ui/blood.modulate="#969696"
 
 func reload():
@@ -68,10 +69,9 @@ func change_weapon(new_weapon):
 func shoot():
 	if not $Camera3D/items/items_anim.is_playing() and ammo>0:
 		$Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
+		$shoot_sound.play()
 		ammo-=1
 		update_ammo_label()
-	if ammo<=0:
-		reload()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
@@ -82,11 +82,16 @@ func _input(event):
 func _process(delta: float) -> void:
 	rotation.y=rotation_y
 	camera.rotation.x=rotation_x
-	var horizontal_velocity=Vector3(velocity.x, 0, velocity.z)
+	var horizontal_velocity=Vector3(velocity.x,0,velocity.z)
 	var movement_speed=horizontal_velocity.length()
-	var input_dir:=Input.get_vector("left", "right", "up", "down")
-	if movement_speed > 0.1 and is_on_floor():
+	var input_dir:=Input.get_vector("left","right","up","down")
+	if movement_speed>0.1 and is_on_floor():
 		bob_time+=delta*bob_speed*(movement_speed/speed)
+		var current_step=int(floor(bob_time/PI))
+		if current_step!=last_step:
+			$step_sound.pitch_scale=randf_range(0.9, 1.1)
+			$step_sound.play()
+			last_step=current_step
 		var bob_x=sin(bob_time)*bob_side_amount
 		var bob_y=abs(cos(bob_time))*bob_amount
 		var target_position=weapon_position
@@ -108,7 +113,7 @@ func _physics_process(delta: float) -> void:
 		shoot()
 	if Input.is_action_just_pressed("reload") and reloading==false:
 		reload()
-	var input_dir:=Input.get_vector("left", "right", "up", "down")
+	var input_dir:=Input.get_vector("left","right","up","down")
 	var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y)).normalized()
 	if direction:
 		velocity.x=direction.x*speed
@@ -116,5 +121,5 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x=move_toward(velocity.x,0,speed)
 		velocity.z=move_toward(velocity.z,0,speed)
-
+	
 	move_and_slide()

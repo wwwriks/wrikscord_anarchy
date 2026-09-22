@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=22 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://c72vyytovweex" path="res://Soup-o-Folder/media/gfx/muzzle.png" id="3_dl7ft"]
 [ext_resource type="Texture2D" uid="uid://bwsdavdea2vmn" path="res://Soup-o-Folder/media/gfx/santa_blood_overlay.png" id="4_k21j4"]
 [ext_resource type="ArrayMesh" uid="uid://sxskdmn8rw4f" path="res://Soup-o-Folder/media/models/machinegun_mag.vox" id="4_ws2h5"]
+[ext_resource type="AudioStream" uid="uid://b5ikp3g6ftslm" path="res://Soup-o-Folder/media/sfx/sound/mp5_clipout.wav" id="5_gbxgg"]
+[ext_resource type="AudioStream" uid="uid://dsbuq8guvpevo" path="res://Soup-o-Folder/media/sfx/sound/mp5_clipin.wav" id="6_p0a5f"]
 [ext_resource type="FontFile" uid="uid://d0ryx3onwrq2h" path="res://rvvnd/assets/font/Syne-Italic.ttf" id="7_ws2h5"]
 [ext_resource type="Texture2D" uid="uid://b1edwle7hs0np" path="res://Soup-o-Folder/media/gfx/ammo.png" id="8_s23tu"]
+[ext_resource type="AudioStream" uid="uid://d3hj1swgj8vf5" path="res://Soup-o-Folder/media/sfx/sound/machinegun_shoot.wav" id="11_7dy2v"]
+[ext_resource type="AudioStream" uid="uid://sjntee0pwcf3" path="res://Soup-o-Folder/media/sfx/sound/snow_step.wav" id="12_p0a5f"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lwqse"]
 
@@ -149,8 +153,16 @@ tracks/2/path = NodePath("items_sound")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"clips": [],
-"times": PackedFloat32Array()
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_gbxgg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_p0a5f")
+}],
+"times": PackedFloat32Array(0.366667, 0.9)
 }
 tracks/2/use_blend = true
 tracks/3/type = "value"
@@ -511,3 +523,9 @@ pivot_offset = Vector2(1, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681411, 0)
 shape = SubResource("SphereShape3D_m1tae")
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_7dy2v")
+
+[node name="step_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_p0a5f")
