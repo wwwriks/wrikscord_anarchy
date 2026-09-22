@@ -8,7 +8,7 @@ var hp=3
 var mouse_sens=0.005
 
 var reloading=false
-var current_gun="pistol"
+var current_gun="machinegun"
 var ammo=25
 var total_ammo=25
 
@@ -53,15 +53,21 @@ func blood_handler():
 
 func reload():
 	reloading=true
-	$Camera3D/items/items_anim.play("machinegun_reload")
+	$Camera3D/items/items_anim.play(str(current_gun)+"_reload")
 	await $Camera3D/items/items_anim.animation_finished
 	ammo=total_ammo
 	update_ammo_label()
 	reloading=false
 
+func change_weapon(new_weapon):
+	current_gun=str(new_weapon)
+	ammo=25
+	reloading=false
+	$Camera3D/items/items_anim.play(str(current_gun)+"_up")
+
 func shoot():
 	if not $Camera3D/items/items_anim.is_playing() and ammo>0:
-		$Camera3D/items/items_anim.play("machinegun_shoot")
+		$Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
 		ammo-=1
 		update_ammo_label()
 	if ammo<=0:
@@ -98,8 +104,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity+=get_gravity()*delta
-	if Input.is_action_just_pressed("space") and is_on_floor():
-		velocity.y=jump_velocity
 	if Input.is_action_pressed("shoot") and reloading==false:
 		shoot()
 	if Input.is_action_just_pressed("reload") and reloading==false:

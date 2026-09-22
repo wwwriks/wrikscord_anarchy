@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=18 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c72vyytovweex" path="res://Soup-o-Folder/media/gfx/muzzle.png" id="3_dl7ft"]
 [ext_resource type="Texture2D" uid="uid://bwsdavdea2vmn" path="res://Soup-o-Folder/media/gfx/santa_blood_overlay.png" id="4_k21j4"]
 [ext_resource type="ArrayMesh" uid="uid://sxskdmn8rw4f" path="res://Soup-o-Folder/media/models/machinegun_mag.vox" id="4_ws2h5"]
-[ext_resource type="FontFile" uid="uid://bjm8ybw0gaamd" path="res://rvvnd/assets/font/Syne-Mono.ttf" id="7_ws2h5"]
+[ext_resource type="FontFile" uid="uid://d0ryx3onwrq2h" path="res://rvvnd/assets/font/Syne-Italic.ttf" id="7_ws2h5"]
+[ext_resource type="Texture2D" uid="uid://b1edwle7hs0np" path="res://Soup-o-Folder/media/gfx/ammo.png" id="8_s23tu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lwqse"]
 
@@ -483,17 +484,22 @@ scale = Vector2(0.812092, 0.812093)
 texture = ExtResource("4_k21j4")
 
 [node name="ammo_label" type="RichTextLabel" parent="ui"]
-offset_left = 536.0
+offset_left = 80.0
 offset_top = 400.0
-offset_right = 632.0
-offset_bottom = 472.0
+offset_right = 144.0
+offset_bottom = 464.0
 theme_override_constants/outline_size = 5
 theme_override_fonts/normal_font = ExtResource("7_ws2h5")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[shake]25"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ammo" type="Sprite2D" parent="ui"]
+position = Vector2(44, 440)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("8_s23tu")
 
 [node name="cursor" type="ColorRect" parent="."]
 offset_left = 320.0

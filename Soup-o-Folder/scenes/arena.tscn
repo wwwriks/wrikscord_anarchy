@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
 [ext_resource type="PackedScene" uid="uid://pe10ussqe68f" path="res://Soup-o-Folder/scenes/player.tscn" id="2_67n32"]
-[ext_resource type="Texture2D" uid="uid://jhkg77lnotkl" path="res://DDDs_Stuff/DDD_Heavy_Iron_Armor_Panels_Stained_x256.png" id="3_67n32"]
+[ext_resource type="Texture2D" uid="uid://4wuk1dbjig22" path="res://Soup-o-Folder/media/gfx/snow_texture.jpg" id="3_a3wqe"]
 [ext_resource type="PackedScene" uid="uid://brwjop8o8rux7" path="res://Soup-o-Folder/scenes/weapon_case.tscn" id="4_2x6ba"]
 [ext_resource type="Shader" uid="uid://bv5uink1bqgfy" path="res://Soup-o-Folder/scripts/shaders/transition.gdshader" id="5_a3wqe"]
 [ext_resource type="Shader" uid="uid://dax5v27eddowm" path="res://Soup-o-Folder/scripts/shaders/pixel_poster.gdshader" id="5_rsui6"]
@@ -20,12 +20,12 @@ sky = SubResource("Sky_67n32")
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oimwn"]
-albedo_texture = ExtResource("3_67n32")
+albedo_texture = ExtResource("3_a3wqe")
 uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oimwn"]
 material = SubResource("StandardMaterial3D_oimwn")
-size = Vector2(50, 50)
+size = Vector2(75, 75)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oimwn"]
 
@@ -48,21 +48,6 @@ shader_parameter/shape_scroll = Vector2(0, 0)
 shader_parameter/shape_feathering = 0.0
 shader_parameter/shape_treshold = 1.0
 
-[sub_resource type="Animation" id="Animation_o8exx"]
-resource_name = "out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/factor")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_uwlwv"]
 length = 0.001
 tracks/0/type = "value"
@@ -78,6 +63,21 @@ tracks/0/keys = {
 "values": [1.0]
 }
 
+[sub_resource type="Animation" id="Animation_o8exx"]
+resource_name = "out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t23la"]
 _data = {
 &"RESET": SubResource("Animation_uwlwv"),
@@ -86,7 +86,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a3wqe"]
 shader = ExtResource("5_rsui6")
-shader_parameter/pixelation = 0.002
+shader_parameter/pixelation = 0.003
 shader_parameter/opacity = 1.0
 shader_parameter/screen_width = 640.0
 shader_parameter/red_color = 20.0
@@ -102,9 +102,12 @@ environment = SubResource("Environment_2x6ba")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.916405, 0.316544, -0.244953, 0, 0.611996, 0.790861, 0.400253, -0.724748, 0.560836, 0, -2.44821, 0)
 light_color = Color(0.976471, 0.705882, 0.278431, 1)
+light_energy = 0.1
 shadow_enabled = true
+directional_shadow_mode = 0
 
 [node name="player" parent="." instance=ExtResource("2_67n32")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.805304, 0.0641932, -0.297454)
 
 [node name="floor" type="MeshInstance3D" parent="."]
