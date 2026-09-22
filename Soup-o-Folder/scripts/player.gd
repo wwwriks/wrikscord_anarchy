@@ -3,9 +3,14 @@ extends CharacterBody3D
 var speed=8.0
 var jump_velocity=4
 
+var hp=3
+
 var mouse_sens=0.005
 
+var reloading=false
 var current_gun="pistol"
+var ammo=25
+var total_ammo=25
 
 const max_look_up=deg_to_rad(90)
 const max_look_down=deg_to_rad(-90)
@@ -26,17 +31,44 @@ var weapon_rotation=Vector3.ZERO
 @onready var camera=$Camera3D
 @onready var items=$Camera3D/items
 
+func update_ammo_label():
+	$ui/ammo_label.text="[shake]"+str(ammo)
+
 func _ready() -> void:
+	update_ammo_label()
+	blood_handler()
+	$MeshInstance3D.hide()
 	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 	weapon_position=items.position
 	weapon_rotation=items.rotation
 
+func blood_handler():
+	match hp:
+		3:
+			$ui/blood.modulate="#96969600"
+		2:
+			$ui/blood.modulate="#969696a1"
+		3:
+			$ui/blood.modulate="#969696"
+
+func reload():
+	reloading=true
+	$Camera3D/items/items_anim.play("machinegun_reload")
+	await $Camera3D/items/items_anim.animation_finished
+	ammo=total_ammo
+	update_ammo_label()
+	reloading=false
+
 func shoot():
-	if $Camera3D/items/items_anim.animation_finished:
-		$Camera3D/items/items_anim.play("machingun_shoot")
+	if not $Camera3D/items/items_anim.is_playing() and ammo>0:
+		$Camera3D/items/items_anim.play("machinegun_shoot")
+		ammo-=1
+		update_ammo_label()
+	if ammo<=0:
+		reload()
 
 func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion and Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
 		rotation_y-=event.relative.x*mouse_sens
 		rotation_x-=event.relative.y*mouse_sens
 		rotation_x=clamp(rotation_x,max_look_down,max_look_up)
@@ -68,8 +100,10 @@ func _physics_process(delta: float) -> void:
 		velocity+=get_gravity()*delta
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y=jump_velocity
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and reloading==false:
 		shoot()
+	if Input.is_action_just_pressed("reload") and reloading==false:
+		reload()
 	var input_dir:=Input.get_vector("left", "right", "up", "down")
 	var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y)).normalized()
 	if direction:

@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgddqspa1b5s7"]
+[gd_scene load_steps=20 format=3 uid="uid://cgddqspa1b5s7"]
 
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
 [ext_resource type="PackedScene" uid="uid://pe10ussqe68f" path="res://Soup-o-Folder/scenes/player.tscn" id="2_67n32"]
 [ext_resource type="Texture2D" uid="uid://jhkg77lnotkl" path="res://DDDs_Stuff/DDD_Heavy_Iron_Armor_Panels_Stained_x256.png" id="3_67n32"]
+[ext_resource type="PackedScene" uid="uid://brwjop8o8rux7" path="res://Soup-o-Folder/scenes/weapon_case.tscn" id="4_2x6ba"]
+[ext_resource type="Shader" uid="uid://bv5uink1bqgfy" path="res://Soup-o-Folder/scripts/shaders/transition.gdshader" id="5_a3wqe"]
+[ext_resource type="Shader" uid="uid://dax5v27eddowm" path="res://Soup-o-Folder/scripts/shaders/pixel_poster.gdshader" id="5_rsui6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2x6ba"]
 panorama = ExtResource("1_oimwn")
@@ -26,6 +29,71 @@ size = Vector2(50, 50)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oimwn"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a3wqe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oqmv4"]
+noise = SubResource("FastNoiseLite_a3wqe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqmv4"]
+shader = ExtResource("5_a3wqe")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/node_resolution = Vector2(0, 0)
+shader_parameter/factor = 1.0
+shader_parameter/width = 0.4
+shader_parameter/gradient_texture = SubResource("NoiseTexture2D_oqmv4")
+shader_parameter/gradient_fixed = false
+shader_parameter/shape_tiling = 32.0
+shader_parameter/shape_rotation = 0.0
+shader_parameter/shape_scroll = Vector2(0, 0)
+shader_parameter/shape_feathering = 0.0
+shader_parameter/shape_treshold = 1.0
+
+[sub_resource type="Animation" id="Animation_o8exx"]
+resource_name = "out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uwlwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t23la"]
+_data = {
+&"RESET": SubResource("Animation_uwlwv"),
+&"out": SubResource("Animation_o8exx")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3wqe"]
+shader = ExtResource("5_rsui6")
+shader_parameter/pixelation = 0.002
+shader_parameter/opacity = 1.0
+shader_parameter/screen_width = 640.0
+shader_parameter/red_color = 20.0
+shader_parameter/green_color = 20.0
+shader_parameter/blue_color = 20.0
+shader_parameter/dither_strength = 0.4
+
 [node name="arena" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -48,3 +116,30 @@ skeleton = NodePath("../WorldEnvironment")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="collisions"]
 shape = SubResource("WorldBoundaryShape3D_oimwn")
+
+[node name="weapon_case" parent="." instance=ExtResource("4_2x6ba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92097, 0.6, -13.9258)
+
+[node name="transition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_oqmv4")
+custom_minimum_size = Vector2(640, 480)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="transition" type="AnimationPlayer" parent="transition"]
+libraries = {
+&"": SubResource("AnimationLibrary_t23la")
+}
+autoplay = "out"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="shader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_a3wqe")
+custom_minimum_size = Vector2(640, 480)
+offset_left = -15.0
+offset_top = -6.0
+offset_right = 660.0
+offset_bottom = 495.0
+mouse_filter = 2

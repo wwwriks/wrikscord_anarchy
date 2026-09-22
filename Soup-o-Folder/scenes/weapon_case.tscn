@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://brwjop8o8rux7"]
+
+[ext_resource type="Script" uid="uid://buntr3dt15dew" path="res://Soup-o-Folder/scripts/weapon_case.gd" id="1_ms8sj"]
+[ext_resource type="ArrayMesh" uid="uid://clvkjatgvbsn6" path="res://Soup-o-Folder/media/models/weapon_case.vox" id="1_x5ktw"]
+[ext_resource type="Shader" uid="uid://bm2br75f63xik" path="res://Soup-o-Folder/scripts/shaders/highlight.gdshader" id="2_asfe5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sievs"]
+render_priority = 0
+shader = ExtResource("2_asfe5")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_speed = 5.0
+shader_parameter/shine_width = 0.5
+shader_parameter/cycle_interval = 5.0
+shader_parameter/angle_fade = 1.0
+shader_parameter/x_direction = 1.0
+shader_parameter/y_direction = 0.0
+shader_parameter/z_direction = 1.0
+
+[sub_resource type="Animation" id="Animation_ms8sj"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("case:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("case:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_asfe5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("case:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("case:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sievs"]
+_data = {
+&"RESET": SubResource("Animation_asfe5"),
+&"idle": SubResource("Animation_ms8sj")
+}
+
+[node name="weapon_case" type="Node3D"]
+script = ExtResource("1_ms8sj")
+
+[node name="case" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_sievs")
+mesh = ExtResource("1_x5ktw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sievs")
+}
+autoplay = "idle"
