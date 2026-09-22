@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgddqspa1b5s7"]
+[gd_scene load_steps=10 format=3 uid="uid://cgddqspa1b5s7"]
 
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
 [ext_resource type="PackedScene" uid="uid://pe10ussqe68f" path="res://Soup-o-Folder/scenes/player.tscn" id="2_67n32"]
+[ext_resource type="Texture2D" uid="uid://jhkg77lnotkl" path="res://DDDs_Stuff/DDD_Heavy_Iron_Armor_Panels_Stained_x256.png" id="3_67n32"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2x6ba"]
 panorama = ExtResource("1_oimwn")
@@ -16,7 +17,8 @@ sky = SubResource("Sky_67n32")
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oimwn"]
-albedo_color = Color(0.397337, 0.530476, 0.673945, 1)
+albedo_texture = ExtResource("3_67n32")
+uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oimwn"]
 material = SubResource("StandardMaterial3D_oimwn")

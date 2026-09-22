@@ -210,7 +210,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bm35r"]
 shader = ExtResource("3_m1tae")
-shader_parameter/pixelation = 0.003
+shader_parameter/pixelation = 0.002
 shader_parameter/opacity = 1.0
 shader_parameter/screen_width = 640.0
 shader_parameter/red_color = 20.0
@@ -262,7 +262,6 @@ autoplay = "machingan_up"
 target_position = Vector3(0, 0, -2)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_bm35r")
 custom_minimum_size = Vector2(640, 480)
 offset_left = -15.0

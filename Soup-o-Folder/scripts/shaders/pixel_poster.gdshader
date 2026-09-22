@@ -1,36 +1,53 @@
 shader_type canvas_item;
 
-uniform float pixelation : hint_range(0, 0.1) = 0.01;
-uniform sampler2D screen_text : hint_screen_texture, filter_linear_mipmap;
+uniform float pixelation : hint_range(0.0, 0.1) = 0.01;
+uniform sampler2D screen_text : hint_screen_texture, filter_linear;
 uniform float opacity : hint_range(0.0, 1.0) = 1.0;
-uniform float screen_width : hint_range(1, 1920) = 320;
-uniform float red_color : hint_range(1, 256) = 8.0;
-uniform float green_color : hint_range(1, 256) = 8.0;
-uniform float blue_color : hint_range(1, 256) = 8.0;
+
+uniform float screen_width : hint_range(1.0, 1920.0) = 320.0;
+
+uniform float red_color : hint_range(1.0, 256.0) = 8.0;
+uniform float green_color : hint_range(1.0, 256.0) = 8.0;
+uniform float blue_color : hint_range(1.0, 256.0) = 8.0;
 
 uniform float dither_strength : hint_range(0.0, 1.0) = 0.75;
 
+
 float bayer4x4(vec2 p) {
-    int x = int(mod(p.x, 4.0));
-    int y = int(mod(p.y, 4.0));
+    float x = mod(p.x, 4.0);
+    float y = mod(p.y, 4.0);
 
-    int m[16] = int[16](
-         0,  8,  2, 10,
-        12,  4, 14,  6,
-         3, 11,  1,  9,
-        15,  7, 13,  5
-    );
+    if (y < 1.0) {
+        if (x < 1.0) return 0.5 / 16.0;
+        if (x < 2.0) return 8.5 / 16.0;
+        if (x < 3.0) return 2.5 / 16.0;
+        return 10.5 / 16.0;
+    }
 
-    return (float(m[y * 4 + x]) + 0.5) / 16.0;
+    if (y < 2.0) {
+        if (x < 1.0) return 12.5 / 16.0;
+        if (x < 2.0) return 4.5 / 16.0;
+        if (x < 3.0) return 14.5 / 16.0;
+        return 6.5 / 16.0;
+    }
+
+    if (y < 3.0) {
+        if (x < 1.0) return 3.5 / 16.0;
+        if (x < 2.0) return 11.5 / 16.0;
+        if (x < 3.0) return 1.5 / 16.0;
+        return 9.5 / 16.0;
+    }
+
+    if (x < 1.0) return 15.5 / 16.0;
+    if (x < 2.0) return 7.5 / 16.0;
+    if (x < 3.0) return 13.5 / 16.0;
+    return 5.5 / 16.0;
 }
 
 
 void fragment() {
 
-    vec2 viewport_size = vec2(
-        1.0 / SCREEN_PIXEL_SIZE.x,
-        1.0 / SCREEN_PIXEL_SIZE.y
-    );
+    vec2 viewport_size = 1.0 / SCREEN_PIXEL_SIZE;
 
     float aspect = viewport_size.x / viewport_size.y;
 
@@ -41,7 +58,6 @@ void fragment() {
 
     vec2 coord = SCREEN_UV;
 
-    // Pixelation
     coord = (floor(coord / pixel_size) + 0.5) * pixel_size;
 
     float edge_tolerance = 0.001;
@@ -52,12 +68,11 @@ void fragment() {
         1.0 - pixel_size * 0.5 - edge_tolerance
     );
 
-    vec4 color = textureLod(screen_text, coord, 0.0);
+    vec4 color = texture(screen_text, coord);
 
     vec2 dither_coord = floor(SCREEN_UV / pixel_size);
 
     float b = bayer4x4(dither_coord);
-
     float dither = b - 0.5;
 
     color.r += dither * (dither_strength / red_color);
@@ -68,25 +83,29 @@ void fragment() {
     color.g = floor(color.g * green_color) / green_color;
     color.b = floor(color.b * blue_color) / blue_color;
 
-    vec2 uv_delta = fwidth(SCREEN_UV);
+    float edge_x = smoothstep(
+        0.0,
+        0.002,
+        SCREEN_UV.x
+    ) * smoothstep(
+        0.0,
+        0.002,
+        1.0 - SCREEN_UV.x
+    );
 
-    vec2 edge_dist =
-        smoothstep(
-            vec2(0.0),
-            uv_delta * 2.0,
-            SCREEN_UV
-        )
-        *
-        smoothstep(
-            vec2(0.0),
-            uv_delta * 2.0,
-            vec2(1.0) - SCREEN_UV
-        );
+    float edge_y = smoothstep(
+        0.0,
+        0.002,
+        SCREEN_UV.y
+    ) * smoothstep(
+        0.0,
+        0.002,
+        1.0 - SCREEN_UV.y
+    );
 
-    float edge_factor = edge_dist.x * edge_dist.y;
+    float edge_factor = edge_x * edge_y;
 
     color.a = opacity * edge_factor;
-
 
     COLOR = color;
 }
