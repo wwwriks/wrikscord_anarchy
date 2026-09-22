@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgddqspa1b5s7"]
+[gd_scene load_steps=27 format=3 uid="uid://cgddqspa1b5s7"]
 
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
 [ext_resource type="PackedScene" uid="uid://pe10ussqe68f" path="res://Soup-o-Folder/scenes/player.tscn" id="2_67n32"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://brwjop8o8rux7" path="res://Soup-o-Folder/scenes/weapon_case.tscn" id="4_2x6ba"]
 [ext_resource type="Shader" uid="uid://bv5uink1bqgfy" path="res://Soup-o-Folder/scripts/shaders/transition.gdshader" id="5_a3wqe"]
 [ext_resource type="Shader" uid="uid://dax5v27eddowm" path="res://Soup-o-Folder/scripts/shaders/pixel_poster.gdshader" id="5_rsui6"]
+[ext_resource type="ArrayMesh" uid="uid://s60d37u05iu4" path="res://Soup-o-Folder/media/models/zabor.vox" id="7_oqmv4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2x6ba"]
 panorama = ExtResource("1_oimwn")
@@ -19,15 +20,32 @@ background_mode = 2
 sky = SubResource("Sky_67n32")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqmv4"]
+albedo_texture = ExtResource("3_a3wqe")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_o8exx"]
+material = SubResource("StandardMaterial3D_oqmv4")
+radius = 34.9
+height = 19.4
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oimwn"]
 albedo_texture = ExtResource("3_a3wqe")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oimwn"]
 material = SubResource("StandardMaterial3D_oimwn")
-size = Vector2(75, 75)
+size = Vector2(65, 65)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oimwn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqmv4"]
+size = Vector3(43.4032, 2.00403, 1.13867)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8exx"]
+size = Vector3(1, 2.07239, 46.2456)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_a3wqe"]
 
@@ -94,6 +112,16 @@ shader_parameter/green_color = 20.0
 shader_parameter/blue_color = 20.0
 shader_parameter/dither_strength = 0.4
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8exx"]
+albedo_texture = ExtResource("3_a3wqe")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_uwlwv"]
+material = SubResource("StandardMaterial3D_o8exx")
+radius = 9.3
+height = 22.6
+
 [node name="arena" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -110,8 +138,24 @@ directional_shadow_mode = 0
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.805304, 0.0641932, -0.297454)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.973948, -0.22677, 0, 0.22677, 0.973948, 0, 0, 0, 1.53548, 49.5912, 0, 0)
+mesh = SubResource("SphereMesh_o8exx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.99692, 0.0784243, 0, -0.0784243, 0.99692, 0, 0, 0, 1.53548, -57.1776, 0, 0)
+mesh = SubResource("SphereMesh_o8exx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.35766e-08, -3.42956e-09, 1.53548, -0.0784591, 0.996917, 0, -0.996917, -0.0784591, -6.71178e-08, 0.642605, 0, 61.2954)
+mesh = SubResource("SphereMesh_o8exx")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.35766e-08, -3.42956e-09, 1.53548, 0.218876, 0.975753, 1.97835e-08, -0.975753, 0.218876, -6.41359e-08, 0.642605, 0, -57.2418)
+mesh = SubResource("SphereMesh_o8exx")
+
 [node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.646379, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.646379, 0, 1.06817)
 mesh = SubResource("PlaneMesh_oimwn")
 skeleton = NodePath("../WorldEnvironment")
 
@@ -119,6 +163,26 @@ skeleton = NodePath("../WorldEnvironment")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="collisions"]
 shape = SubResource("WorldBoundaryShape3D_oimwn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221054, 0.502014, -20.4154)
+shape = SubResource("BoxShape3D_oqmv4")
+debug_color = Color(0.970618, 0, 0.456708, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221054, 0.502014, 22.2343)
+shape = SubResource("BoxShape3D_oqmv4")
+debug_color = Color(0.970618, 0, 0.456708, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3805, 0.536194, 2.56934)
+shape = SubResource("BoxShape3D_o8exx")
+debug_color = Color(0.964706, 0, 0.490196, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1101, 0.536194, 2.56934)
+shape = SubResource("BoxShape3D_o8exx")
+debug_color = Color(0.964706, 0, 0.490196, 1)
 
 [node name="weapon_case" parent="." instance=ExtResource("4_2x6ba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92097, 0.6, -13.9258)
@@ -146,3 +210,351 @@ offset_top = -6.0
 offset_right = 660.0
 offset_bottom = 495.0
 mouse_filter = 2
+
+[node name="zabor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0863, 0, 15.8099)
+
+[node name="Zabor" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3993, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor2" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7245, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor3" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0902, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor4" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4154, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor5" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.737, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor6" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0622, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor7" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4279, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor8" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7531, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor9" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1194, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor10" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4447, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor11" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.81033, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor12" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13556, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor13" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45711, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor14" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217662, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor15" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85199, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor16" type="MeshInstance3D" parent="zabor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52676, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="zabor4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.086, 0, 57.8)
+
+[node name="Zabor" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3993, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor2" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7245, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor3" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0902, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor4" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4154, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor5" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.737, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor6" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0622, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor7" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4279, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor8" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7531, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor9" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1194, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor10" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4447, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor11" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.81033, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor12" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13556, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor13" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45711, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor14" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217662, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor15" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85199, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor16" type="MeshInstance3D" parent="zabor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52676, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="zabor2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.8, 0, 15.4)
+
+[node name="Zabor" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3993, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor2" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7245, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor3" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0902, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor4" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4154, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor5" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.737, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor6" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0622, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor7" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4279, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor8" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7531, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor9" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1194, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor10" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4447, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor11" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.81033, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor12" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13556, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor13" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45711, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor14" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217662, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor15" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85199, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor16" type="MeshInstance3D" parent="zabor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52676, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="zabor3" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 57.8, 0, 15.4)
+
+[node name="Zabor" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3993, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor2" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7245, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor3" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0902, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor4" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4154, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor5" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.737, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor6" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0622, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor7" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4279, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor8" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7531, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor9" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1194, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor10" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4447, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor11" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.81033, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor12" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13556, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor13" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45711, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor14" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217662, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor15" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85199, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="Zabor16" type="MeshInstance3D" parent="zabor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52676, 0, -35.8134)
+mesh = ExtResource("7_oqmv4")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.132205, 0.991222, 0, -0.991222, -0.132205, 0, 0, 0, 4.72242, 53.5344, -1.66386, 50.9401)
+mesh = SubResource("SphereMesh_uwlwv")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.120824, 0.905892, 1.91686, -0.991223, -0.132205, 0, 0.0536628, -0.402345, 4.31589, 53.5344, -1.66386, -53.5982)
+mesh = SubResource("SphereMesh_uwlwv")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.121734, -0.912716, 1.84193, -0.991223, -0.132205, 0, 0.0515651, -0.386616, -4.34839, -47.0183, -1.66386, -59.0535)
+mesh = SubResource("SphereMesh_uwlwv")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0977251, -0.732708, -3.1805, -0.991223, -0.132205, -1.94525e-08, -0.0890384, 0.667579, -3.49079, -55.5318, -1.66386, 46.5377)
+mesh = SubResource("SphereMesh_uwlwv")
