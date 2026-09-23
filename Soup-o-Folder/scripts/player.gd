@@ -116,14 +116,17 @@ func _physics_process(delta: float) -> void:
     if not is_on_floor():
         velocity+=get_gravity()*delta
     elif Input.is_action_pressed("space"):
-        air_acceleration += air_acceleration_factor
+        air_acceleration *= air_acceleration_factor
         velocity.y = get_gravity().y * -jump_velocity
     if Input.is_action_pressed("shoot") and not reloading:
         shoot()
     if Input.is_action_just_pressed("reload") and not reloading:
         reload()
-    var input_dir:=Input.get_vector("left","right","up","down")
-    var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y)).normalized()
+    air_acceleration = maxf(air_acceleration - delta / deceleration, 1.0)
+    var input_dir:= Vector2.ZERO
+    input_dir.x = Input.get_axis("left", "right")
+    input_dir.y = Input.get_axis("up", "down")
+    var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y))
     if not direction.is_zero_approx():
         var s := speed * air_acceleration
         velocity.x = lerp(velocity.x, direction.x * s, 1.0 - exp(-delta * speed * acceleration))
