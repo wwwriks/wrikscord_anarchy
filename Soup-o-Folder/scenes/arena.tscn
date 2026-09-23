@@ -137,6 +137,7 @@ directional_shadow_mode = 0
 [node name="player" parent="." instance=ExtResource("2_67n32")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.805304, 0.0641932, -0.297454)
+jump_velocity = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.973948, -0.22677, 0, 0.22677, 0.973948, 0, 0, 0, 1.53548, 49.5912, 0, 0)
