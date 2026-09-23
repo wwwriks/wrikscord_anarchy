@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgddqspa1b5s7"]
+[gd_scene load_steps=28 format=3 uid="uid://cgddqspa1b5s7"]
 
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
 [ext_resource type="PackedScene" uid="uid://pe10ussqe68f" path="res://Soup-o-Folder/scenes/player.tscn" id="2_67n32"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://bv5uink1bqgfy" path="res://Soup-o-Folder/scripts/shaders/transition.gdshader" id="5_a3wqe"]
 [ext_resource type="Shader" uid="uid://dax5v27eddowm" path="res://Soup-o-Folder/scripts/shaders/pixel_poster.gdshader" id="5_rsui6"]
 [ext_resource type="ArrayMesh" uid="uid://s60d37u05iu4" path="res://Soup-o-Folder/media/models/zabor.vox" id="7_oqmv4"]
+[ext_resource type="ArrayMesh" uid="uid://xstvftku38t6" path="res://Soup-o-Folder/media/models/kit.vox" id="8_o8exx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2x6ba"]
 panorama = ExtResource("1_oimwn")
@@ -558,3 +559,7 @@ mesh = SubResource("SphereMesh_uwlwv")
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0977251, -0.732708, -3.1805, -0.991223, -0.132205, -1.94525e-08, -0.0890384, 0.667579, -3.49079, -55.5318, -1.66386, 46.5377)
 mesh = SubResource("SphereMesh_uwlwv")
+
+[node name="Kit" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7901, 0, 3.55044)
+mesh = ExtResource("8_o8exx")
