@@ -1,7 +1,10 @@
 extends CharacterBody3D
 
-var speed=8.0
-@export var jump_velocity := 4.0
+var speed :=8.0
+@export var deceleration := 1.0
+@export var acceleration := 1.0
+@export var air_acceleration_factor := 2.0
+@export var jump_velocity := 1.0
 
 var hp=3
 
@@ -25,6 +28,9 @@ var bob_speed=10.0
 var bob_amount=0.025
 var bob_side_amount=0.02
 var bob_roll_amount=0.2
+
+
+var air_acceleration: float = 1.0
 
 var weapon_position=Vector3.ZERO
 var weapon_rotation=Vector3.ZERO
@@ -109,19 +115,21 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
     if not is_on_floor():
         velocity+=get_gravity()*delta
-    elif Input.is_action_just_pressed("space"):
-        velocity = get_gravity() * -jump_velocity
-    if Input.is_action_pressed("shoot") and reloading==false:
+    elif Input.is_action_pressed("space"):
+        air_acceleration += air_acceleration_factor
+        velocity.y = get_gravity().y * -jump_velocity
+    if Input.is_action_pressed("shoot") and not reloading:
         shoot()
-    if Input.is_action_just_pressed("reload") and reloading==false:
+    if Input.is_action_just_pressed("reload") and not reloading:
         reload()
     var input_dir:=Input.get_vector("left","right","up","down")
     var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y)).normalized()
-    if direction:
-        velocity.x=direction.x*speed
-        velocity.z=direction.z*speed
+    if not direction.is_zero_approx():
+        var s := speed * air_acceleration
+        velocity.x = lerp(velocity.x, direction.x * s, 1.0 - exp(-delta * speed * acceleration))
+        velocity.z = lerp(velocity.z, direction.z * s, 1.0 - exp(-delta * speed * acceleration))
     else:
-        velocity.x=move_toward(velocity.x,0,speed)
-        velocity.z=move_toward(velocity.z,0,speed)
+        velocity.x = lerp(velocity.x, 0.0, 1.0 - exp(-delta * speed * deceleration))
+        velocity.z = lerp(velocity.z, 0.0, 1.0 - exp(-delta * speed * deceleration))
     
     move_and_slide()
