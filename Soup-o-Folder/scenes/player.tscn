@@ -435,6 +435,7 @@ radius = 0.779282
 script = ExtResource("1_bm35r")
 deceleration = 0.5
 acceleration = 0.5
+air_acceleration_factor = 1.75
 jump_velocity = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
