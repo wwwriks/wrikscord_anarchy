@@ -433,6 +433,9 @@ radius = 0.779282
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_bm35r")
+deceleration = 0.5
+acceleration = 0.5
+jump_velocity = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918847, 0)
