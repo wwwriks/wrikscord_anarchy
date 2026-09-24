@@ -438,7 +438,7 @@ random_volume_offset_db = 2.4
 streams_count = 1
 stream_0/stream = ExtResource("12_p0a5f")
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_bm35r")
 deceleration = 0.5
 acceleration = 0.5

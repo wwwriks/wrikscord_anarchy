@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://drmqlhnmq28wk"]
+
+[ext_resource type="Script" uid="uid://bnj0kwi6g2eor" path="res://Soup-o-Folder/scripts/hitbox.gd" id="1_2htt1"]
+[ext_resource type="Script" uid="uid://cnmjxbddan74q" path="res://Soup-o-Folder/scripts/health.gd" id="2_i6iie"]
+[ext_resource type="AudioStream" uid="uid://dws4ngc3jtpym" path="res://Soup-o-Folder/media/sfx/sound/enemies/scream.wav" id="3_i6iie"]
+[ext_resource type="Script" uid="uid://brwfi0aj3v68j" path="res://ai/tasks/follow_player.gd" id="4_bpt3g"]
+[ext_resource type="Script" uid="uid://eumuwl5t0hqi" path="res://Soup-o-Folder/scripts/character/move_by_navigation.gd" id="4_kwswh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcrh8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mcrh8"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_kwswh"]
+var/navigation/name = &"navigation"
+var/navigation/type = 22
+var/navigation/value = NodePath("NavigationAgent3D")
+var/navigation/hint = 0
+var/navigation/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_f06ag"]
+script = ExtResource("4_bpt3g")
+
+[sub_resource type="BehaviorTree" id="BehaviorTree_bpt3g"]
+blackboard_plan = SubResource("BlackboardPlan_kwswh")
+root_task = SubResource("BTAction_f06ag")
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_i6iie"]
+
+[node name="Kamikaze" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_mcrh8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918847, 0)
+mesh = SubResource("CapsuleMesh_mcrh8")
+
+[node name="Hitbox" type="Area3D" parent="."]
+script = ExtResource("1_2htt1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_mcrh8")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_i6iie")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16113, 0)
+stream = ExtResource("3_i6iie")
+unit_size = 1.0
+pitch_scale = 1.5
+autoplay = true
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = SubResource("BehaviorTree_bpt3g")
+blackboard_plan = SubResource("BlackboardPlan_i6iie")
+
+[node name="MoveByNavigation" type="Node" parent="." node_paths=PackedStringArray("navigation", "character")]
+script = ExtResource("4_kwswh")
+navigation = NodePath("../NavigationAgent3D")
+character = NodePath("..")
+speed = 8.0
+
+[connection signal="damaged" from="Hitbox" to="Health" method="damage"]

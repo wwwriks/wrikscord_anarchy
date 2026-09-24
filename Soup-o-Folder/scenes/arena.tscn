@@ -1,13 +1,73 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgddqspa1b5s7"]
+[gd_scene load_steps=41 format=3 uid="uid://cgddqspa1b5s7"]
 
+[ext_resource type="Script" uid="uid://exho1d4oydgy" path="res://Soup-o-Folder/scripts/arena.gd" id="1_d8x06"]
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
 [ext_resource type="PackedScene" uid="uid://pe10ussqe68f" path="res://Soup-o-Folder/scenes/player.tscn" id="2_67n32"]
+[ext_resource type="PackedScene" uid="uid://drmqlhnmq28wk" path="res://Soup-o-Folder/scenes/enemies/kamikaze.tscn" id="2_t3sju"]
 [ext_resource type="Texture2D" uid="uid://4wuk1dbjig22" path="res://Soup-o-Folder/media/gfx/snow_texture.jpg" id="3_a3wqe"]
 [ext_resource type="PackedScene" uid="uid://brwjop8o8rux7" path="res://Soup-o-Folder/scenes/weapon_case.tscn" id="4_2x6ba"]
 [ext_resource type="Shader" uid="uid://bv5uink1bqgfy" path="res://Soup-o-Folder/scripts/shaders/transition.gdshader" id="5_a3wqe"]
 [ext_resource type="Shader" uid="uid://dax5v27eddowm" path="res://Soup-o-Folder/scripts/shaders/pixel_poster.gdshader" id="5_rsui6"]
 [ext_resource type="ArrayMesh" uid="uid://s60d37u05iu4" path="res://Soup-o-Folder/media/models/zabor.vox" id="7_oqmv4"]
 [ext_resource type="ArrayMesh" uid="uid://xstvftku38t6" path="res://Soup-o-Folder/media/models/kit.vox" id="8_o8exx"]
+[ext_resource type="AudioStream" uid="uid://b61ifo7hdsysc" path="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Out of Combat.ogg" id="9_tynpt"]
+[ext_resource type="AudioStream" uid="uid://6bq884107huy" path="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Combat Intro.ogg" id="10_hbwv6"]
+[ext_resource type="AudioStream" uid="uid://cu8dvlqx8wvj6" path="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Combat Phase.ogg" id="11_uhv7q"]
+[ext_resource type="AudioStream" uid="uid://1k8et1ri6e4x" path="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Combat Intense.ogg" id="12_d8x06"]
+[ext_resource type="AudioStream" uid="uid://clbfyjkcsj20j" path="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Button.ogg" id="13_hbwv6"]
+[ext_resource type="Script" uid="uid://qeipp6duixpo" path="res://Soup-o-Folder/scripts/music.gd" id="14_uhv7q"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_t3sju"]
+clip_count = 5
+clip_0/name = &"Combat Loop"
+clip_0/stream = ExtResource("11_uhv7q")
+clip_0/auto_advance = 0
+clip_1/name = &"Button"
+clip_1/stream = ExtResource("13_hbwv6")
+clip_1/auto_advance = 0
+clip_2/name = &"Peace"
+clip_2/stream = ExtResource("9_tynpt")
+clip_2/auto_advance = 0
+clip_3/name = &"Intro Combat"
+clip_3/stream = ExtResource("10_hbwv6")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"Combat Intense Loop"
+clip_4/stream = ExtResource("12_d8x06")
+clip_4/auto_advance = 0
+initial_clip = 2
+_transitions = {
+Vector2i(-1, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(0, 2): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(0, 4): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 2,
+"to_time": 0
+}
+}
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2x6ba"]
 panorama = ExtResource("1_oimwn")
@@ -40,13 +100,19 @@ uv1_world_triplanar = true
 material = SubResource("StandardMaterial3D_oimwn")
 size = Vector2(65, 65)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o8exx"]
+data = PackedVector3Array(32.5, 0, 32.5, -32.5, 0, 32.5, 32.5, 0, -32.5, -32.5, 0, 32.5, -32.5, 0, -32.5, 32.5, 0, -32.5)
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oimwn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_oqmv4"]
-size = Vector3(43.4032, 2.00403, 1.13867)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_o8exx"]
+plane = Plane(0, 1, 180, 0)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o8exx"]
-size = Vector3(1, 2.07239, 46.2456)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uwlwv"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_t23la"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e0bvi"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_a3wqe"]
 
@@ -123,7 +189,30 @@ material = SubResource("StandardMaterial3D_o8exx")
 radius = 9.3
 height = 22.6
 
-[node name="arena" type="Node3D"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_o8exx"]
+vertices = PackedVector3Array(-22.1464, 0.499999, -21.4318, -20.3964, 0.499999, -21.6818, -20.6464, 0.499999, -30.9318, -32.6464, 0.499999, -30.9318, -32.6464, 0.499999, -21.4318, 20.8536, 0.499999, -21.6818, 21.1036, 0.499999, -30.9318, 23.3536, 0.499999, -20.9318, 23.3536, 0.499999, -18.9318, 31.3536, 0.499999, -18.9318, 22.3536, 0.499999, -21.6818, 31.3536, 0.499999, -30.9318, -21.3964, 0.499999, 33.0682, -21.3964, 0.499999, 26.3182, -22.3964, 0.499999, 26.0682, -32.6464, 0.499999, 33.0682, -20.8964, 2, -20.1818, 21.8536, 2, -20.4318, -21.3964, 2, -20.4318, 22.3536, 2, -20.1818, 21.8536, 2, -20.1818, 21.8536, 2, 22.0682, 22.3536, 2, 25.3182, -20.8964, 2, 22.0682, -21.3964, 2, 25.3182, -20.8964, 2, 22.3182, 21.8536, 2, 22.3182, -20.1464, 0.499999, -19.1818, -20.1464, 0.499999, 21.0682, 21.1036, 0.499999, 21.0682, 21.1036, 0.499999, -19.1818, 23.3536, 0.499999, 24.0682, 31.3536, 0.499999, 24.0682, 22.1036, 0.499999, 33.0682, 22.1036, 0.499999, 26.3182, 21.1036, 0.499999, 26.0682, -20.1464, 0.499999, 26.0682, 21.1036, 0.499999, 23.3182, -20.1464, 0.499999, 23.3182, 23.3536, 0.499999, 26.0682, 31.3536, 0.499999, 33.0682)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(1, 2, 5), PackedInt32Array(5, 2, 6), PackedInt32Array(9, 8, 7), PackedInt32Array(10, 5, 6), PackedInt32Array(7, 10, 9), PackedInt32Array(9, 10, 11), PackedInt32Array(11, 10, 6), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(0, 14, 4), PackedInt32Array(4, 14, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(25, 24, 23), PackedInt32Array(21, 22, 26), PackedInt32Array(16, 23, 18), PackedInt32Array(18, 23, 24), PackedInt32Array(23, 21, 25), PackedInt32Array(25, 21, 26), PackedInt32Array(30, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(8, 9, 31), PackedInt32Array(31, 9, 32), PackedInt32Array(34, 33, 35), PackedInt32Array(35, 33, 36), PackedInt32Array(36, 33, 13), PackedInt32Array(13, 33, 12), PackedInt32Array(36, 38, 35), PackedInt32Array(35, 38, 37), PackedInt32Array(33, 34, 39), PackedInt32Array(39, 31, 32), PackedInt32Array(33, 39, 40), PackedInt32Array(40, 39, 32)]
+geometry_source_geometry_mode = 2
+geometry_source_group_name = &"navigation"
+
+[node name="arena" type="Node3D" node_paths=PackedStringArray("start_delay", "enemy_group_delay", "music")]
+script = ExtResource("1_d8x06")
+start_delay = NodePath("StartDelay")
+enemy_group_delay = NodePath("EnemyGroupDelay")
+music = NodePath("Music")
+enemies = Array[PackedScene]([ExtResource("2_t3sju")])
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_t3sju")
+autoplay = true
+script = ExtResource("14_uhv7q")
+
+[node name="EnemyGroupDelay" type="Timer" parent="."]
+
+[node name="StartDelay" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2x6ba")
@@ -160,29 +249,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.646379, 0, 1.06817)
 mesh = SubResource("PlaneMesh_oimwn")
 skeleton = NodePath("../WorldEnvironment")
 
-[node name="collisions" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" groups=["navigation"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_o8exx")
+
+[node name="collisions" type="StaticBody3D" parent="." groups=["navigation"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="collisions"]
 shape = SubResource("WorldBoundaryShape3D_oimwn")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="collisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221054, 0.502014, -20.4154)
-shape = SubResource("BoxShape3D_oqmv4")
+shape = SubResource("WorldBoundaryShape3D_o8exx")
 debug_color = Color(0.970618, 0, 0.456708, 1)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="collisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221054, 0.502014, 22.2343)
-shape = SubResource("BoxShape3D_oqmv4")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.221054, 0.502014, 22.2343)
+shape = SubResource("WorldBoundaryShape3D_uwlwv")
 debug_color = Color(0.970618, 0, 0.456708, 1)
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="collisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3805, 0.536194, 2.56934)
-shape = SubResource("BoxShape3D_o8exx")
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -21.3805, 0.536194, 2.56934)
+shape = SubResource("WorldBoundaryShape3D_t23la")
 debug_color = Color(0.964706, 0, 0.490196, 1)
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="collisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1101, 0.536194, 2.56934)
-shape = SubResource("BoxShape3D_o8exx")
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 22.1101, 0.536194, 2.56934)
+shape = SubResource("WorldBoundaryShape3D_e0bvi")
 debug_color = Color(0.964706, 0, 0.490196, 1)
 
 [node name="weapon_case" parent="." instance=ExtResource("4_2x6ba")]
@@ -563,3 +657,24 @@ mesh = SubResource("SphereMesh_uwlwv")
 [node name="Kit" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7901, 0, 3.55044)
 mesh = ExtResource("8_o8exx")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_o8exx")
+
+[node name="Spawner" type="Marker3D" parent="." groups=["Spawner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4814, 1.77004, -16.9905)
+
+[node name="Spawner2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7553, 1.17016, 1.51636)
+
+[node name="Spawner3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7617, 0.44891, 15.573)
+
+[node name="Spawner4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1122, 1.77004, -16.9905)
+
+[node name="Spawner5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8384, 1.17016, 1.51636)
+
+[node name="Spawner6" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8319, 0.44891, 15.573)
