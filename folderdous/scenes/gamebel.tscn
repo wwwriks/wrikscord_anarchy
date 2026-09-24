@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://dtvdwgmle3v8p"]
+
+[ext_resource type="Texture2D" uid="uid://danf3c7b0p11h" path="res://folderdous/assets/caibel_use_actually.png" id="1_fm0rp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtn1t"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwfny"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh8p2"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm0rp"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtn1t"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0454"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj6aj"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f0454"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwfny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh8p2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm0rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtn1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0454")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj6aj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fm0rp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jtn1t"]
+
+[node name="Gamebel" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_jtn1t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_f0454")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0207713
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -6)
+zoom = Vector2(5, 5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_fm0rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_jtn1t")
