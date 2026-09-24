@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=23 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -431,6 +431,13 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_m1tae"]
 radius = 0.779282
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p0a5f"]
+playback_mode = 1
+random_pitch = 1.25
+random_volume_offset_db = 2.4
+streams_count = 1
+stream_0/stream = ExtResource("12_p0a5f")
+
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_bm35r")
 deceleration = 0.5
@@ -532,4 +539,5 @@ shape = SubResource("SphereShape3D_m1tae")
 stream = ExtResource("11_7dy2v")
 
 [node name="step_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_p0a5f")
+stream = SubResource("AudioStreamRandomizer_p0a5f")
+max_polyphony = 6
