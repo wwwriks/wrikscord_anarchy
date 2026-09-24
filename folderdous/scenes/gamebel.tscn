@@ -1,17 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtvdwgmle3v8p"]
+[gd_scene load_steps=15 format=4 uid="uid://dtvdwgmle3v8p"]
 
+[ext_resource type="Script" uid="uid://bj88dipyjm6ji" path="res://folderdous/scenes/character_body_2d.gd" id="1_cwfny"]
 [ext_resource type="Texture2D" uid="uid://danf3c7b0p11h" path="res://folderdous/assets/caibel_use_actually.png" id="1_fm0rp"]
+[ext_resource type="Texture2D" uid="uid://cwm3r5xvdxw2w" path="res://folderdous/assets/ground_1.png" id="2_jtn1t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtn1t"]
 radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwfny"]
 atlas = ExtResource("1_fm0rp")
-region = Rect2(0, 64, 16, 16)
+region = Rect2(16, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh8p2"]
 atlas = ExtResource("1_fm0rp")
-region = Rect2(16, 64, 16, 16)
+region = Rect2(0, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fm0rp"]
 atlas = ExtResource("1_fm0rp")
@@ -60,13 +62,32 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fm0rp"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cwfny"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jtn1t"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwfny"]
+texture = ExtResource("2_jtn1t")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sh8p2"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_cwfny")
+sources/0 = SubResource("TileSetAtlasSource_cwfny")
 
 [node name="Gamebel" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_cwfny")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, -6)
@@ -76,16 +97,15 @@ shape = SubResource("CircleShape2D_jtn1t")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_f0454")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.187511
+frame_progress = 0.789261
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(0, -6)
-zoom = Vector2(5, 5)
+position = Vector2(0, -7)
+zoom = Vector2(3, 3)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_fm0rp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_jtn1t")
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAABAAAAAAAAAAAAAAABAAEAAAAAAAEAAAACAAAAAAAAAAAAAAACAAEAAAAAAAEAAAADAAAAAAAAAAAAAAADAAEAAAAAAAEAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAEAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAGAAAAAAABAAAAAAAGAAEAAAABAAEAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAEAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAEAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAEAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAEAAAD7/wIAAAAAAAIAAAD7/wMAAAAAAAMAAAD8/wIAAAABAAIAAAD8/wMAAAABAAMAAAD9/wIAAAAAAAIAAAD9/wMAAAAAAAMAAAD+/wIAAAABAAIAAAD+/wMAAAABAAMAAAD//wIAAAAAAAIAAAD//wMAAAAAAAMAAAAAAAIAAAABAAIAAAAAAAMAAAABAAMAAAABAAIAAAAAAAIAAAABAAMAAAAAAAMAAAACAAIAAAABAAIAAAACAAMAAAABAAMAAAADAAIAAAAAAAIAAAADAAMAAAAAAAMAAAAEAAIAAAABAAIAAAAEAAMAAAABAAMAAAAFAAIAAAAAAAIAAAAFAAMAAAAAAAMAAAAGAAIAAAABAAIAAAAGAAMAAAABAAMAAAA=")
+tile_set = SubResource("TileSet_sh8p2")
