@@ -95,7 +95,6 @@ func _process(delta: float) -> void:
         bob_time+=delta*bob_speed*(movement_speed/speed)
         var current_step=int(floor(bob_time/PI))
         if current_step!=last_step:
-            $step_sound.pitch_scale=randf_range(0.9, 1.1)
             $step_sound.play()
             last_step=current_step
         var bob_x=sin(bob_time)*bob_side_amount
@@ -113,19 +112,21 @@ func _process(delta: float) -> void:
         items.rotation=items.rotation.lerp(weapon_rotation,delta*10.0)
 
 func _physics_process(delta: float) -> void:
+    var input_dir:= Vector2.ZERO
+    input_dir.x = Input.get_axis("left", "right")
+    input_dir.y = Input.get_axis("up", "down")
     if not is_on_floor():
         velocity+=get_gravity()*delta
     elif Input.is_action_pressed("space"):
-        air_acceleration *= air_acceleration_factor
+        $step_sound.play()
+        air_acceleration *= air_acceleration_factor * input_dir.length()
         velocity.y = get_gravity().y * -jump_velocity
     if Input.is_action_pressed("shoot") and not reloading:
         shoot()
     if Input.is_action_just_pressed("reload") and not reloading:
         reload()
     air_acceleration = maxf(air_acceleration - delta / deceleration, 1.0)
-    var input_dir:= Vector2.ZERO
-    input_dir.x = Input.get_axis("left", "right")
-    input_dir.y = Input.get_axis("up", "down")
+
     var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y))
     if not direction.is_zero_approx():
         var s := speed * air_acceleration
