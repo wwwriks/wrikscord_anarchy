@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://dtvdwgmle3v8p"]
+[gd_scene load_steps=20 format=4 uid="uid://dtvdwgmle3v8p"]
 
 [ext_resource type="Script" uid="uid://bj88dipyjm6ji" path="res://folderdous/scenes/character_body_2d.gd" id="1_cwfny"]
 [ext_resource type="Texture2D" uid="uid://danf3c7b0p11h" path="res://folderdous/assets/caibel_use_actually.png" id="1_fm0rp"]
 [ext_resource type="Texture2D" uid="uid://cwm3r5xvdxw2w" path="res://folderdous/assets/ground_1.png" id="2_jtn1t"]
+[ext_resource type="Texture2D" uid="uid://dlfl45ydahsa" path="res://folderdous/assets/caibel_use_actually_AGAIN.png" id="3_sh8p2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtn1t"]
 radius = 6.0
@@ -14,6 +15,22 @@ region = Rect2(16, 96, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh8p2"]
 atlas = ExtResource("1_fm0rp")
 region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8wih"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(0, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p43u"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(16, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8260w"]
+atlas = ExtResource("1_fm0rp")
+region = Rect2(32, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4rfq"]
+atlas = ExtResource("3_sh8p2")
+region = Rect2(48, 160, 48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fm0rp"]
 atlas = ExtResource("1_fm0rp")
@@ -43,6 +60,23 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8wih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p43u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8260w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4rfq")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -97,9 +131,9 @@ shape = SubResource("CircleShape2D_jtn1t")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_f0454")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.789261
+frame_progress = 0.680068
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -7)
