@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://dlfl45ydahsa"
+=======
+uid="uid://drhjxpjb81ure"
+>>>>>>> 933cadc5372fb537e493b0632cac810e6dfe46e6
 path="res://.godot/imported/caibel_use_actually_AGAIN.png-247b810954a5ceba617f8a934e917f97.ctex"
 metadata={
 "vram_texture": false
