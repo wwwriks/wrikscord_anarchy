@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://jmgmqplkggjf"]
+
+[ext_resource type="Texture2D" uid="uid://btcbdi2ofopeb" path="res://MORGANFOLDER/ChudOdyssey/dirt4.png" id="1_ule5h"]
+
+[resource]
+albedo_texture = ExtResource("1_ule5h")
+metallic = 0.64
+metallic_specular = 0.0
+uv1_scale = Vector3(0.12, 0.12, 0.12)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0

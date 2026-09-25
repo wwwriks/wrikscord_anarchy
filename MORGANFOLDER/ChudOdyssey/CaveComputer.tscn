@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://p3ghgtev0fbj"]
+
+[ext_resource type="Material" uid="uid://jmgmqplkggjf" path="res://MORGANFOLDER/ChudOdyssey/Cave.tres" id="1_rd4k5"]
+[ext_resource type="Texture2D" uid="uid://dfxlowk80ky8t" path="res://MORGANFOLDER/ChudOdyssey/Nature.png" id="2_d6ne3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5q5oy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rd4k5"]
+
+[sub_resource type="Environment" id="Environment_d6ne3"]
+background_mode = 1
+background_energy_multiplier = 6.0
+ambient_light_energy = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lxmy"]
+albedo_texture = ExtResource("2_d6ne3")
+metallic_specular = 1.0
+uv1_scale = Vector3(3, 3, 3)
+
+[node name="CaveComputer" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.86351, 0, 0, 0, 0.103011, 0, 0, 0, 5.41311, 0, 0, 0)
+material_override = ExtResource("1_rd4k5")
+mesh = SubResource("BoxMesh_5q5oy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.4938, 0, 0, 0, 3.24042, 0, 0, 0, 0.210376, 0, 1.38867, -2.3592)
+material_override = ExtResource("1_rd4k5")
+mesh = SubResource("BoxMesh_rd4k5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.05876, 0, 0, 0, 0.914136, 0.0197229, 0, -0.0431096, 0.418224, 0, 0.444063, -0.956007)
+material_override = ExtResource("1_rd4k5")
+mesh = SubResource("BoxMesh_rd4k5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.906251, 0, 0, 0, 0.827615, 0.0196349, 0, -0.0390293, 0.416357, 0, 0.41142, -1.24114)
+material_override = ExtResource("1_rd4k5")
+mesh = SubResource("BoxMesh_rd4k5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d6ne3")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.848122, 0.529801, 0, -0.529801, -0.848122, 0, 0.559047, -0.954129)
+light_energy = 0.0
+spot_angle = 37.6446
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.260362, -0.493581)
+light_energy = 0.26
+omni_range = 4.18432
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96263, 0.270819, 0, -0.270819, 0.96263, 0, 1.44536, 2.04639)
+fov = 55.0
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.934476, 0, 0, 0, 0.731125, 0.0195239, 0, -0.034479, 0.414003, 0, 0.481165, -0.937864)
+material_override = SubResource("StandardMaterial3D_7lxmy")
+mesh = SubResource("BoxMesh_rd4k5")
