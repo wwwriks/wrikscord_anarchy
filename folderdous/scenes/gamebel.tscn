@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bj88dipyjm6ji" path="res://folderdous/scenes/character_body_2d.gd" id="1_cwfny"]
 [ext_resource type="Texture2D" uid="uid://danf3c7b0p11h" path="res://folderdous/assets/caibel_use_actually.png" id="1_fm0rp"]
 [ext_resource type="Texture2D" uid="uid://cwm3r5xvdxw2w" path="res://folderdous/assets/ground_1.png" id="2_jtn1t"]
-[ext_resource type="Texture2D" uid="uid://dlfl45ydahsa" path="res://folderdous/assets/caibel_use_actually_AGAIN.png" id="3_sh8p2"]
+[ext_resource type="Texture2D" uid="uid://bfy1p44kfhujv" path="res://folderdous/assets/caibel_use_actually_AGAIN.png" id="3_sh8p2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtn1t"]
 radius = 6.0
