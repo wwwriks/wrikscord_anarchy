@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://p3ghgtev0fbj"]
 
-[ext_resource type="Material" uid="uid://jmgmqplkggjf" path="res://MORGANFOLDER/ChudOdyssey/Cave.tres" id="1_rd4k5"]
-[ext_resource type="Texture2D" uid="uid://dfxlowk80ky8t" path="res://MORGANFOLDER/ChudOdyssey/Nature.png" id="2_d6ne3"]
+[ext_resource type="Material" uid="uid://jmgmqplkggjf" path="res://MORGANFOLDER/ChudOdyssey/CaveComputer/Cave.tres" id="1_rd4k5"]
+[ext_resource type="Texture2D" uid="uid://dfxlowk80ky8t" path="res://MORGANFOLDER/ChudOdyssey/CaveComputer/Nature.png" id="2_d6ne3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5q5oy"]
 
