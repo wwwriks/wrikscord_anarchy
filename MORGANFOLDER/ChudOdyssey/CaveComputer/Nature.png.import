@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btcbdi2ofopeb"
-path.s3tc="res://.godot/imported/dirt4.png-4e04bb99c1f62617d499a2425fb04b9d.s3tc.ctex"
+uid="uid://dfxlowk80ky8t"
+path.s3tc="res://.godot/imported/Nature.png-858e9acaf7e0ef8e72b182b84994ee69.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://MORGANFOLDER/ChudOdyssey/dirt4.png"
-dest_files=["res://.godot/imported/dirt4.png-4e04bb99c1f62617d499a2425fb04b9d.s3tc.ctex"]
+source_file="res://MORGANFOLDER/ChudOdyssey/CaveComputer/Nature.png"
+dest_files=["res://.godot/imported/Nature.png-858e9acaf7e0ef8e72b182b84994ee69.s3tc.ctex"]
 
 [params]
 
