@@ -80,7 +80,7 @@ sky_material = SubResource("PanoramaSkyMaterial_2x6ba")
 [sub_resource type="Environment" id="Environment_2x6ba"]
 background_mode = 2
 sky = SubResource("Sky_67n32")
-tonemap_mode = 2
+fog_light_energy = 4.42
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqmv4"]
 albedo_texture = ExtResource("3_a3wqe")
@@ -172,12 +172,12 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a3wqe"]
 shader = ExtResource("5_rsui6")
-shader_parameter/pixelation = 0.003
+shader_parameter/pixelation = 0.004
 shader_parameter/opacity = 1.0
 shader_parameter/screen_width = 640.0
-shader_parameter/red_color = 20.0
-shader_parameter/green_color = 20.0
-shader_parameter/blue_color = 20.0
+shader_parameter/red_color = 18.0
+shader_parameter/green_color = 18.0
+shader_parameter/blue_color = 18.0
 shader_parameter/dither_strength = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8exx"]
@@ -220,8 +220,8 @@ environment = SubResource("Environment_2x6ba")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.916405, 0.316544, -0.244953, 0, 0.611996, 0.790861, 0.400253, -0.724748, 0.560836, 0, -2.44821, 0)
-light_color = Color(0.976471, 0.705882, 0.278431, 1)
-light_energy = 0.1
+light_color = Color(0.997633, 0.894144, 0.755101, 1)
+light_energy = 0.2
 shadow_enabled = true
 directional_shadow_mode = 0
 
@@ -687,6 +687,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8384, 1.17016, 1.51636)
 
 [node name="Spawner6" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8319, 0.44891, 15.573)
+
+[node name="Spawner7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17783, 0.44891, 15.573)
+
+[node name="Spawner8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17783, 0.44891, -15.5102)
 
 [node name="deer" type="Sprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.80128, 25.9059)

@@ -130,10 +130,10 @@ tracks/0/path = NodePath("machine_gun/FuckingCandyShotgun:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.5, 1, 1.13333, 1.26667, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.133333, 0.207856, 0.244459, 0.433333, 0.7, 0.8, 0.891467, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.153433)]
+"values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.09, -0.09, -0.2), Vector3(0.09, -0.09, -0.2), Vector3(0.09, -0.09, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.1, -0.2), Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.153433)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -142,10 +142,10 @@ tracks/1/path = NodePath("machine_gun/FuckingCandyShotgun:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.286488, 0.338434, 0.514735, 0.680016, 0.837013, 0.88713, 0.927429, 1.03725, 1.16667, 1.3062, 1.41241, 1.5),
+"times": PackedFloat32Array(0, 0.2, 0.286488, 0.338434, 0.514735, 0.680016, 0.837013, 0.88713, 0.927429, 1.03725, 1.16667, 1.3062, 1.41241, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -1.5708, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.19592), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.28319), Vector3(0.0872665, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319)]
+"values": [Vector3(0, -1.5708, -6.28319), Vector3(-0.610865, -1.38056, -6.28319), Vector3(-0.610865, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.19592), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.28319), Vector3(0.0872665, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -226,6 +226,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-1.69501e-07, -7.91034e-15, 4.47035e-08), Vector3(-1.21072e-07, -2.98023e-08, 2.98023e-08), Vector3(-1.21072e-07, -2.98023e-08, 2.98023e-08), Vector3(0.556988, -0.0358372, 0.0821351), Vector3(0.27925, -0.0179673, 0.0411791), Vector3(-1.21072e-07, -2.98023e-08, 2.98023e-08), Vector3(-1.21072e-07, -2.98023e-08, 2.98023e-08), Vector3(-1.69501e-07, -7.91034e-15, 4.47035e-08), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("machine_gun/FuckingCandyShotgun/hand_left:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bm35r"]
 resource_name = "machinegun_shoot"
@@ -240,7 +252,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.128361), Vector3(0.0900899, -0.108383, -0.153433)]
+"values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.09, -0.108, -0.1), Vector3(0.0900899, -0.108383, -0.153433)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
