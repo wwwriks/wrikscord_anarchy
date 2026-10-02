@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=24 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b1edwle7hs0np" path="res://Soup-o-Folder/media/gfx/ammo.png" id="8_s23tu"]
 [ext_resource type="AudioStream" uid="uid://d3hj1swgj8vf5" path="res://Soup-o-Folder/media/sfx/sound/machinegun_shoot.wav" id="11_7dy2v"]
 [ext_resource type="AudioStream" uid="uid://sjntee0pwcf3" path="res://Soup-o-Folder/media/sfx/sound/snow_step.wav" id="12_p0a5f"]
+[ext_resource type="Texture2D" uid="uid://dhiudgxta2ut6" path="res://Soup-o-Folder/media/gfx/crosshair-121.png" id="13_7dy2v"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lwqse"]
 
@@ -129,7 +130,7 @@ tracks/0/path = NodePath("machine_gun/FuckingCandyShotgun:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.5, 1, 1.13333, 1.3, 1.5),
+"times": PackedFloat32Array(0, 0.133333, 0.5, 1, 1.13333, 1.26667, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.09, -0.108, -0.2), Vector3(0.0900899, -0.108383, -0.153433), Vector3(0.0900899, -0.108383, -0.153433)]
@@ -141,10 +142,10 @@ tracks/1/path = NodePath("machine_gun/FuckingCandyShotgun:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.286488, 0.338434, 0.514735, 0.680016, 0.866667, 0.927429, 1.03725, 1.16667, 1.33953, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.233333, 0.286488, 0.338434, 0.514735, 0.680016, 0.837013, 0.88713, 0.927429, 1.03725, 1.16667, 1.3062, 1.41241, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -1.5708, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.19592), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.28319), Vector3(0.0872665, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319)]
+"values": [Vector3(0, -1.5708, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.19592), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.28319), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.54498), Vector3(-0.570723, -1.38056, -6.28319), Vector3(0.0872665, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319), Vector3(0, -1.5708, -6.28319)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -506,6 +507,11 @@ rotation = -0.657989
 scale = Vector2(0.812092, 0.812093)
 texture = ExtResource("4_k21j4")
 
+[node name="crosshair" type="Sprite2D" parent="ui"]
+position = Vector2(320, 240)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_7dy2v")
+
 [node name="ammo_label" type="RichTextLabel" parent="ui"]
 offset_left = 80.0
 offset_top = 400.0
@@ -523,13 +529,6 @@ vertical_alignment = 1
 position = Vector2(44, 440)
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("8_s23tu")
-
-[node name="cursor" type="ColorRect" parent="."]
-offset_left = 320.0
-offset_top = 240.0
-offset_right = 322.0
-offset_bottom = 242.0
-pivot_offset = Vector2(1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681411, 0)

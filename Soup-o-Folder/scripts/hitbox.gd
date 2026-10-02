@@ -6,4 +6,4 @@ signal damaged(v: int)
 
 
 func damage(amount: int) -> void:
-    damaged.emit(amount)
+	damaged.emit(amount)

@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://drmqlhnmq28wk"]
+[gd_scene load_steps=19 format=3 uid="uid://drmqlhnmq28wk"]
 
 [ext_resource type="Script" uid="uid://bnj0kwi6g2eor" path="res://Soup-o-Folder/scripts/hitbox.gd" id="1_2htt1"]
 [ext_resource type="Script" uid="uid://cnmjxbddan74q" path="res://Soup-o-Folder/scripts/health.gd" id="2_i6iie"]
 [ext_resource type="AudioStream" uid="uid://dws4ngc3jtpym" path="res://Soup-o-Folder/media/sfx/sound/enemies/scream.wav" id="3_i6iie"]
 [ext_resource type="Script" uid="uid://brwfi0aj3v68j" path="res://ai/tasks/follow_player.gd" id="4_bpt3g"]
 [ext_resource type="Script" uid="uid://eumuwl5t0hqi" path="res://Soup-o-Folder/scripts/character/move_by_navigation.gd" id="4_kwswh"]
+[ext_resource type="ArrayMesh" uid="uid://blacay2syonb0" path="res://Soup-o-Folder/media/models/kamikaze_body.vox" id="6_sbgww"]
+[ext_resource type="ArrayMesh" uid="uid://bgyxqswxocdgd" path="res://Soup-o-Folder/media/models/kamikaze_leg.vox" id="7_2vofl"]
+[ext_resource type="ArrayMesh" uid="uid://byowce73peqkd" path="res://Soup-o-Folder/media/models/bomd.vox" id="8_amtkj"]
+[ext_resource type="ArrayMesh" uid="uid://clo2ptf0413cu" path="res://Soup-o-Folder/media/models/kamikaze_arm.vox" id="9_syp4m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcrh8"]
 
@@ -26,6 +30,236 @@ root_task = SubResource("BTAction_f06ag")
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_i6iie"]
 
+[sub_resource type="Animation" id="Animation_amtkj"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KamikazeLeg:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.119069, 0.0336341, 0.0188555), Vector3(-0.119069, 0.096642, 0.184524), Vector3(-0.119069, 0.0336341, 0.0188555), Vector3(-0.119069, 0.177304, -0.180431), Vector3(-0.119069, 0.096642, 0.184524)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KamikazeLeg:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.561699, 0, 0), Vector3(0, 0, 0), Vector3(2.38143, 0, 0), Vector3(-0.561699, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("KamikazeBody:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872665), Vector3(0, 0, 0), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0), Vector3(0, 0, -0.0872665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("KamikazeLeg2:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.137646, 0.0336341, 0.0188555), Vector3(0.137646, 0.148524, -0.14591), Vector3(0.137646, 0.0336341, 0.0188555), Vector3(0.137646, 0.0581277, 0.177787), Vector3(0.137646, 0.0336341, 0.0188555)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("KamikazeLeg2:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2.42672, 0, 0), Vector3(0, 0, 0), Vector3(-0.486999, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("KamikazeBody:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0646533, 0), Vector3(0, 0.114674, 0), Vector3(0, 0.0646533, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("KamikazeArm2:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.489533, -1.13285, 1.50975), Vector3(0.584927, -1.28216, 1.21984), Vector3(0.489533, -1.13285, 1.50975)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("KamikazeArm:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.45654, 1.05897, -1.65289), Vector3(-0.314778, 0.966665, -1.40917), Vector3(-0.45654, 1.05897, -1.65289)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Bomd:rotation")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.669508), Vector3(0.26632, -1.51392e-08, 0.669508), Vector3(0, 0, 0.669508)]
+}
+
+[sub_resource type="Animation" id="Animation_syp4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KamikazeLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.119069, 0.0336341, 0.0188555)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KamikazeLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("KamikazeBody:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.204989)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("KamikazeLeg2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.137646, 0.0336341, 0.0188555)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("KamikazeLeg2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("KamikazeBody:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0646533, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("KamikazeArm2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.489533, -1.13285, 1.50975)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("KamikazeArm:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.45654, 1.05897, -1.65289)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Bomd:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.669508)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmmnp"]
+_data = {
+&"RESET": SubResource("Animation_syp4m"),
+&"run": SubResource("Animation_amtkj")
+}
+
 [node name="Kamikaze" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 0
 
@@ -37,6 +271,7 @@ shape = SubResource("CapsuleShape3D_mcrh8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918847, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_mcrh8")
 
 [node name="Hitbox" type="Area3D" parent="."]
@@ -65,5 +300,42 @@ script = ExtResource("4_kwswh")
 navigation = NodePath("../NavigationAgent3D")
 character = NodePath("..")
 speed = 8.0
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="KamikazeBody" type="MeshInstance3D" parent="model"]
+transform = Transform3D(0.489532, 0.101778, 0, -0.101778, 0.489532, 0, 0, 0, 0.5, 0, 0.0646533, 0)
+mesh = ExtResource("6_sbgww")
+skeleton = NodePath("../..")
+
+[node name="KamikazeLeg" type="MeshInstance3D" parent="model"]
+transform = Transform3D(0.365, 0, 0, 0, 0.365, 0, 0, 0, 0.365, -0.119069, 0.0336341, 0.0188555)
+mesh = ExtResource("7_2vofl")
+
+[node name="KamikazeLeg2" type="MeshInstance3D" parent="model"]
+transform = Transform3D(0.365, 0, 0, 0, 0.365, 0, 0, 0, 0.365, 0.137646, 0.0336341, 0.0188555)
+mesh = ExtResource("7_2vofl")
+
+[node name="Bomd" type="MeshInstance3D" parent="model"]
+transform = Transform3D(0.313651, -0.24824, 0, 0.24824, 0.313651, 0, 0, 0, 0.4, 0.129653, 0.23373, 0.379168)
+mesh = ExtResource("8_amtkj")
+skeleton = NodePath("../..")
+
+[node name="KamikazeArm" type="MeshInstance3D" parent="model"]
+transform = Transform3D(0.171446, 0.259821, 0.391279, -0.44728, -0.036803, 0.220422, 0.143341, -0.425604, 0.219806, 0.322331, 0.291485, 0.126297)
+mesh = ExtResource("9_syp4m")
+skeleton = NodePath("../..")
+
+[node name="KamikazeArm2" type="MeshInstance3D" parent="model"]
+transform = Transform3D(-0.199587, -0.224633, -0.399631, 0.440454, 0.0269203, -0.235107, 0.127142, -0.445887, 0.187135, -0.204908, 0.38752, 0.152496)
+mesh = ExtResource("9_syp4m")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model")
+libraries = {
+&"": SubResource("AnimationLibrary_fmmnp")
+}
+autoplay = "run"
 
 [connection signal="damaged" from="Hitbox" to="Health" method="damage"]

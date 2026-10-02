@@ -13,28 +13,28 @@ var current_enemy_count: int = 0
 var current_wave: int = 0
 
 func _ready() -> void:
-    await start_delay.timeout
+	await start_delay.timeout
 
-    _spawn_enemies()
+	_spawn_enemies()
 
 
 
 func _spawn_enemies() -> void:
-    var spawners := get_tree().get_nodes_in_group("Spawner")
+	var spawners := get_tree().get_nodes_in_group("Spawner")
 
-    for i in enemy_count:
-        current_enemy_count += 1
-        var s := spawners.pick_random() as Node3D
-        var enemy_instance := (enemies.pick_random() as PackedScene).instantiate() as Node3D
+	for i in enemy_count:
+		current_enemy_count += 1
+		var s := spawners.pick_random() as Node3D
+		var enemy_instance := (enemies.pick_random() as PackedScene).instantiate() as Node3D
 
-        enemy_instance.global_position = s.global_position
+		enemy_instance.global_position = s.global_position
 
-        enemy_instance.tree_exiting.connect(func():
-            current_enemy_count -= 1
+		enemy_instance.tree_exiting.connect(func():
+			current_enemy_count -= 1
 
-            if current_enemy_count == 0:
-                music.finished_ambush.emit()
-        )
+			if current_enemy_count == 0:
+				music.finished_ambush.emit()
+		)
 
-        get_tree().current_scene.add_child(enemy_instance)
-    music.started_ambush.emit()
+		get_tree().current_scene.add_child(enemy_instance)
+	music.started_ambush.emit()
