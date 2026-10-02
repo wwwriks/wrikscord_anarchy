@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clbfyjkcsj20j"
+path="res://.godot/imported/Your Life is Here - Button.ogg-7e0f7c9ebea5c183be34cf968c26a80d.oggvorbisstr"
+
+[deps]
+
+source_file="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Button.ogg"
+dest_files=["res://.godot/imported/Your Life is Here - Button.ogg-7e0f7c9ebea5c183be34cf968c26a80d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=160.0
+beat_count=0
+bar_beats=4
