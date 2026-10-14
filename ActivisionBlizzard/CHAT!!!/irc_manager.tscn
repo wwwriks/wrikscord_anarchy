@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8jhf845tss8d"]
+
+[ext_resource type="Script" uid="uid://dslkku8peu316" path="res://ActivisionBlizzard/CHAT!!!/irc_manager.gd" id="1_w4ccu"]
+
+[node name="IRC_Manager" type="Node"]
+script = ExtResource("1_w4ccu")
