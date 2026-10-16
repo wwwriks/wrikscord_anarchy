@@ -11,7 +11,7 @@ var hp=3
 var mouse_sens=0.005
 
 var reloading=false
-var current_gun="machinegun"
+var current_gun="gun"
 var ammo=25
 var total_ammo=25
 
@@ -42,6 +42,7 @@ func update_ammo_label():
 	$ui/ammo_label.text="[shake]"+str(ammo)
 
 func _ready() -> void:
+	change_weapon(current_gun)
 	update_ammo_label()
 	blood_handler()
 	$MeshInstance3D.hide()
@@ -67,6 +68,13 @@ func reload():
 	reloading=false
 
 func change_weapon(new_weapon):
+	match new_weapon:
+		"machinegun":
+			$Camera3D/items/machinegun_model.show()
+			$Camera3D/items/gun_gun.hide()
+		"gun":
+			$Camera3D/items/machinegun_model.hide()
+			$Camera3D/items/gun_gun.show()
 	current_gun=str(new_weapon)
 	ammo=25
 	reloading=false
