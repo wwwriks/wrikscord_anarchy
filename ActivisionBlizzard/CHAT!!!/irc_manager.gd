@@ -10,12 +10,14 @@ var buffer := ""
 var joined_irc = false
 signal recived_irc(message: String)
 
-@export var log_console = true
+@export var log_console = false
 
 func gen_epic_name() -> String:
-	var food = ["burger", "cheeze", "nugget"]
-	var proprietary_random_number_generator = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "33", "34", "35", "42", "89", "19", "04", "53", "34"]
+	var food = ["burger", "cheeze", "nugget", "tomato", "pizza", "burrito", "chicken", "salsa", "kebab"]
+	var proprietary_random_number_generator = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "33", "34", "35", "42", "89", "19", "04", "53", "34", "81", "99", "15", "98", "04", "02", "01", "X", "64", "32", "16", "25"]
 	var name = food[randi_range(0, food.size()-1)] + proprietary_random_number_generator[randi_range(0, proprietary_random_number_generator.size()-1)]
+	if len(name) > 9:
+		name = gen_epic_name()
 	return name
 
 func _ready() -> void:
