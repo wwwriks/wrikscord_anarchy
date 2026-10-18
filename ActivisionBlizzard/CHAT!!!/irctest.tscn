@@ -85,7 +85,6 @@ theme_override_fonts/mono_font = ExtResource("4_5nuui")
 theme_override_fonts/italics_font = ExtResource("4_5nuui")
 theme_override_fonts/bold_italics_font = ExtResource("4_5nuui")
 theme_override_fonts/bold_font = ExtResource("4_5nuui")
-text = "test"
 scroll_following = true
 autowrap_mode = 0
 

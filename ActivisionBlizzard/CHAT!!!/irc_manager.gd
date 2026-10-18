@@ -36,18 +36,19 @@ func _process(delta):
 				var line = buffer.split("\r\n")[0]
 				buffer = buffer.substr(line.length() + 2)
 				
-				var nick_suffix = "!"
-				var nick_end = line.find(nick_suffix)-1
-				var nick = line.substr(1, nick_end)
-				
-				var message_prefix = "PRIVMSG #wriksanarchy :"
-				var message_start_index = line.find(message_prefix) + len(message_prefix)
-				var message = line.substr(message_start_index)
-				
-				var full_message = nick + ": "+ message
-				
-				print(full_message)
-				emit_signal("recived_irc", full_message)
+				if "PRIVMSG #wriksanarchy :" in line:
+					var nick_suffix = "!"
+					var nick_end = line.find(nick_suffix)-1
+					var nick = line.substr(1, nick_end)
+					
+					var message_prefix = "PRIVMSG #wriksanarchy :"
+					var message_start_index = line.find(message_prefix) + len(message_prefix)
+					var message = line.substr(message_start_index)
+					
+					var full_message = nick + ": "+ message
+					
+					printl(full_message)
+					emit_signal("recived_irc", full_message)
 	
 	if tcp_status == StreamPeerTCP.STATUS_CONNECTING:
 		printl("Connecting....")
