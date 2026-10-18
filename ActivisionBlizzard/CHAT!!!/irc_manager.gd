@@ -22,35 +22,12 @@ func gen_epic_name() -> String:
 
 func _ready() -> void:
 	nickname = gen_epic_name()
-	tcp_stream.set_no_delay(true)
 	tcp_stream.connect_to_host(server, port)
 	printl("Initating...")
 
 func _process(delta):
 	var tcp_status = tcp_stream.get_status()
 	tcp_stream.poll()
-	var available_bytes = tcp_stream.get_available_bytes()
-	if available_bytes > 0:
-		var recived_data = tcp_stream.get_data(available_bytes)
-		if recived_data[0] == OK:
-			buffer += recived_data[1].get_string_from_utf8()
-			while "\r\n" in buffer:
-				var line = buffer.split("\r\n")[0]
-				buffer = buffer.substr(line.length() + 2)
-				
-				if "PRIVMSG #wriksanarchy :" in line:
-					var nick_suffix = "!"
-					var nick_end = line.find(nick_suffix)-1
-					var nick = line.substr(1, nick_end)
-					
-					var message_prefix = "PRIVMSG #wriksanarchy :"
-					var message_start_index = line.find(message_prefix) + len(message_prefix)
-					var message = line.substr(message_start_index)
-					
-					var full_message = nick + ": "+ message
-					
-					printl(full_message)
-					emit_signal("recived_irc", full_message)
 	
 	if tcp_status == StreamPeerTCP.STATUS_CONNECTING:
 		printl("Connecting....")
@@ -62,6 +39,28 @@ func _process(delta):
 		if !joined_irc:
 			youshouldIRCyourselfNOW()
 			joined_irc = true
+		var available_bytes = tcp_stream.get_available_bytes()
+		if available_bytes > 0:
+			var recived_data = tcp_stream.get_data(available_bytes)
+			if recived_data[0] == OK:
+				buffer += recived_data[1].get_string_from_utf8()
+				while "\r\n" in buffer:
+					var line = buffer.split("\r\n")[0]
+					buffer = buffer.substr(line.length() + 2)
+					
+					if "PRIVMSG #wriksanarchy :" in line:
+						var nick_suffix = "!"
+						var nick_end = line.find(nick_suffix)-1
+						var nick = line.substr(1, nick_end)
+						
+						var message_prefix = "PRIVMSG #wriksanarchy :"
+						var message_start_index = line.find(message_prefix) + len(message_prefix)
+						var message = line.substr(message_start_index)
+						
+						var full_message = nick + ": "+ message
+						
+						printl(full_message)
+						emit_signal("recived_irc", full_message)
 
 func youshouldIRCyourselfNOW():
 	printl("Connecting...")

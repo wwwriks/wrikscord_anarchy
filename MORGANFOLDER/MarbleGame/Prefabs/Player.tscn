@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5cdtd43eeyjb"]
+[gd_scene load_steps=12 format=3 uid="uid://c5cdtd43eeyjb"]
 
 [ext_resource type="Script" uid="uid://cdc1q44ti2jt4" path="res://MORGANFOLDER/MarbleGame/Scripts/BallMovement.gd" id="1_o6v7y"]
 [ext_resource type="Material" uid="uid://dnbp3ym05opmv" path="res://MORGANFOLDER/MarbleGame/Materials/Player_Material.tres" id="2_k26kv"]
 [ext_resource type="Script" uid="uid://cvri7rgii2cf" path="res://MORGANFOLDER/MarbleGame/Prefabs/blobshadow.gd" id="3_4dhtx"]
+[ext_resource type="PackedScene" uid="uid://cctbtsubdxw8o" path="res://ActivisionBlizzard/irc_player_ui.tscn" id="4_eu0v8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tr0yl"]
 
@@ -56,3 +57,5 @@ shadow = NodePath("MeshInstance3D")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blobshadow"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_k26kv")
+
+[node name="IRC_Player_UI" parent="." instance=ExtResource("4_eu0v8")]

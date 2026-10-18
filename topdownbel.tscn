@@ -1,8 +1,9 @@
-[gd_scene load_steps=49 format=4 uid="uid://dbxa3g4bt78cq"]
+[gd_scene load_steps=50 format=4 uid="uid://dbxa3g4bt78cq"]
 
 [ext_resource type="Texture2D" uid="uid://llmrrqglf354" path="res://folderdous/assets/rotate TEST.png" id="1_40nfu"]
 [ext_resource type="Script" uid="uid://cxxo71c6tnx27" path="res://character_body_2d.gd" id="1_wprnv"]
 [ext_resource type="Texture2D" uid="uid://dhwyrituvbm6b" path="res://folderdous/assets/Main Level.png" id="2_i5chi"]
+[ext_resource type="PackedScene" uid="uid://cctbtsubdxw8o" path="res://ActivisionBlizzard/irc_player_ui.tscn" id="4_8p2sg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wprnv"]
 atlas = ExtResource("1_40nfu")
@@ -738,3 +739,7 @@ tile_set = SubResource("TileSet_lr8ja")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.88, 1.88)
 limit_smoothed = true
+
+[node name="IRC_Player_UI" parent="." instance=ExtResource("4_8p2sg")]
+position = Vector2(-116, -86)
+scale = Vector2(0.5, 0.5)
