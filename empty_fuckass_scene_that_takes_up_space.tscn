@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://dafoouu5cp401"]
+[gd_scene load_steps=2 format=3 uid="uid://dafoouu5cp401"]
+
+[ext_resource type="PackedScene" uid="uid://cctbtsubdxw8o" path="res://ActivisionBlizzard/irc_player_ui.tscn" id="1_ppx2r"]
 
 [node name="EmptyFuckassSceneThatTakesUpSpace" type="Node"]
 editor_description = "[rewind]
 "
+
+[node name="IRC_Player_UI" parent="." instance=ExtResource("1_ppx2r")]
