@@ -1,0 +1,174 @@
+[gd_scene load_steps=30 format=3 uid="uid://n08n7j3ym8qb"]
+
+[ext_resource type="PackedScene" uid="uid://3peb3vpgxxfr" path="res://axelthings/mesh-judgement.glb" id="1_4djpg"]
+[ext_resource type="Script" uid="uid://c6gqxcepcohnn" path="res://ActivisionBlizzard/uuh/uuh.gd" id="1_d86ff"]
+[ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="2_4npc0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4npc0"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_d86ff"]
+sky_material = SubResource("ProceduralSkyMaterial_4npc0")
+
+[sub_resource type="Environment" id="Environment_603mq"]
+background_mode = 2
+sky = SubResource("Sky_d86ff")
+tonemap_mode = 2
+
+[sub_resource type="Theme" id="Theme_d86ff"]
+default_font = ExtResource("2_4npc0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_603mq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykqf0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaxoe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lw5s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7ysv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ieke"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ombj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64ono"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cb4ns"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tomhy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_374tv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdrla"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cloff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18utu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w002p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3lru"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6go1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rn433"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pvxs8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lygvs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qf84g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qq6o"]
+
+[node name="Uuh" type="Node3D"]
+script = ExtResource("1_d86ff")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_603mq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.424024, 0.26496, 0, 0.529919, 0.848048, -0.5, 0.734431, -0.458924, 0, 0, 0)
+light_energy = 5.5
+shadow_enabled = true
+directional_shadow_max_distance = 4096.0
+
+[node name="mesh-judgement" parent="." instance=ExtResource("1_4djpg")]
+transform = Transform3D(1, 0, 0, 0, 0.989221, -0.146428, 0, 0.146428, 0.989221, 0, 0, -2.57714)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.736822, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.839468, -0.543409, 0, 0.543409, 0.839468, 0, -1.47943, 2.5439)
+
+[node name="Control" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="spare" type="Button" parent="Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 118.0
+offset_top = 360.0
+offset_right = 252.0
+offset_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_d86ff")
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.905882, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_603mq")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ykqf0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yaxoe")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2lw5s")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b7ysv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3ieke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ombj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_64ono")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cb4ns")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tomhy")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_374tv")
+text = "Please spare me"
+
+[node name="understand" type="Button" parent="Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 354.0
+offset_top = 361.0
+offset_right = 488.0
+offset_bottom = 392.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.905882, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4npc0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wdrla")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cloff")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_18utu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_w002p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_u3lru")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_m6go1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rn433")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_pvxs8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lygvs")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qf84g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6qq6o")
+text = "I dont understand"
+
+[connection signal="pressed" from="Camera3D/Control/spare" to="." method="_on_spare_pressed"]
+[connection signal="pressed" from="Camera3D/Control/understand" to="." method="_on_understand_pressed"]

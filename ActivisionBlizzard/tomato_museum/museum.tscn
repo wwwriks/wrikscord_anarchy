@@ -1,0 +1,271 @@
+[gd_scene load_steps=34 format=3 uid="uid://bxrjobfpems2j"]
+
+[ext_resource type="Texture2D" uid="uid://wi77nt62mb6g" path="res://ActivisionBlizzard/epic_sky.jpg" id="1_7wagl"]
+[ext_resource type="PackedScene" uid="uid://btwml6prkv7hi" path="res://OZQNTYPESHIT/ozqn_one/guy_dude.tscn" id="2_26ruy"]
+[ext_resource type="PackedScene" uid="uid://b0kvrwfil7ksv" path="res://DDDs_Stuff/exit_portal.tscn" id="3_7wagl"]
+[ext_resource type="AudioStream" uid="uid://bm0bn6px13l8q" path="res://ActivisionBlizzard/tomato_museum/happy loop_opengameartcc0.mp3" id="3_aei0j"]
+[ext_resource type="Texture2D" uid="uid://bmug4jp5s5wcw" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/beef_tomato.jpg" id="4_lbo1l"]
+[ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="5_aei0j"]
+[ext_resource type="Texture2D" uid="uid://dt24oslh2uhha" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/red_tomatoes.jpg" id="5_mghst"]
+[ext_resource type="Texture2D" uid="uid://1bimjbqqaqcm" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/orange-cherry-tomato.jpg" id="7_nkyuq"]
+[ext_resource type="Texture2D" uid="uid://bt8xycgio8iw8" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/tomato in water.jpg" id="8_l5imm"]
+[ext_resource type="Texture2D" uid="uid://dq511obsqaceg" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/tomato-ketchup.jpg" id="9_xlisb"]
+[ext_resource type="Texture2D" uid="uid://dctpfkuwrd0t3" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/green-tomato.jpg" id="10_p6owg"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aei0j"]
+panorama = ExtResource("1_7wagl")
+
+[sub_resource type="Sky" id="Sky_pn2h5"]
+sky_material = SubResource("PanoramaSkyMaterial_aei0j")
+
+[sub_resource type="Environment" id="Environment_kfj8p"]
+background_mode = 2
+sky = SubResource("Sky_pn2h5")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hles"]
+albedo_texture = ExtResource("1_7wagl")
+
+[sub_resource type="BoxMesh" id="BoxMesh_26ruy"]
+material = SubResource("StandardMaterial3D_4hles")
+size = Vector3(50, 1, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jtiw8"]
+data = PackedVector3Array(-25, 0.5, 25, 25, 0.5, 25, -25, -0.5, 25, 25, 0.5, 25, 25, -0.5, 25, -25, -0.5, 25, 25, 0.5, -25, -25, 0.5, -25, 25, -0.5, -25, -25, 0.5, -25, -25, -0.5, -25, 25, -0.5, -25, 25, 0.5, 25, 25, 0.5, -25, 25, -0.5, 25, 25, 0.5, -25, 25, -0.5, -25, 25, -0.5, 25, -25, 0.5, -25, -25, 0.5, 25, -25, -0.5, -25, -25, 0.5, 25, -25, -0.5, 25, -25, -0.5, -25, 25, 0.5, 25, -25, 0.5, 25, 25, 0.5, -25, -25, 0.5, 25, -25, 0.5, -25, 25, 0.5, -25, -25, -0.5, 25, 25, -0.5, 25, -25, -0.5, -25, 25, -0.5, 25, 25, -0.5, -25, -25, -0.5, -25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7wagl"]
+size = Vector3(1, 10, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7wagl"]
+data = PackedVector3Array(-0.5, 5, 25, 0.5, 5, 25, -0.5, -5, 25, 0.5, 5, 25, 0.5, -5, 25, -0.5, -5, 25, 0.5, 5, -25, -0.5, 5, -25, 0.5, -5, -25, -0.5, 5, -25, -0.5, -5, -25, 0.5, -5, -25, 0.5, 5, 25, 0.5, 5, -25, 0.5, -5, 25, 0.5, 5, -25, 0.5, -5, -25, 0.5, -5, 25, -0.5, 5, -25, -0.5, 5, 25, -0.5, -5, -25, -0.5, 5, 25, -0.5, -5, 25, -0.5, -5, -25, 0.5, 5, 25, -0.5, 5, 25, 0.5, 5, -25, -0.5, 5, 25, -0.5, 5, -25, 0.5, 5, -25, -0.5, -5, 25, 0.5, -5, 25, -0.5, -5, -25, 0.5, -5, 25, 0.5, -5, -25, -0.5, -5, -25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5imm"]
+albedo_texture = ExtResource("5_mghst")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbo1l"]
+albedo_texture = ExtResource("4_lbo1l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6owg"]
+albedo_texture = ExtResource("7_nkyuq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1so7r"]
+albedo_texture = ExtResource("8_l5imm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aei0j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mghst"]
+material = SubResource("StandardMaterial3D_aei0j")
+size = Vector3(5, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vk2mo"]
+albedo_texture = ExtResource("9_xlisb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkyuq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lbo1l"]
+material = SubResource("StandardMaterial3D_nkyuq")
+size = Vector3(5, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6n7id"]
+albedo_texture = ExtResource("10_p6owg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlisb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6owg"]
+material = SubResource("StandardMaterial3D_xlisb")
+size = Vector3(5, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mghst"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nkyuq"]
+material = SubResource("StandardMaterial3D_mghst")
+size = Vector3(5, 5, 1)
+
+[node name="Museum" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.549323, 0.54913, 3.85046e-07, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kfj8p")
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2569, 5.37666, -24.5686)
+modulate = Color(1, 0.27, 0.27, 1)
+text = "TOMATO!! 
+this way
+<------"
+font = ExtResource("5_aei0j")
+font_size = 387
+
+[node name="GuyDude" parent="." instance=ExtResource("2_26ruy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4508, 1.15967, 23.3463)
+
+[node name="HappyLoop" type="AudioStreamPlayer" parent="GuyDude"]
+stream = ExtResource("3_aei0j")
+autoplay = true
+parameters/looping = true
+
+[node name="mesh" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.212501, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
+mesh = SubResource("BoxMesh_26ruy")
+skeleton = NodePath("../..")
+
+[node name="staticbody" type="StaticBody3D" parent="mesh/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/MeshInstance3D/staticbody"]
+shape = SubResource("ConcavePolygonShape3D_jtiw8")
+
+[node name="wall" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7109, 4.41683, 0)
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall3" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(-4.40892e-08, 0, 1.16433, 0, 1.00864, 0, -1.00864, 0, -5.08943e-08, 0.962177, 4.41683, 25.0307)
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall4" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(-1.00864, 0, -1.01789e-07, 0, 1.00864, 0, 8.81784e-08, 0, -1.16433, -25.6628, 4.41683, -2.95761)
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall5" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(-4.40892e-08, 0, 1.16433, 0, 1.00864, 0, -1.00864, 0, -5.08943e-08, -3.60233, 4.41683, -25.3101)
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall6" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(-1.07684, 0, 0.0934647, 0, 1.00864, 0, -0.187047, 0, -0.538079, -3.60233, 4.41683, -12.5896)
+material_override = SubResource("StandardMaterial3D_l5imm")
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall6/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall8" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(-1.07684, 0, 0.0934647, 0, 1.00864, 0, -0.187047, 0, -0.538079, -4.41171, 4.41683, -12.5896)
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall8/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall2" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.593235, 11.021, 4.41683, 10.241)
+material_override = SubResource("StandardMaterial3D_lbo1l")
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="wall7" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.593235, 10.2071, 4.41683, 10.241)
+material_override = SubResource("StandardMaterial3D_p6owg")
+mesh = SubResource("BoxMesh_7wagl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh/wall7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/wall7/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7wagl")
+
+[node name="painting" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.09207, 0, 0.0220127, 0, 1.00864, 0, -0.0440531, 0, -0.545693, -4.41171, 4.62933, 24.4683)
+material_override = SubResource("StandardMaterial3D_1so7r")
+mesh = SubResource("BoxMesh_mghst")
+skeleton = NodePath("../mesh/wall8")
+
+[node name="painting2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.09207, 0, 0.0220127, 0, 1.00864, 0, -0.0440531, 0, -0.545693, -14.7244, 4.62933, 24.4683)
+material_override = SubResource("StandardMaterial3D_vk2mo")
+mesh = SubResource("BoxMesh_lbo1l")
+skeleton = NodePath("../mesh/wall8")
+
+[node name="painting3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0440531, 0, 0.545692, 0, 1.00864, 0, -1.09207, 0, 0.0220127, -24.7815, 4.62933, 18.4115)
+material_override = SubResource("StandardMaterial3D_6n7id")
+mesh = SubResource("BoxMesh_p6owg")
+skeleton = NodePath("../mesh/wall8")
+
+[node name="Label3D8" type="Label3D" parent="."]
+transform = Transform3D(0.0440531, 0, 0.545692, 0, 1.00864, 0, -1.09207, 0, 0.0220127, -23.8204, 3.27906, 17.5673)
+text = "Green... Tomato"
+font = ExtResource("5_aei0j")
+font_size = 77
+
+[node name="Label3D9" type="Label3D" parent="."]
+transform = Transform3D(0.0440531, 0, 0.545692, 0, 1.00864, 0, -1.09207, 0, 0.0220127, -23.8204, 3.27906, 8.84926)
+text = "Tomato of
+your Dreams."
+font = ExtResource("5_aei0j")
+font_size = 77
+
+[node name="painting4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0440531, 0, 0.545692, 0, 1.00864, 0, -1.09207, 0, 0.0220127, -24.7815, 4.62933, 9.2205)
+mesh = SubResource("BoxMesh_nkyuq")
+skeleton = NodePath("../mesh/wall8")
+
+[node name="exit_portal" parent="." instance=ExtResource("3_7wagl")]
+transform = Transform3D(1.11754, 0, 0, 0, 1.19314, 0, 0, 0, -0.5353, -15.6316, 6.73012, -19.6622)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.0561526, 0, 0.998422, 0, 1, 0, -0.998422, 0, 0.0561526, 11.9833, 3.33938, 16.8686)
+text = "Beef Tomato"
+font = ExtResource("5_aei0j")
+font_size = 207
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(0.0561526, 0, 0.998422, 0, 1, 0, -0.998422, 0, 0.0561526, -3.17173, 7.2571, -9.1972)
+text = "Red Tomatoes"
+font = ExtResource("5_aei0j")
+font_size = 207
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(0.0561526, 0, 0.998422, 0, 1, 0, -0.998422, 0, 0.0561526, -3.17173, 7.2571, -9.1972)
+text = "Red Tomatoes"
+font = ExtResource("5_aei0j")
+font_size = 207
+
+[node name="Label3D5" type="Label3D" parent="."]
+transform = Transform3D(-0.138689, 0, -0.990336, 0, 1, 0, 0.990336, 0, -0.138689, 8.94308, 7.2571, 13.0903)
+text = "Orange Cherry Tomato"
+font = ExtResource("5_aei0j")
+font_size = 207
+
+[node name="Label3D6" type="Label3D" parent="."]
+transform = Transform3D(-0.997168, 0, 0.075205, 0, 1, 0, -0.075205, 0, -0.997168, -3.75652, 3.44092, 23.1491)
+text = "Tomato in water"
+font = ExtResource("5_aei0j")
+font_size = 60
+
+[node name="Label3D7" type="Label3D" parent="."]
+transform = Transform3D(-0.988308, 0, -0.152468, 0, 1, 0, 0.152468, 0, -0.988308, -14.7555, 3.44092, 23.6073)
+text = "Tomato Sauce"
+font = ExtResource("5_aei0j")
+font_size = 60

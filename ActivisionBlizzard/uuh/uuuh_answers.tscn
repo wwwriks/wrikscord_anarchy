@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv0e2fcfxyifk"]
+
+[ext_resource type="Texture2D" uid="uid://drkdehd3td3h7" path="res://ActivisionBlizzard/wire_mesh.jpg" id="1_0i3ma"]
+[ext_resource type="Script" uid="uid://blpvidqqd0c0w" path="res://ActivisionBlizzard/uuh/uuuh_answers.gd" id="1_wiwdc"]
+[ext_resource type="AudioStream" uid="uid://ce7v84uekexsr" path="res://ActivisionBlizzard/uuh/ding_starninjas/ding.1.ogg" id="2_eu1o8"]
+[ext_resource type="FontFile" uid="uid://ci7qnbl86p2q3" path="res://ActivisionBlizzard/DRUNKFONTS-Regular.otf" id="2_u4ofj"]
+[ext_resource type="AudioStream" uid="uid://djxcawm8p4pf6" path="res://ActivisionBlizzard/uuh/ding_starninjas/ding.2.ogg" id="3_0i3ma"]
+
+[node name="UuuhAnswers" type="Node2D"]
+script = ExtResource("1_wiwdc")
+
+[node name="WireMesh" type="Sprite2D" parent="."]
+position = Vector2(319, 240)
+scale = Vector2(0.390791, 0.397833)
+texture = ExtResource("1_0i3ma")
+
+[node name="label" type="RichTextLabel" parent="."]
+offset_left = 26.0
+offset_top = 1.0
+offset_right = 631.0
+offset_bottom = 468.0
+theme_override_fonts/normal_font = ExtResource("2_u4ofj")
+theme_override_font_sizes/normal_font_size = 76
+text = "the grasshopper falls upon the tree"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ding_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_eu1o8")
+
+[node name="Ding_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0i3ma")
+
+[node name="holy_light" type="DirectionalLight2D" parent="."]
+energy = 0.0
+max_distance = 10160.0
+
+[node name="last_sound" type="Timer" parent="."]
+wait_time = 1.896
+one_shot = true
+autostart = true
+
+[connection signal="finished" from="Ding_2" to="." method="_on_ding_2_finished"]
+[connection signal="timeout" from="last_sound" to="." method="_on_last_sound_timeout"]
