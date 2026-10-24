@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1pxpvnd600pi"
-path="res://.godot/imported/GeBao.JPG-7be477e00d190e3f69d848b91870176c.ctex"
+uid="uid://bmug4jp5s5wcw"
+path.s3tc="res://.godot/imported/beef_tomato.jpg-c67f25e55246603eea9439650edc3bc0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://ActivisionBlizzard/GeBao.JPG"
-dest_files=["res://.godot/imported/GeBao.JPG-7be477e00d190e3f69d848b91870176c.ctex"]
+source_file="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/beef_tomato.jpg"
+dest_files=["res://.godot/imported/beef_tomato.jpg-c67f25e55246603eea9439650edc3bc0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

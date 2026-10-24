@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bm0bn6px13l8q"
+path="res://.godot/imported/happy loop_opengameartcc0.mp3-5c04b99c70991227d5b1f05eb48e3a28.mp3str"
+
+[deps]
+
+source_file="res://ActivisionBlizzard/tomato_museum/happy loop_opengameartcc0.mp3"
+dest_files=["res://.godot/imported/happy loop_opengameartcc0.mp3-5c04b99c70991227d5b1f05eb48e3a28.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
