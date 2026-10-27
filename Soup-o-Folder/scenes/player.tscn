@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=34 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -12,7 +12,10 @@
 [ext_resource type="ArrayMesh" uid="uid://cjoayq57miy8p" path="res://Soup-o-Folder/media/models/gun3.vox" id="6_rm7ct"]
 [ext_resource type="ArrayMesh" uid="uid://0dh8aqk0hrfk" path="res://Soup-o-Folder/media/models/gun2.vox" id="7_keavv"]
 [ext_resource type="FontFile" uid="uid://d0ryx3onwrq2h" path="res://rvvnd/assets/font/Syne-Italic.ttf" id="7_ws2h5"]
+[ext_resource type="AudioStream" uid="uid://dbtvb68dv5qyo" path="res://Soup-o-Folder/media/sfx/sound/gun2.wav" id="8_oqhjo"]
 [ext_resource type="Texture2D" uid="uid://b1edwle7hs0np" path="res://Soup-o-Folder/media/gfx/ammo.png" id="8_s23tu"]
+[ext_resource type="AudioStream" uid="uid://bio8te62xlbn7" path="res://Soup-o-Folder/media/sfx/sound/gun3.wav" id="9_3062p"]
+[ext_resource type="AudioStream" uid="uid://bqdh8aa8auimp" path="res://Soup-o-Folder/media/sfx/sound/gun1.wav" id="10_h77cb"]
 [ext_resource type="AudioStream" uid="uid://d3hj1swgj8vf5" path="res://Soup-o-Folder/media/sfx/sound/machinegun_shoot.wav" id="11_7dy2v"]
 [ext_resource type="AudioStream" uid="uid://sjntee0pwcf3" path="res://Soup-o-Folder/media/sfx/sound/snow_step.wav" id="12_p0a5f"]
 [ext_resource type="Texture2D" uid="uid://dhiudgxta2ut6" path="res://Soup-o-Folder/media/gfx/crosshair-121.png" id="13_7dy2v"]
@@ -271,6 +274,29 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("items_sound")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_oqhjo")
+}, {
+"end_offset": 0.314822,
+"start_offset": 0.0,
+"stream": ExtResource("9_3062p")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_h77cb")
+}],
+"times": PackedFloat32Array(0.188238, 0.484536, 0.806107)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_rm7ct"]
 resource_name = "gun_shoot"
@@ -399,6 +425,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("items_sound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_h77cb")
+}],
+"times": PackedFloat32Array(0.382962)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_s23tu"]
 resource_name = "machinegun_reload"

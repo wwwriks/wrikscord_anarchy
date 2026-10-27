@@ -287,8 +287,8 @@ script = ExtResource("2_i6iie")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16113, 0)
 stream = ExtResource("3_i6iie")
-unit_size = 1.0
-pitch_scale = 1.5
+volume_db = -80.0
+pitch_scale = 2.0
 autoplay = true
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
