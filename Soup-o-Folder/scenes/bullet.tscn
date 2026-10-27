@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dae2h7iie575n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jvt1s"]
+radius = 0.195531
+
+[node name="bullet_area" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_jvt1s")
+debug_color = Color(0.576471, 0.266667, 0, 1)
