@@ -856,6 +856,10 @@ transform = Transform3D(2.03596e-08, -3.35644e-08, 0.5, -0.00938055, 0.499912, 3
 visible = false
 texture = ExtResource("3_dl7ft")
 
+[node name="GunRaycast" type="RayCast3D" parent="Camera3D/items/gun_gun"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -100)
+
 [node name="items_anim" type="AnimationPlayer" parent="Camera3D/items"]
 libraries = {
 &"": SubResource("AnimationLibrary_k21j4")
