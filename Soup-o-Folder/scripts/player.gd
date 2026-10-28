@@ -81,6 +81,10 @@ func change_weapon(new_weapon):
 	$Camera3D/items/items_anim.play(str(current_gun)+"_up")
 
 func shoot():
+    if ammo <= 0: return
+    match current_gun:
+        "gun":
+            if %GunRaycast.is_colliding()
 	if not $Camera3D/items/items_anim.is_playing() and ammo>0:
 		$Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
 		$shoot_sound.play()
