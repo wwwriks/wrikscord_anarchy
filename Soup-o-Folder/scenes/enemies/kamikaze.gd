@@ -1,16 +1,37 @@
 extends CharacterBody3D
 
-
 @export var explosion_area: Area3D
-@export var explosion_scene: PackedScene
+@export var explosion_scene: PackedScene=preload("res://Soup-o-Folder/scenes/explosion.tscn")
+@export var weapon_case_scene: PackedScene=preload("res://Soup-o-Folder/scenes/weapon_case.tscn")
 
+var damage_given=false
 
-func _ready() -> void:
-    explosion_area.body_entered.connect(func(b: Node3D):
-        if b.is_in_group("Player"):
-            queue_free()
-            if explosion_scene == null: return
-            var expl: Node3D = explosion_scene.instantiate()
-            add_sibling(expl)
-            expl.global_position = global_position
-    )
+func _spawn_explosion() -> void:
+	if explosion_scene==null:
+		return
+	var expl:=explosion_scene.instantiate() as Node3D
+	get_parent().add_child(expl)
+	expl.global_position=global_position
+
+func _spawn_case() -> void:
+	if weapon_case_scene==null:
+		return
+	var weapon_case:=weapon_case_scene.instantiate() as Node3D
+	get_parent().add_child(weapon_case)
+	weapon_case.global_position=global_position
+
+func _on_bomb_area_body_entered(b: Node3D) -> void:
+	if damage_given:
+		return
+	if not b.is_in_group("Player"):
+		return
+	damage_given = true
+	$bomb_area.set_deferred("monitoring", false)
+	_spawn_explosion()
+	if b.has_method("take_damage"):
+		b.take_damage()
+	queue_free()
+
+func take_damage_enemy():
+	print("ай больно в ноге блять")
+	_spawn_explosion()

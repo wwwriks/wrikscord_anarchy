@@ -281,7 +281,7 @@ shape = SubResource("WorldBoundaryShape3D_e0bvi")
 debug_color = Color(0.964706, 0, 0.490196, 1)
 
 [node name="weapon_case" parent="." instance=ExtResource("4_2x6ba")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92097, 0.6, -13.9258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92097, 0.6, -10.5899)
 
 [node name="transition" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_oqmv4")
@@ -673,25 +673,25 @@ navigation_mesh = SubResource("NavigationMesh_o8exx")
 [node name="Spawner" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4814, 1.77004, -16.9905)
 
-[node name="Spawner2" type="Marker3D" parent="."]
+[node name="Spawner2" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7553, 1.17016, 1.51636)
 
-[node name="Spawner3" type="Marker3D" parent="."]
+[node name="Spawner3" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7617, 0.44891, 15.573)
 
-[node name="Spawner4" type="Marker3D" parent="."]
+[node name="Spawner4" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1122, 1.77004, -16.9905)
 
-[node name="Spawner5" type="Marker3D" parent="."]
+[node name="Spawner5" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8384, 1.17016, 1.51636)
 
-[node name="Spawner6" type="Marker3D" parent="."]
+[node name="Spawner6" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8319, 0.44891, 15.573)
 
-[node name="Spawner7" type="Marker3D" parent="."]
+[node name="Spawner7" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17783, 0.44891, 15.573)
 
-[node name="Spawner8" type="Marker3D" parent="."]
+[node name="Spawner8" type="Marker3D" parent="." groups=["Spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17783, 0.44891, -15.5102)
 
 [node name="deer" type="Sprite3D" parent="."]

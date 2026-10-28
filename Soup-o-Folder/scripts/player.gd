@@ -38,126 +38,135 @@ var weapon_rotation=Vector3.ZERO
 @onready var camera=$Camera3D
 @onready var items=$Camera3D/items
 
+@export var bullet_scene: PackedScene=preload("res://Soup-o-Folder/scenes/bullet.tscn")
+
 func update_ammo_label():
-    $ui/ammo_label.text="[shake]"+str(ammo)
+	$ui/ammo_label.text="[shake]"+str(ammo)
 
 func _ready() -> void:
-    change_weapon(current_gun)
-    update_ammo_label()
-    blood_handler()
-    $MeshInstance3D.hide()
-    Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
-    weapon_position=items.position
-    weapon_rotation=items.rotation
+	change_weapon(current_gun)
+	update_ammo_label()
+	blood_handler()
+	$MeshInstance3D.hide()
+	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
+	weapon_position=items.position
+	weapon_rotation=items.rotation
 
 func blood_handler():
-    match hp:
-        3:
-            $ui/blood.modulate="#96969600"
-        2:
-            $ui/blood.modulate="#969696a1"
-        1:
-            $ui/blood.modulate="#969696"
+	match hp:
+		3:
+			$ui/blood.modulate="#96969600"
+		2:
+			$ui/Heart3.hide()
+			$ui/blood.modulate="#969696a1"
+		1:
+			$ui/Heart2.hide()
+			$ui/blood.modulate="#969696"
+		0:
+			pass
+
+func take_damage():
+	hp-=1
+	blood_handler()
 
 func reload():
-    reloading=true
-    $Camera3D/items/items_anim.play(str(current_gun)+"_reload")
-    await $Camera3D/items/items_anim.animation_finished
-    ammo=total_ammo
-    update_ammo_label()
-    reloading=false
+	reloading=true
+	$Camera3D/items/items_anim.play(str(current_gun)+"_reload")
+	await $Camera3D/items/items_anim.animation_finished
+	ammo=total_ammo
+	update_ammo_label()
+	reloading=false
 
 func change_weapon(new_weapon):
-    match new_weapon:
-        "machinegun":
-            $Camera3D/items/machinegun_model.show()
-            $Camera3D/items/gun_gun.hide()
-        "gun":
-            $Camera3D/items/machinegun_model.hide()
-            $Camera3D/items/gun_gun.show()
-    current_gun=str(new_weapon)
-    ammo=25
-    reloading=false
-    $Camera3D/items/items_anim.play(str(current_gun)+"_up")
+	match new_weapon:
+		"machinegun":
+			$Camera3D/items/machinegun_model.show()
+			$Camera3D/items/gun_gun.hide()
+		"gun":
+			$Camera3D/items/machinegun_model.hide()
+			$Camera3D/items/gun_gun.show()
+	current_gun=str(new_weapon)
+	ammo=25
+	reloading=false
+	$Camera3D/items/items_anim.play(str(current_gun)+"_up")
+
 
 func shoot():
-    if ammo <= 0: return
-    match current_gun:
-        "gun":
-            var g_ray: RayCast3D = %GunRaycast
-            if g_ray.is_colliding():
-                var o := g_ray.get_collider()
-                if o is Hitbox:
-                    o.damage(10)
-                
-    if not $Camera3D/items/items_anim.is_playing() and ammo>0:
-        $Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
-        $shoot_sound.play()
-        ammo-=1
-        update_ammo_label()
+	if ammo<=0:
+		return
+	if $Camera3D/items/items_anim.is_playing():
+		return
+	$Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
+	$shoot_sound.play()
+	ammo-=1
+	var bullet=bullet_scene.instantiate()
+	var marker=$Camera3D/Marker3D
+	bullet.global_transform=marker.global_transform
+	get_tree().current_scene.add_child(bullet)
+	update_ammo_label()
+
 
 func _input(event):
-    if event is InputEventMouseMotion and Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
-        rotation_y-=event.relative.x*mouse_sens
-        rotation_x-=event.relative.y*mouse_sens
-        rotation_x=clamp(rotation_x,max_look_down,max_look_up)
-        
-func input_weapon() -> void:
-    if Input.is_action_just_pressed("gun_slot"):
-        change_weapon("gun")
-    elif Input.is_action_just_pressed("shotgun_slot"):
-        change_weapon("machinegun")
+	if event is InputEventMouseMotion and Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
+		rotation_y-=event.relative.x*mouse_sens
+		rotation_x-=event.relative.y*mouse_sens
+		rotation_x=clamp(rotation_x,max_look_down,max_look_up)
+		
+#func input_weapon() -> void:
+	#if Input.is_action_just_pressed("gun_slot"):
+		#change_weapon("gun")
+	#elif Input.is_action_just_pressed("shotgun_slot"):
+		#change_weapon("machinegun")
 
 func _process(delta: float) -> void:
-    input_weapon()
-    rotation.y=rotation_y
-    camera.rotation.x=rotation_x
-    var horizontal_velocity=Vector3(velocity.x,0,velocity.z)
-    var movement_speed=horizontal_velocity.length()
-    var input_dir:=Input.get_vector("left","right","up","down")
-    if movement_speed>0.1 and is_on_floor():
-        bob_time+=delta*bob_speed*(movement_speed/speed)
-        var current_step=int(floor(bob_time/PI))
-        if current_step!=last_step:
-            $step_sound.play()
-            last_step=current_step
-        var bob_x=sin(bob_time)*bob_side_amount
-        var bob_y=abs(cos(bob_time))*bob_amount
-        var target_position=weapon_position
-        target_position.x+=bob_x
-        target_position.y-=bob_y
-        items.position=items.position.lerp(target_position,delta*12.0)
-        var target_rotation=weapon_rotation
-        target_rotation.z-=input_dir.x*bob_roll_amount
-        target_rotation.x-=sin(bob_time*2.0)*0.015
-        items.rotation=items.rotation.lerp(target_rotation,delta*12.0)
-    else:
-        items.position=items.position.lerp(weapon_position,delta*10.0)
-        items.rotation=items.rotation.lerp(weapon_rotation,delta*10.0)
+	rotation.y=rotation_y
+	camera.rotation.x=rotation_x
+	var horizontal_velocity=Vector3(velocity.x,0,velocity.z)
+	var movement_speed=horizontal_velocity.length()
+	var input_dir:=Input.get_vector("left","right","up","down")
+	if movement_speed>0.1 and is_on_floor():
+		bob_time+=delta*bob_speed*(movement_speed/speed)
+		var current_step=int(floor(bob_time/PI))
+		if current_step!=last_step:
+			$step_sound.play()
+			last_step=current_step
+		var bob_x=sin(bob_time)*bob_side_amount
+		var bob_y=abs(cos(bob_time))*bob_amount
+		var target_position=weapon_position
+		target_position.x+=bob_x
+		target_position.y-=bob_y
+		items.position=items.position.lerp(target_position,delta*12.0)
+		var target_rotation=weapon_rotation
+		target_rotation.z-=input_dir.x*bob_roll_amount
+		target_rotation.x-=sin(bob_time*2.0)*0.015
+		items.rotation=items.rotation.lerp(target_rotation,delta*12.0)
+	else:
+		items.position=items.position.lerp(weapon_position,delta*10.0)
+		items.rotation=items.rotation.lerp(weapon_rotation,delta*10.0)
 
 func _physics_process(delta: float) -> void:
-    var input_dir:= Vector2.ZERO
-    input_dir.x = Input.get_axis("left", "right")
-    input_dir.y = Input.get_axis("up", "down")
-    if not is_on_floor():
-        velocity+=get_gravity()*delta
-    elif Input.is_action_pressed("space"):
-        $step_sound.play()
-        air_acceleration *= air_acceleration_factor * input_dir.length()
-        velocity.y = get_gravity().y * -jump_velocity
-    if Input.is_action_pressed("shoot") and not reloading:
-        shoot()
-    if Input.is_action_just_pressed("reload") and not reloading:
-        reload()
-    air_acceleration = maxf(air_acceleration - delta / deceleration, 1.0)
+	var input_dir:= Vector2.ZERO
+	input_dir.x = Input.get_axis("left", "right")
+	input_dir.y = Input.get_axis("up", "down")
+	if not is_on_floor():
+		velocity+=get_gravity()*delta
+	elif Input.is_action_pressed("space"):
+		$step_sound.play()
+		air_acceleration *= air_acceleration_factor * input_dir.length()
+		velocity.y = get_gravity().y * -jump_velocity
+	if Input.is_action_pressed("shoot") and not reloading:
+		shoot()
+	if Input.is_action_just_pressed("reload") and not reloading:
+		reload()
+	air_acceleration = maxf(air_acceleration - delta / deceleration, 1.0)
 
-    var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y))
-    if not direction.is_zero_approx():
-        var s := speed * air_acceleration
-        velocity.x = lerp(velocity.x, direction.x * s, 1.0 - exp(-delta * speed * acceleration))
-        velocity.z = lerp(velocity.z, direction.z * s, 1.0 - exp(-delta * speed * acceleration))
-    else:
-        velocity.x = lerp(velocity.x, 0.0, 1.0 - exp(-delta * speed * deceleration))
-        velocity.z = lerp(velocity.z, 0.0, 1.0 - exp(-delta * speed * deceleration))
-    
-    move_and_slide()
+	var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y))
+	if not direction.is_zero_approx():
+		var s := speed * air_acceleration
+		velocity.x = lerp(velocity.x, direction.x * s, 1.0 - exp(-delta * speed * acceleration))
+		velocity.z = lerp(velocity.z, direction.z * s, 1.0 - exp(-delta * speed * acceleration))
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 1.0 - exp(-delta * speed * deceleration))
+		velocity.z = lerp(velocity.z, 0.0, 1.0 - exp(-delta * speed * deceleration))
+	
+	move_and_slide()

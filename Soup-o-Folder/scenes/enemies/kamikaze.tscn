@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://drmqlhnmq28wk"]
+[gd_scene load_steps=21 format=3 uid="uid://drmqlhnmq28wk"]
 
 [ext_resource type="Script" uid="uid://bnj0kwi6g2eor" path="res://Soup-o-Folder/scripts/hitbox.gd" id="1_2htt1"]
 [ext_resource type="Script" uid="uid://2rtjg3gmud5c" path="res://Soup-o-Folder/scenes/enemies/kamikaze.gd" id="1_syp4m"]
@@ -12,6 +12,7 @@
 [ext_resource type="ArrayMesh" uid="uid://clo2ptf0413cu" path="res://Soup-o-Folder/media/models/kamikaze_arm.vox" id="9_syp4m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcrh8"]
+radius = 0.612254
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mcrh8"]
 
@@ -261,6 +262,10 @@ _data = {
 &"run": SubResource("Animation_amtkj")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_syp4m"]
+radius = 1.03861
+height = 2.07722
+
 [node name="Kamikaze" type="CharacterBody3D" node_paths=PackedStringArray("explosion_area") groups=["Enemy"]]
 collision_layer = 0
 script = ExtResource("1_syp4m")
@@ -290,9 +295,10 @@ script = ExtResource("2_i6iie")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16113, 0)
 stream = ExtResource("3_i6iie")
-volume_db = -80.0
+max_db = 2.0
 pitch_scale = 2.0
 autoplay = true
+max_distance = 15.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = SubResource("BehaviorTree_bpt3g")
@@ -341,5 +347,10 @@ libraries = {
 }
 autoplay = "run"
 
-[connection signal="damaged" from="Hitbox" to="Health" method="damage"]
-[connection signal="killed" from="Health" to="." method="queue_free"]
+[node name="bomb_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bomb_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03152, 0)
+shape = SubResource("CapsuleShape3D_syp4m")
+
+[connection signal="body_entered" from="bomb_area" to="." method="_on_bomb_area_body_entered"]

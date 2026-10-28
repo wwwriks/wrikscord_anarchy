@@ -1,10 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://dae2h7iie575n"]
+[gd_scene load_steps=5 format=3 uid="uid://dae2h7iie575n"]
+
+[ext_resource type="Script" uid="uid://h6cuut2b8t44" path="res://Soup-o-Folder/scripts/bullet.gd" id="1_o0hil"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jvt1s"]
 radius = 0.195531
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hoyy7"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jvt1s"]
+material = SubResource("StandardMaterial3D_hoyy7")
+flip_faces = true
+
 [node name="bullet_area" type="Area3D"]
+script = ExtResource("1_o0hil")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_jvt1s")
 debug_color = Color(0.576471, 0.266667, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.55343e-17, 5.46392e-09, 0.05, 0.05, -5.46392e-09, 0, 2.18557e-09, 0.125, -2.18557e-09, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_jvt1s")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
