@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://drmqlhnmq28wk"]
+[gd_scene load_steps=20 format=3 uid="uid://drmqlhnmq28wk"]
 
 [ext_resource type="Script" uid="uid://bnj0kwi6g2eor" path="res://Soup-o-Folder/scripts/hitbox.gd" id="1_2htt1"]
+[ext_resource type="Script" uid="uid://2rtjg3gmud5c" path="res://Soup-o-Folder/scenes/enemies/kamikaze.gd" id="1_syp4m"]
 [ext_resource type="Script" uid="uid://cnmjxbddan74q" path="res://Soup-o-Folder/scripts/health.gd" id="2_i6iie"]
 [ext_resource type="AudioStream" uid="uid://dws4ngc3jtpym" path="res://Soup-o-Folder/media/sfx/sound/enemies/scream.wav" id="3_i6iie"]
 [ext_resource type="Script" uid="uid://brwfi0aj3v68j" path="res://ai/tasks/follow_player.gd" id="4_bpt3g"]
@@ -260,8 +261,10 @@ _data = {
 &"run": SubResource("Animation_amtkj")
 }
 
-[node name="Kamikaze" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Kamikaze" type="CharacterBody3D" node_paths=PackedStringArray("explosion_area") groups=["Enemy"]]
 collision_layer = 0
+script = ExtResource("1_syp4m")
+explosion_area = NodePath("Hitbox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -339,3 +342,4 @@ libraries = {
 autoplay = "run"
 
 [connection signal="damaged" from="Hitbox" to="Health" method="damage"]
+[connection signal="killed" from="Health" to="." method="queue_free"]

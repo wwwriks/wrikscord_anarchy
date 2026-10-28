@@ -859,6 +859,7 @@ texture = ExtResource("3_dl7ft")
 [node name="GunRaycast" type="RayCast3D" parent="Camera3D/items/gun_gun"]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -100)
+collide_with_areas = true
 
 [node name="items_anim" type="AnimationPlayer" parent="Camera3D/items"]
 libraries = {
