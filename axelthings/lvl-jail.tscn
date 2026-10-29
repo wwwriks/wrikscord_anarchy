@@ -1,0 +1,193 @@
+[gd_scene load_steps=14 format=3 uid="uid://btq43nvx5fxso"]
+
+[ext_resource type="Script" uid="uid://c8r6otbe6mg5c" path="res://axelthings/s-jail.gd" id="1_kn2v3"]
+[ext_resource type="Material" uid="uid://dmml1qshnyjjd" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.tres" id="1_wub6p"]
+[ext_resource type="FontFile" uid="uid://iv7gjap65x3t" path="res://rvvnd/assets/font/Syne-Extra.ttf" id="2_kn2v3"]
+[ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/MarbleGame/Prefabs/Player.tscn" id="3_tjodd"]
+[ext_resource type="AudioStream" uid="uid://k04l26g2klg5" path="res://axelthings/Hammer Prison.wav" id="4_tjodd"]
+[ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="6_sry3p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sry3p"]
+material = ExtResource("1_wub6p")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kn2v3"]
+data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8e1gq"]
+font = ExtResource("6_sry3p")
+font_size = 156
+font_color = Color(1, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.86, 4.08)
+
+[sub_resource type="Animation" id="Animation_sry3p"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:shadow_offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.503828, 0.746412, 0.998326, 1.26499, 1.50215, 1.74474, 2.00598, 2.27265, 2.50981, 2.75239, 3.01364, 3.2803, 3.51746, 3.76005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.76005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8e1gq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:shadow_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.86, 4.08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tljqo"]
+_data = {
+&"RESET": SubResource("Animation_8e1gq"),
+&"new_animation": SubResource("Animation_sry3p")
+}
+
+[sub_resource type="Environment" id="Environment_sry3p"]
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(0.525101, 0.525101, 0.525101, 1)
+
+[node name="Lvl-jail" type="Node3D"]
+script = ExtResource("1_kn2v3")
+
+[node name="Platform" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sry3p")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_kn2v3")
+
+[node name="Label3D2" type="Label3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35385, -5.66921)
+pixel_size = 0.0175
+text = "WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!"
+font = ExtResource("2_kn2v3")
+outline_size = 0
+
+[node name="Label3D3" type="Label3D" parent="Platform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.66921, 3.35385, 2.47809e-07)
+pixel_size = 0.0175
+text = "WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!"
+font = ExtResource("2_kn2v3")
+outline_size = 0
+
+[node name="Label3D4" type="Label3D" parent="Platform"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.95618e-07, 3.35385, 5.66921)
+pixel_size = 0.0175
+text = "WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!"
+font = ExtResource("2_kn2v3")
+outline_size = 0
+
+[node name="Label3D" type="Label3D" parent="Platform"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.66921, 3.35385, -7.43427e-07)
+pixel_size = 0.0175
+text = "WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!
+WELCOME TO JAIL!!!"
+font = ExtResource("2_kn2v3")
+outline_size = 0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.920246, 0)
+stream = ExtResource("4_tjodd")
+autoplay = true
+
+[node name="Ball" parent="." instance=ExtResource("3_tjodd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9606, 0)
+moveSpeed = 2
+maxSpeed = 12
+minSpeed = 2
+
+[node name="Camera3D" parent="Ball/Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.931234, 0.364422, 0, -0.364422, 0.931234, -1.42863, -0.481323, -2.32614)
+
+[node name="blobshadow" parent="Ball" index="3"]
+visible = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = 141.0
+offset_right = 703.0
+offset_bottom = 337.0
+text = "BUSTED!!!"
+label_settings = SubResource("LabelSettings_8e1gq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_tljqo")
+}
+autoplay = "new_animation"
+speed_scale = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sry3p")
+
+[editable path="Ball"]

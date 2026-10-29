@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://drguqisiyad4c"]
+
+[ext_resource type="Script" uid="uid://ydj7i61xlwqp" path="res://axelthings/s-policecar.gd" id="1_dyscd"]
+[ext_resource type="PackedScene" uid="uid://b1nnliqk5thwd" path="res://axelthings/mesh-policecar.glb" id="2_sepfl"]
+[ext_resource type="AudioStream" uid="uid://l3vt8bbhuot" path="res://axelthings/police.wav" id="3_sepfl"]
+
+[sub_resource type="Animation" id="Animation_sepfl"]
+resource_name = "lights"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ptprb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ot75s"]
+_data = {
+&"RESET": SubResource("Animation_ptprb"),
+&"lights": SubResource("Animation_sepfl")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sepfl"]
+size = Vector3(8.73973, 2.84775, 3.2448)
+
+[node name="Obj-policecar" type="Node3D"]
+script = ExtResource("1_dyscd")
+
+[node name="PoliceRotator" type="Node3D" parent="."]
+
+[node name="mesh-policecar" parent="PoliceRotator" instance=ExtResource("2_sepfl")]
+transform = Transform3D(0.982077, -0.111664, 0.15184, 0, 0.805608, 0.592449, -0.188478, -0.581831, 0.791169, 0, 0, 26.7833)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PoliceRotator/mesh-policecar"]
+stream = ExtResource("3_sepfl")
+unit_size = 2.0
+pitch_scale = 1.2
+autoplay = true
+doppler_tracking = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="PoliceRotator/mesh-policecar"]
+transform = Transform3D(1, -7.45058e-09, 0, -7.45058e-09, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.137396, 2.10827, 0.661781)
+light_color = Color(1, 0, 0, 1)
+light_energy = 300.0
+shadow_enabled = true
+omni_range = 50.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="PoliceRotator/mesh-policecar"]
+transform = Transform3D(1, 1.49012e-08, -4.47035e-08, -2.98023e-08, 1, 2.98023e-08, 4.47035e-08, -2.98023e-08, 1, 0.0864592, 2.16106, -0.555344)
+light_color = Color(0, 0, 1, 1)
+light_energy = 300.0
+shadow_enabled = true
+omni_range = 50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PoliceRotator/mesh-policecar"]
+libraries = {
+&"": SubResource("AnimationLibrary_ot75s")
+}
+autoplay = "lights"
+speed_scale = 3.0
+
+[node name="Area3D" type="Area3D" parent="PoliceRotator/mesh-policecar"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PoliceRotator/mesh-policecar/Area3D"]
+transform = Transform3D(1, -6.25849e-07, 0, -2.98023e-08, 1, 2.98023e-08, 4.47035e-08, 2.98023e-08, 1, 1.01385, 1.03482, 0.053833)
+shape = SubResource("BoxShape3D_sepfl")
+
+[connection signal="body_entered" from="PoliceRotator/mesh-policecar/Area3D" to="." method="_on_area_3d_body_entered"]
