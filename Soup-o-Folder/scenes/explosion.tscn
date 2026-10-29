@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://c766w7by6dy72"]
+[gd_scene load_steps=29 format=3 uid="uid://c766w7by6dy72"]
 
 [ext_resource type="Script" uid="uid://baluwkaro3sh5" path="res://Soup-o-Folder/scripts/explosion.gd" id="1_badjt"]
 [ext_resource type="Texture2D" uid="uid://bj7t8mi58d7yu" path="res://Soup-o-Folder/media/gfx/explosion.png" id="2_nfvi4"]
 [ext_resource type="AudioStream" uid="uid://dk8fedtuaq2ko" path="res://Soup-o-Folder/media/sfx/sound/explode1.mp3" id="3_nfvi4"]
+[ext_resource type="Texture2D" uid="uid://dedyxp2m6kh25" path="res://Soup-o-Folder/media/gfx/blood.webp" id="4_u681r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u681r"]
 atlas = ExtResource("2_nfvi4")
@@ -138,6 +139,40 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="Curve" id="Curve_ld7g5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.254961, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xhyaq"]
+curve = SubResource("Curve_ld7g5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ewsl1"]
+emission_shape = 1
+emission_sphere_radius = 0.8
+angle_min = -249.1
+angle_max = 93.4
+angular_velocity_min = -291.89
+angular_velocity_max = 198.49
+orbit_velocity_min = -0.595
+orbit_velocity_max = 0.735
+radial_velocity_min = -10.81
+radial_velocity_max = 16.21
+scale_curve = SubResource("CurveTexture_xhyaq")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao81s"]
+transparency = 1
+albedo_color = Color(0.933316, 9.78017e-05, 4.67831e-05, 1)
+albedo_texture = ExtResource("4_u681r")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4bxna"]
+material = SubResource("StandardMaterial3D_ao81s")
+
 [node name="explosion" type="Node3D"]
 script = ExtResource("1_badjt")
 
@@ -153,6 +188,17 @@ frame_progress = 1.0
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_nfvi4")
 autoplay = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613602, 0)
+emitting = false
+amount = 75
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ewsl1")
+draw_pass_1 = SubResource("QuadMesh_4bxna")
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
 [connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

@@ -12,7 +12,7 @@ extends Node3D
 @export var max_enemies_per_wave: int=50
 
 @export_group("Wave Timing")
-@export var wave_break_delay: float=8.0
+@export var wave_break_delay: float=5.0
 @export var spawn_radius: float=1.0
 
 var current_enemy_count: int=0
