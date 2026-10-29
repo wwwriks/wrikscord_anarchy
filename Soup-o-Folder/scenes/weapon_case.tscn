@@ -81,6 +81,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_asfe5"]
 
 [node name="weapon_case" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0178161, -0.00280255, 0.00284219)
 script = ExtResource("1_ms8sj")
 
 [node name="case" type="MeshInstance3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=39 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://d3hj1swgj8vf5" path="res://Soup-o-Folder/media/sfx/sound/machinegun_shoot.wav" id="11_7dy2v"]
 [ext_resource type="AudioStream" uid="uid://sjntee0pwcf3" path="res://Soup-o-Folder/media/sfx/sound/snow_step.wav" id="12_p0a5f"]
 [ext_resource type="Texture2D" uid="uid://dhiudgxta2ut6" path="res://Soup-o-Folder/media/gfx/crosshair-121.png" id="13_7dy2v"]
+[ext_resource type="Script" uid="uid://bx5widx8e7njc" path="res://Soup-o-Folder/scripts/ui.gd" id="14_h77cb"]
 [ext_resource type="Texture2D" uid="uid://b7akbxhb4trac" path="res://Soup-o-Folder/media/gfx/heart.png" id="15_rm7ct"]
 [ext_resource type="Texture2D" uid="uid://cdfdi1veste88" path="res://Soup-o-Folder/media/gfx/skull.png" id="21_3062p"]
 
@@ -905,6 +906,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.269104)
 
 [node name="ui" type="Node2D" parent="."]
+script = ExtResource("14_h77cb")
 
 [node name="kills_label" type="RichTextLabel" parent="ui"]
 offset_left = 232.0

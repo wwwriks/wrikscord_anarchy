@@ -10,10 +10,12 @@ var hp=3
 
 var mouse_sens=0.005
 
+var kills=-1
+
 var reloading=false
 var current_gun="gun"
-var ammo=25
-var total_ammo=25
+var ammo=20
+var total_ammo=20
 
 const max_look_up=deg_to_rad(90)
 const max_look_down=deg_to_rad(-90)
@@ -44,6 +46,7 @@ func update_ammo_label():
 	$ui/ammo_label.text="[shake]"+str(ammo)
 
 func _ready() -> void:
+	kill_count()
 	change_weapon(current_gun)
 	update_ammo_label()
 	blood_handler()
@@ -55,8 +58,13 @@ func _ready() -> void:
 func blood_handler():
 	match hp:
 		3:
+			$ui/Heart1.show()
+			$ui/Heart2.show()
+			$ui/Heart3.show()
 			$ui/blood.modulate="#96969600"
 		2:
+			$ui/Heart1.show()
+			$ui/Heart2.show()
 			$ui/Heart3.hide()
 			$ui/blood.modulate="#969696a1"
 		1:
@@ -64,6 +72,10 @@ func blood_handler():
 			$ui/blood.modulate="#969696"
 		0:
 			pass
+
+func kill_count():
+	kills+=1
+	$ui/kills_label.text="[shake]"+str(kills)
 
 func take_damage():
 	hp-=1

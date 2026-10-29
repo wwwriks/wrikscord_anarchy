@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cgddqspa1b5s7"]
+[gd_scene load_steps=43 format=3 uid="uid://cgddqspa1b5s7"]
 
 [ext_resource type="Script" uid="uid://exho1d4oydgy" path="res://Soup-o-Folder/scripts/arena.gd" id="1_d8x06"]
 [ext_resource type="Texture2D" uid="uid://bws261pqqyua1" path="res://Soup-o-Folder/media/gfx/birchwood_4k.hdr" id="1_oimwn"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://clbfyjkcsj20j" path="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Button.ogg" id="13_hbwv6"]
 [ext_resource type="Script" uid="uid://qeipp6duixpo" path="res://Soup-o-Folder/scripts/music.gd" id="14_uhv7q"]
 [ext_resource type="Texture2D" uid="uid://bh1yp4oamff37" path="res://Soup-o-Folder/media/gfx/estonia_swag.png" id="17_cak82"]
+[ext_resource type="PackedScene" uid="uid://cc0ss5q7ikw7a" path="res://Soup-o-Folder/scenes/hp_case.tscn" id="18_818fg"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_t3sju"]
 clip_count = 5
@@ -206,6 +207,7 @@ enemies = Array[PackedScene]([ExtResource("2_t3sju")])
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_t3sju")
 autoplay = true
+bus = &"Music"
 script = ExtResource("14_uhv7q")
 
 [node name="EnemyGroupDelay" type="Timer" parent="."]
@@ -706,3 +708,6 @@ billboard = 2
 shaded = true
 text = "mike klubnika"
 font_size = 150
+
+[node name="weapon_case2" parent="." instance=ExtResource("18_818fg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275055, 0.513199, -8.16157)

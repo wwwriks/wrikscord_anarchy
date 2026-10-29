@@ -3,22 +3,30 @@ extends CharacterBody3D
 @export var explosion_area: Area3D
 @export var explosion_scene: PackedScene=preload("res://Soup-o-Folder/scenes/explosion.tscn")
 @export var weapon_case_scene: PackedScene=preload("res://Soup-o-Folder/scenes/weapon_case.tscn")
+@export var hp_scene_case: PackedScene=preload("res://Soup-o-Folder/scenes/hp_case.tscn")
 
 var damage_given=false
 
 func _spawn_explosion() -> void:
+	var drop_chance=randi_range(1, 5)
+	match drop_chance:
+		1:
+			#var weapon_box=weapon_case_scene.instantiate()
+			#get_parent().add_child(weapon_box)
+			#weapon_box.global_position=global_position
+			#print("spawn weapon case")
+			pass
+		2:
+			#var hp_box=hp_scene_case.instantiate()
+			#get_parent().add_child(hp_box)
+			#hp_box.global_position=global_position
+			#print("spawn weapon case")
+			pass
 	if explosion_scene==null:
 		return
 	var expl:=explosion_scene.instantiate() as Node3D
 	get_parent().add_child(expl)
 	expl.global_position=global_position
-
-func _spawn_case() -> void:
-	if weapon_case_scene==null:
-		return
-	var weapon_case:=weapon_case_scene.instantiate() as Node3D
-	get_parent().add_child(weapon_case)
-	weapon_case.global_position=global_position
 
 func _on_bomb_area_body_entered(b: Node3D) -> void:
 	if damage_given:
