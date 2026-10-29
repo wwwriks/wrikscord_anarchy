@@ -8,20 +8,18 @@ extends CharacterBody3D
 var damage_given=false
 
 func _spawn_explosion() -> void:
-	var drop_chance=randi_range(1, 5)
+	var drop_chance=randi_range(1,5)
 	match drop_chance:
 		1:
-			#var weapon_box=weapon_case_scene.instantiate()
-			#get_parent().add_child(weapon_box)
-			#weapon_box.global_position=global_position
-			#print("spawn weapon case")
-			pass
+			var weapon_box=weapon_case_scene.instantiate()
+			get_parent().add_child(weapon_box)
+			weapon_box.global_position=global_position+Vector3(0,0.5,0)
+			print("spawn weapon case")
 		2:
-			#var hp_box=hp_scene_case.instantiate()
-			#get_parent().add_child(hp_box)
-			#hp_box.global_position=global_position
-			#print("spawn weapon case")
-			pass
+			var hp_box=hp_scene_case.instantiate()
+			get_parent().add_child(hp_box)
+			hp_box.global_position=global_position+Vector3(0,0.5,0)
+			print("spawn hp case")
 	if explosion_scene==null:
 		return
 	var expl:=explosion_scene.instantiate() as Node3D

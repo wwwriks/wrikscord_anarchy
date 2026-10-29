@@ -2,7 +2,7 @@ extends Node
 
 @export var navigation: NavigationAgent3D
 @export var character: CharacterBody3D
-@export var speed: float = 2.0
+@export var speed: float = 1.2
 @export var rotation_speed: float = 10.0
 @export var player: Node3D
 

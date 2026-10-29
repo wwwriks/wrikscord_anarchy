@@ -266,10 +266,9 @@ _data = {
 radius = 1.03861
 height = 2.07722
 
-[node name="Kamikaze" type="CharacterBody3D" node_paths=PackedStringArray("explosion_area") groups=["Enemy"]]
+[node name="Kamikaze" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 0
 script = ExtResource("1_syp4m")
-explosion_area = NodePath("Hitbox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
