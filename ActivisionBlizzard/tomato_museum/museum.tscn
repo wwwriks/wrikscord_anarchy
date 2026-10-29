@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bxrjobfpems2j"]
+[gd_scene load_steps=35 format=3 uid="uid://bxrjobfpems2j"]
 
 [ext_resource type="Texture2D" uid="uid://wi77nt62mb6g" path="res://ActivisionBlizzard/epic_sky.jpg" id="1_7wagl"]
 [ext_resource type="PackedScene" uid="uid://btwml6prkv7hi" path="res://OZQNTYPESHIT/ozqn_one/guy_dude.tscn" id="2_26ruy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bt8xycgio8iw8" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/tomato in water.jpg" id="8_l5imm"]
 [ext_resource type="Texture2D" uid="uid://dq511obsqaceg" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/tomato-ketchup.jpg" id="9_xlisb"]
 [ext_resource type="Texture2D" uid="uid://dctpfkuwrd0t3" path="res://ActivisionBlizzard/tomato_museum/wikimedia_cc0_tomato/green-tomato.jpg" id="10_p6owg"]
+[ext_resource type="PackedScene" uid="uid://drguqisiyad4c" path="res://axelthings/obj-policecar.tscn" id="12_1so7r"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aei0j"]
 panorama = ExtResource("1_7wagl")
@@ -102,6 +103,7 @@ font_size = 387
 
 [node name="GuyDude" parent="." instance=ExtResource("2_26ruy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4508, 1.15967, 23.3463)
+collision_layer = 9
 
 [node name="HappyLoop" type="AudioStreamPlayer" parent="GuyDude"]
 stream = ExtResource("3_aei0j")
@@ -269,3 +271,6 @@ transform = Transform3D(-0.988308, 0, -0.152468, 0, 1, 0, 0.152468, 0, -0.988308
 text = "Tomato Sauce"
 font = ExtResource("5_aei0j")
 font_size = 60
+
+[node name="Obj-policecar" parent="." instance=ExtResource("12_1so7r")]
+transform = Transform3D(0.362957, 0.0300765, -0.0714271, -0.0746153, 0.228082, -0.283118, 0.0209518, 0.291236, 0.229101, -9.44306, 9.10307, 11.3867)

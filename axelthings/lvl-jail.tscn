@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://btq43nvx5fxso"]
+[gd_scene load_steps=15 format=3 uid="uid://btq43nvx5fxso"]
 
 [ext_resource type="Script" uid="uid://c8r6otbe6mg5c" path="res://axelthings/s-jail.gd" id="1_kn2v3"]
 [ext_resource type="Material" uid="uid://dmml1qshnyjjd" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.tres" id="1_wub6p"]
 [ext_resource type="FontFile" uid="uid://iv7gjap65x3t" path="res://rvvnd/assets/font/Syne-Extra.ttf" id="2_kn2v3"]
+[ext_resource type="Script" uid="uid://401kevq1mhkf" path="res://axelthings/s-rotator.gd" id="3_8e1gq"]
 [ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/MarbleGame/Prefabs/Player.tscn" id="3_tjodd"]
 [ext_resource type="AudioStream" uid="uid://k04l26g2klg5" path="res://axelthings/Hammer Prison.wav" id="4_tjodd"]
 [ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="6_sry3p"]
@@ -93,6 +94,7 @@ script = ExtResource("1_kn2v3")
 
 [node name="Platform" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_sry3p")
+script = ExtResource("3_8e1gq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
 
@@ -102,6 +104,7 @@ shape = SubResource("ConcavePolygonShape3D_kn2v3")
 [node name="Label3D2" type="Label3D" parent="Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35385, -5.66921)
 pixel_size = 0.0175
+modulate = Color(1, 0, 0, 1)
 text = "WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
@@ -116,6 +119,7 @@ outline_size = 0
 [node name="Label3D3" type="Label3D" parent="Platform"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.66921, 3.35385, 2.47809e-07)
 pixel_size = 0.0175
+modulate = Color(1, 0, 0, 1)
 text = "WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
@@ -130,6 +134,7 @@ outline_size = 0
 [node name="Label3D4" type="Label3D" parent="Platform"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.95618e-07, 3.35385, 5.66921)
 pixel_size = 0.0175
+modulate = Color(1, 0, 0, 1)
 text = "WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
@@ -144,6 +149,7 @@ outline_size = 0
 [node name="Label3D" type="Label3D" parent="Platform"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.66921, 3.35385, -7.43427e-07)
 pixel_size = 0.0175
+modulate = Color(1, 0, 0, 1)
 text = "WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
 WELCOME TO JAIL!!!
