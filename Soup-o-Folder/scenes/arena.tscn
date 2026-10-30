@@ -125,7 +125,6 @@ noise = SubResource("FastNoiseLite_a3wqe")
 shader = ExtResource("5_a3wqe")
 shader_parameter/base_color = Color(0, 0, 0, 1)
 shader_parameter/node_resolution = Vector2(0, 0)
-shader_parameter/factor = 1.0
 shader_parameter/width = 0.4
 shader_parameter/gradient_texture = SubResource("NoiseTexture2D_oqmv4")
 shader_parameter/gradient_fixed = false
@@ -140,14 +139,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/factor")
+tracks/0/path = NodePath(".:instance_shader_parameters/factor")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_o8exx"]
@@ -155,7 +154,7 @@ resource_name = "out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/factor")
+tracks/0/path = NodePath(".:instance_shader_parameters/factor")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -285,8 +284,9 @@ debug_color = Color(0.964706, 0, 0.490196, 1)
 [node name="weapon_case" parent="." instance=ExtResource("4_2x6ba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92097, 0.6, -10.5899)
 
-[node name="transition" type="ColorRect" parent="."]
+[node name="transition" type="ColorRect" parent="." groups=["transition_screen"]]
 material = SubResource("ShaderMaterial_oqmv4")
+instance_shader_parameters/factor = 0.0
 custom_minimum_size = Vector2(640, 480)
 offset_right = 40.0
 offset_bottom = 40.0

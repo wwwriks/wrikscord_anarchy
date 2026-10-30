@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform vec4 base_color : source_color;
 uniform vec2 node_resolution;
 
-uniform float factor : hint_range(0.0, 1.0, 0.01) = 0.54;
+instance uniform float factor : hint_range(0.0, 1.0, 0.01) = 0.54;
 uniform float width = 0.4;
 
 group_uniforms gradient;
