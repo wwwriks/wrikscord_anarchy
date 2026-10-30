@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btq43nvx5fxso"]
+[gd_scene load_steps=17 format=3 uid="uid://btq43nvx5fxso"]
 
 [ext_resource type="Script" uid="uid://c8r6otbe6mg5c" path="res://axelthings/s-jail.gd" id="1_kn2v3"]
 [ext_resource type="Material" uid="uid://dmml1qshnyjjd" path="res://OZQNTYPESHIT/ozqn_one/assets/platform.tres" id="1_wub6p"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/MarbleGame/Prefabs/Player.tscn" id="3_tjodd"]
 [ext_resource type="AudioStream" uid="uid://k04l26g2klg5" path="res://axelthings/Hammer Prison.wav" id="4_tjodd"]
 [ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="6_sry3p"]
+[ext_resource type="Texture2D" uid="uid://cp4moqk5mdchf" path="res://Soup-o-Folder/media/gfx/wriksity.png" id="7_tljqo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sry3p"]
 material = ExtResource("1_wub6p")
@@ -15,6 +16,16 @@ size = Vector3(10, 1, 10)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kn2v3"]
 data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bjeh"]
+albedo_texture = ExtResource("7_tljqo")
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 0.35
+uv1_scale = Vector3(1.51, 1.51, 1.51)
+uv1_offset = Vector3(1.585, 0.43, 0)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0
+
 [sub_resource type="LabelSettings" id="LabelSettings_8e1gq"]
 font = ExtResource("6_sry3p")
 font_size = 156
@@ -22,6 +33,33 @@ font_color = Color(1, 0, 0, 1)
 shadow_size = 8
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2.86, 4.08)
+
+[sub_resource type="Animation" id="Animation_8e1gq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:shadow_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.86, 4.08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_sry3p"]
 resource_name = "new_animation"
@@ -49,33 +87,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_8e1gq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:label_settings:shadow_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.86, 4.08)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tljqo"]
@@ -171,6 +182,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9606, 0)
 moveSpeed = 2
 maxSpeed = 12
 minSpeed = 2
+
+[node name="MeshInstance3D" parent="Ball" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7bjeh")
 
 [node name="Camera3D" parent="Ball/Node3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.931234, 0.364422, 0, -0.364422, 0.931234, -1.42863, -0.481323, -2.32614)

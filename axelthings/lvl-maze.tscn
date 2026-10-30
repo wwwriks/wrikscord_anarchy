@@ -1,0 +1,236 @@
+[gd_scene load_steps=20 format=3 uid="uid://b5ip7emws41pm"]
+
+[ext_resource type="Script" uid="uid://c8r6otbe6mg5c" path="res://axelthings/s-jail.gd" id="1_anmfx"]
+[ext_resource type="AudioStream" uid="uid://bolyrltqo4mj0" path="res://axelthings/ballmove.wav" id="3_anmfx"]
+[ext_resource type="Texture2D" uid="uid://cp4moqk5mdchf" path="res://Soup-o-Folder/media/gfx/wriksity.png" id="3_tgr8p"]
+[ext_resource type="Script" uid="uid://c7nwy8vxldyoa" path="res://axelthings/s-ballmove.gd" id="4_23j4l"]
+[ext_resource type="PackedScene" uid="uid://dxxyk7dd851j5" path="res://axelthings/mesh-maze.glb" id="4_up5xi"]
+[ext_resource type="Texture2D" uid="uid://btcbdi2ofopeb" path="res://MORGANFOLDER/ChudOdyssey/CaveComputer/dirt4.png" id="5_k850j"]
+[ext_resource type="Script" uid="uid://yqxu00iso1p8" path="res://axelthings/s-nojumping.gd" id="6_1hwbh"]
+[ext_resource type="PackedScene" uid="uid://c5cdtd43eeyjb" path="res://MORGANFOLDER/MarbleGame/Prefabs/Player.tscn" id="6_5bomt"]
+[ext_resource type="AudioStream" uid="uid://c52rlocdyxhq6" path="res://axelthings/crickets.ogg" id="6_k850j"]
+[ext_resource type="FontFile" uid="uid://csy5e2hl64hvp" path="res://LibertinusSans-Italic.ttf" id="7_g5oij"]
+[ext_resource type="AudioStream" uid="uid://dk8fedtuaq2ko" path="res://Soup-o-Folder/media/sfx/sound/explode1.mp3" id="7_qrn0u"]
+
+[sub_resource type="Environment" id="Environment_sry3p"]
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(0.525101, 0.525101, 0.525101, 1)
+fog_enabled = true
+fog_light_color = Color(0.192622, 0.365919, 0.300926, 1)
+fog_sun_scatter = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5bomt"]
+albedo_texture = ExtResource("3_tgr8p")
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 0.35
+uv1_scale = Vector3(1.51, 1.51, 1.51)
+uv1_offset = Vector3(1.585, 0.43, 0)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8e1gq"]
+font = ExtResource("7_g5oij")
+font_size = 114
+font_color = Color(1, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.86, 4.08)
+
+[sub_resource type="Animation" id="Animation_8e1gq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:shadow_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.86, 4.08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sry3p"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:shadow_offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.503828, 0.746412, 0.998326, 1.26499, 1.50215, 1.74474, 2.00598, 2.27265, 2.50981, 2.75239, 3.01364, 3.2803, 3.51746, 3.76005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41), Vector2(2.86, 4.08), Vector2(6.205, 9.41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.76005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tljqo"]
+_data = {
+&"RESET": SubResource("Animation_8e1gq"),
+&"new_animation": SubResource("Animation_sry3p")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_23j4l"]
+font = ExtResource("7_g5oij")
+font_size = 104
+font_color = Color(1, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.86, 4.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anmfx"]
+albedo_texture = ExtResource("5_k850j")
+
+[node name="Lvl-jail" type="Node3D"]
+script = ExtResource("1_anmfx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sry3p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.964125, -0.249687, 0.0901059, 0.0468213, 0.174165, 0.983603, -0.261286, 0.952535, -0.156226, 0, 0, 0)
+light_color = Color(0.96, 0.66768, 0.3552, 1)
+light_energy = 10.76
+shadow_enabled = true
+
+[node name="Ball" parent="." instance=ExtResource("6_5bomt")]
+transform = Transform3D(-0.623784, 0, 0.781597, 0, 1, 0, -0.781597, 0, -0.623784, 32.1062, 3.53955, -35.1932)
+moveSpeed = 2
+maxSpeed = 12
+minSpeed = 2
+jumpForce = 0
+doubleJumpForce = 0
+
+[node name="MeshInstance3D" parent="Ball" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5bomt")
+
+[node name="Camera3D" parent="Ball/Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.931234, 0.364422, 0, -0.364422, 0.931234, -1.34339, -0.733904, -2.74758)
+
+[node name="blobshadow" parent="Ball" index="3"]
+visible = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ball"]
+stream = ExtResource("3_anmfx")
+autoplay = true
+script = ExtResource("4_23j4l")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 143.0
+offset_right = 731.0
+offset_bottom = 339.0
+text = "MAZE TIME!"
+label_settings = SubResource("LabelSettings_8e1gq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_tljqo")
+}
+autoplay = "new_animation"
+speed_scale = 3.0
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = 19.0
+offset_top = 173.0
+offset_right = 676.0
+offset_bottom = 350.0
+text = "NO JUMPING!"
+label_settings = SubResource("LabelSettings_23j4l")
+script = ExtResource("6_1hwbh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
+libraries = {
+&"": SubResource("AnimationLibrary_tljqo")
+}
+speed_scale = 3.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Label2"]
+stream = ExtResource("7_qrn0u")
+volume_db = 12.0
+pitch_scale = 0.5
+
+[node name="mesh-maze" parent="." instance=ExtResource("4_up5xi")]
+
+[node name="Cylinder" parent="mesh-maze" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_001" parent="mesh-maze" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_002" parent="mesh-maze" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_003" parent="mesh-maze" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_004" parent="mesh-maze" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_005" parent="mesh-maze" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_006" parent="mesh-maze" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_007" parent="mesh-maze" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_008" parent="mesh-maze" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_009" parent="mesh-maze" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_010" parent="mesh-maze" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_011" parent="mesh-maze" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Plane_012" parent="mesh-maze" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_anmfx")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-0.846827, 0.0730553, -0.526827, -0.0350291, 0.980711, 0.192302, 0.530714, 0.1813, -0.827933, 0.847684, 0.675699, 0.864886)
+text = "wow you made it here,
+that probably took a while"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.3936, 0)
+stream = ExtResource("6_k850j")
+unit_size = 15.0
+autoplay = true
+
+[editable path="Ball"]
+[editable path="mesh-maze"]
