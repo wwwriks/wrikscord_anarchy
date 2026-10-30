@@ -41,7 +41,7 @@ initial_clip = 2
 _transitions = {
 Vector2i(-1, 1): {
 "fade_beats": 1.0,
-"fade_mode": 0,
+"fade_mode": 2,
 "from_time": 1,
 "to_time": 1
 },
@@ -54,13 +54,13 @@ Vector2i(0, 2): {
 Vector2i(0, 4): {
 "fade_beats": 1.0,
 "fade_mode": 3,
-"from_time": 0,
+"from_time": 1,
 "to_time": 0
 },
 Vector2i(3, 0): {
 "fade_beats": 1.0,
 "fade_mode": 4,
-"from_time": 0,
+"from_time": 2,
 "to_time": 1
 },
 Vector2i(4, 0): {
