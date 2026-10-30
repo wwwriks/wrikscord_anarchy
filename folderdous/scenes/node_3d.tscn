@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bukwxpys2vcba"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aq7ng"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7rxq6"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_mcxoh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1s1di"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_aq7ng")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="CharacterBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_7rxq6")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_mcxoh")
+physics_material = SubResource("PhysicsMaterial_1s1di")
