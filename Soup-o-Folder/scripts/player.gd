@@ -66,204 +66,204 @@ var camera_bob_time=0.0
 @export var bullet_scene: PackedScene=preload("res://Soup-o-Folder/scenes/bullet.tscn")
 
 func update_ammo_label():
-    $ui/ammo_label.text="[shake]"+str(ammo)
+	$ui/ammo_label.text="[shake]"+str(ammo)
 
 func _ready() -> void:
-    kill_count()
-    change_weapon(current_gun)
-    update_ammo_label()
-    blood_handler()
-    $MeshInstance3D.hide()
-    Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
-    weapon_position=items.position
-    weapon_rotation=items.rotation
-    camera_base_position=camera.position
+	kill_count()
+	change_weapon(current_gun)
+	update_ammo_label()
+	blood_handler()
+	$MeshInstance3D.hide()
+	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
+	weapon_position=items.position
+	weapon_rotation=items.rotation
+	camera_base_position=camera.position
 
 func blood_handler():
-    match hp:
-        3:
-            $ui/Heart1.show()
-            $ui/Heart2.show()
-            $ui/Heart3.show()
-            $ui/blood.modulate="#96969600"
-        2:
-            $ui/Heart1.show()
-            $ui/Heart2.show()
-            $ui/Heart3.hide()
-            $ui/blood.modulate="#969696a1"
-        1:
-            $ui/Heart2.hide()
-            $ui/blood.modulate="#969696"
-        0:
-            pass
+	match hp:
+		3:
+			$ui/Heart1.show()
+			$ui/Heart2.show()
+			$ui/Heart3.show()
+			$ui/blood.modulate="#96969600"
+		2:
+			$ui/Heart1.show()
+			$ui/Heart2.show()
+			$ui/Heart3.hide()
+			$ui/blood.modulate="#969696a1"
+		1:
+			$ui/Heart2.hide()
+			$ui/blood.modulate="#969696"
+		0:
+			pass
 
 func kill_count():
-    kills+=1
-    $ui/kills_label.text="[shake]"+str(kills)
+	kills+=1
+	$ui/kills_label.text="[shake]"+str(kills)
 
 func take_damage():
-    hp-=1
-    damage_shake=1.0
-    blood_handler()
+	hp-=1
+	damage_shake=1.0
+	blood_handler()
 
 func reload():
-    if reloading or ammo==total_ammo:
-        return
-    reloading=true
-    $Camera3D/items/items_anim.play(str(current_gun)+"_reload")
-    await $Camera3D/items/items_anim.animation_finished
-    ammo=total_ammo
-    update_ammo_label()
-    reloading=false
+	if reloading or ammo==total_ammo:
+		return
+	reloading=true
+	$Camera3D/items/items_anim.play(str(current_gun)+"_reload")
+	await $Camera3D/items/items_anim.animation_finished
+	ammo=total_ammo
+	update_ammo_label()
+	reloading=false
 
 func change_weapon(new_weapon):
-    match new_weapon:
-        "machinegun":
-            $Camera3D/items/machinegun_model.show()
-            $Camera3D/items/gun_gun.hide()
-            $Camera3D/items/shotgun_model.hide()
-            $Camera3D/items/awp_model.hide()
-            total_ammo=15
-        "gun":
-            $Camera3D/items/machinegun_model.hide()
-            $Camera3D/items/gun_gun.show()
-            $Camera3D/items/shotgun_model.hide()
-            $Camera3D/items/awp_model.hide()
-            total_ammo=8
-        "shotgun":
-            $Camera3D/items/machinegun_model.hide()
-            $Camera3D/items/gun_gun.hide()
-            $Camera3D/items/shotgun_model.show()
-            $Camera3D/items/awp_model.hide()
-            total_ammo=2
-        "awp":
-            $Camera3D/items/machinegun_model.hide()
-            $Camera3D/items/gun_gun.hide()
-            $Camera3D/items/shotgun_model.hide()
-            $Camera3D/items/awp_model.show()
-            total_ammo=1
-    current_gun=str(new_weapon)
-    ammo=total_ammo
-    reloading=false
-    update_ammo_label()
-    $Camera3D/items/items_anim.play(str(current_gun)+"_up")
+	match new_weapon:
+		"machinegun":
+			$Camera3D/items/machinegun_model.show()
+			$Camera3D/items/gun_gun.hide()
+			$Camera3D/items/shotgun_model.hide()
+			$Camera3D/items/awp_model.hide()
+			total_ammo=15
+		"gun":
+			$Camera3D/items/machinegun_model.hide()
+			$Camera3D/items/gun_gun.show()
+			$Camera3D/items/shotgun_model.hide()
+			$Camera3D/items/awp_model.hide()
+			total_ammo=8
+		"shotgun":
+			$Camera3D/items/machinegun_model.hide()
+			$Camera3D/items/gun_gun.hide()
+			$Camera3D/items/shotgun_model.show()
+			$Camera3D/items/awp_model.hide()
+			total_ammo=2
+		"awp":
+			$Camera3D/items/machinegun_model.hide()
+			$Camera3D/items/gun_gun.hide()
+			$Camera3D/items/shotgun_model.hide()
+			$Camera3D/items/awp_model.show()
+			total_ammo=1
+	current_gun=str(new_weapon)
+	ammo=total_ammo
+	reloading=false
+	update_ammo_label()
+	$Camera3D/items/items_anim.play(str(current_gun)+"_up")
 
 func shoot():
-    if ammo<=0 or reloading:
-        return
-    if $Camera3D/items/items_anim.is_playing():
-        return
-    $Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
-    $shoot_sound.play()
-    ammo-=1
-    var marker=$Camera3D/Marker3D
-    if current_gun=="shotgun":
-        for i in range(shotgun_pellets):
-            var bullet=bullet_scene.instantiate()
-            bullet.global_transform=marker.global_transform
-            bullet.rotate_object_local(Vector3.UP,deg_to_rad(randf_range(-shotgun_spread,shotgun_spread)))
-            bullet.rotate_object_local(Vector3.RIGHT,deg_to_rad(randf_range(-shotgun_spread,shotgun_spread)))
-            get_tree().current_scene.add_child(bullet)
-    else:
-        var bullet=bullet_scene.instantiate()
-        bullet.global_transform=marker.global_transform
-        get_tree().current_scene.add_child(bullet)
-    update_ammo_label()
+	if ammo<=0 or reloading:
+		return
+	if $Camera3D/items/items_anim.is_playing():
+		return
+	$Camera3D/items/items_anim.play(str(current_gun)+"_shoot")
+	$shoot_sound.play()
+	ammo-=1
+	var marker=$Camera3D/Marker3D
+	if current_gun=="shotgun":
+		for i in range(shotgun_pellets):
+			var bullet=bullet_scene.instantiate()
+			bullet.global_transform=marker.global_transform
+			bullet.rotate_object_local(Vector3.UP,deg_to_rad(randf_range(-shotgun_spread,shotgun_spread)))
+			bullet.rotate_object_local(Vector3.RIGHT,deg_to_rad(randf_range(-shotgun_spread,shotgun_spread)))
+			get_tree().current_scene.add_child(bullet)
+	else:
+		var bullet=bullet_scene.instantiate()
+		bullet.global_transform=marker.global_transform
+		get_tree().current_scene.add_child(bullet)
+	update_ammo_label()
 
 func _input(event):
-    if event is InputEventMouseMotion and Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
-        rotation_y-=event.relative.x*mouse_sens
-        rotation_x-=event.relative.y*mouse_sens
-        rotation_x=clamp(rotation_x,max_look_down,max_look_up)
-        mouse_sway.x=clamp(event.relative.x*0.002,-mouse_sway_amount,mouse_sway_amount)
-        mouse_sway.y=clamp(event.relative.y*0.002,-mouse_sway_amount,mouse_sway_amount)
+	if event is InputEventMouseMotion and Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
+		rotation_y-=event.relative.x*mouse_sens
+		rotation_x-=event.relative.y*mouse_sens
+		rotation_x=clamp(rotation_x,max_look_down,max_look_up)
+		mouse_sway.x=clamp(event.relative.x*0.002,-mouse_sway_amount,mouse_sway_amount)
+		mouse_sway.y=clamp(event.relative.y*0.002,-mouse_sway_amount,mouse_sway_amount)
 
 func _process(delta: float) -> void:
-    rotation.y=rotation_y
+	rotation.y=rotation_y
 
-    var horizontal_velocity=Vector3(velocity.x,0,velocity.z)
-    var movement_speed=horizontal_velocity.length()
-    var bob_strength=clamp(movement_speed/speed,0.0,1.0) if is_on_floor() else 0.0
+	var horizontal_velocity=Vector3(velocity.x,0,velocity.z)
+	var movement_speed=horizontal_velocity.length()
+	var bob_strength=clamp(movement_speed/speed,0.0,1.0) if is_on_floor() else 0.0
 
-    if bob_strength>0.05:
-        camera_bob_time+=delta*camera_bob_speed*clamp(movement_speed/speed,0.0,1.5)
-        var target_bob=Vector3(
-            sin(camera_bob_time)*camera_bob_side_amount,
-            -abs(sin(camera_bob_time*2.0))*camera_bob_amount,
-            sin(camera_bob_time*2.0)*camera_bob_forward_amount
-        )*bob_strength
-        var target_rotation=Vector2(
-            cos(camera_bob_time*2.0)*camera_bob_pitch,
-            sin(camera_bob_time)*camera_bob_roll
-        )*bob_strength
-        camera_bob=camera_bob.lerp(target_bob,clamp(delta*10.0,0.0,1.0))
-        camera_bob_rotation=camera_bob_rotation.lerp(target_rotation,clamp(delta*10.0,0.0,1.0))
-    else:
-        camera_bob=camera_bob.lerp(Vector3.ZERO,clamp(delta*7.0,0.0,1.0))
-        camera_bob_rotation=camera_bob_rotation.lerp(Vector2.ZERO,clamp(delta*7.0,0.0,1.0))
+	if bob_strength>0.05:
+		camera_bob_time+=delta*camera_bob_speed*clamp(movement_speed/speed,0.0,1.5)
+		var target_bob=Vector3(
+			sin(camera_bob_time)*camera_bob_side_amount,
+			-abs(sin(camera_bob_time*2.0))*camera_bob_amount,
+			sin(camera_bob_time*2.0)*camera_bob_forward_amount
+		)*bob_strength
+		var target_rotation=Vector2(
+			cos(camera_bob_time*2.0)*camera_bob_pitch,
+			sin(camera_bob_time)*camera_bob_roll
+		)*bob_strength
+		camera_bob=camera_bob.lerp(target_bob,clamp(delta*10.0,0.0,1.0))
+		camera_bob_rotation=camera_bob_rotation.lerp(target_rotation,clamp(delta*10.0,0.0,1.0))
+	else:
+		camera_bob=camera_bob.lerp(Vector3.ZERO,clamp(delta*7.0,0.0,1.0))
+		camera_bob_rotation=camera_bob_rotation.lerp(Vector2.ZERO,clamp(delta*7.0,0.0,1.0))
 
-    camera.rotation.x=rotation_x+camera_bob_rotation.x
-    camera.rotation.z=camera_bob_rotation.y
+	camera.rotation.x=rotation_x+camera_bob_rotation.x
+	camera.rotation.z=camera_bob_rotation.y
 
-    if damage_shake>0.0:
-        camera.position=camera_base_position+camera_bob+Vector3(
-            randf_range(-damage_shake_amount,damage_shake_amount)*damage_shake,
-            randf_range(-damage_shake_amount,damage_shake_amount)*damage_shake,
-            0.0
-        )
-        damage_shake=move_toward(damage_shake,0.0,delta*damage_shake_speed)
-    else:
-        camera.position=camera.position.lerp(camera_base_position+camera_bob,clamp(delta*damage_shake_speed,0.0,1.0))
+	if damage_shake>0.0:
+		camera.position=camera_base_position+camera_bob+Vector3(
+			randf_range(-damage_shake_amount,damage_shake_amount)*damage_shake,
+			randf_range(-damage_shake_amount,damage_shake_amount)*damage_shake,
+			0.0
+		)
+		damage_shake=move_toward(damage_shake,0.0,delta*damage_shake_speed)
+	else:
+		camera.position=camera.position.lerp(camera_base_position+camera_bob,clamp(delta*damage_shake_speed,0.0,1.0))
 
-    var input_dir:=Input.get_vector("left","right","up","down")
-    mouse_sway=mouse_sway.lerp(Vector2.ZERO,clamp(delta*sway_speed,0.0,1.0))
-    var target_position=weapon_position
-    var target_rotation=weapon_rotation
-    if movement_speed>0.1 and is_on_floor():
-        bob_time+=delta*bob_speed*(movement_speed/speed)
-        var current_step=int(floor(bob_time/PI))
-        if current_step!=last_step:
-            $step_sound.play()
-            last_step=current_step
-        target_position.x+=sin(bob_time)*bob_side_amount
-        target_position.y-=abs(cos(bob_time))*bob_amount
-        target_rotation.z-=input_dir.x*bob_roll_amount
-        target_rotation.x-=sin(bob_time*2.0)*0.015
-    target_position.x-=mouse_sway.x
-    target_position.y+=mouse_sway.y
-    target_rotation.y+=mouse_sway.x*mouse_sway_rotation
-    target_rotation.x+=mouse_sway.y*mouse_sway_rotation
-    target_position.y+=jump_sway*jump_sway_amount
-    target_rotation.x-=jump_sway*jump_sway_rotation
-    items.position=items.position.lerp(target_position,clamp(delta*12.0,0.0,1.0))
-    items.rotation=items.rotation.lerp(target_rotation,clamp(delta*12.0,0.0,1.0))
+	var input_dir:=Input.get_vector("left","right","up","down")
+	mouse_sway=mouse_sway.lerp(Vector2.ZERO,clamp(delta*sway_speed,0.0,1.0))
+	var target_position=weapon_position
+	var target_rotation=weapon_rotation
+	if movement_speed>0.1 and is_on_floor():
+		bob_time+=delta*bob_speed*(movement_speed/speed)
+		var current_step=int(floor(bob_time/PI))
+		if current_step!=last_step:
+			$step_sound.play()
+			last_step=current_step
+		target_position.x+=sin(bob_time)*bob_side_amount
+		target_position.y-=abs(cos(bob_time))*bob_amount
+		target_rotation.z-=input_dir.x*bob_roll_amount
+		target_rotation.x-=sin(bob_time*2.0)*0.015
+	target_position.x-=mouse_sway.x
+	target_position.y+=mouse_sway.y
+	target_rotation.y+=mouse_sway.x*mouse_sway_rotation
+	target_rotation.x+=mouse_sway.y*mouse_sway_rotation
+	target_position.y+=jump_sway*jump_sway_amount
+	target_rotation.x-=jump_sway*jump_sway_rotation
+	items.position=items.position.lerp(target_position,clamp(delta*12.0,0.0,1.0))
+	items.rotation=items.rotation.lerp(target_rotation,clamp(delta*12.0,0.0,1.0))
 
 func _physics_process(delta: float) -> void:
-    var input_dir:=Vector2.ZERO
-    input_dir.x=Input.get_axis("left","right")
-    input_dir.y=Input.get_axis("up","down")
-    var on_floor=is_on_floor()
-    if not on_floor:
-        velocity+=get_gravity()*delta
-    elif Input.is_action_pressed("space"):
-        $step_sound.play()
-        air_acceleration*=air_acceleration_factor*input_dir.length()
-        velocity.y=get_gravity().y*-jump_velocity
-    if was_on_floor and not on_floor:
-        jump_sway=1.0
-    was_on_floor=on_floor
-    jump_sway=move_toward(jump_sway,0.0,delta*sway_speed)
-    if Input.is_action_pressed("shoot") and not reloading:
-        shoot()
-    if Input.is_action_just_pressed("reload") and not reloading:
-        reload()
-    air_acceleration=maxf(air_acceleration-delta/deceleration,1.0)
-    var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y))
-    if not direction.is_zero_approx():
-        var s:=speed*air_acceleration
-        velocity.x=lerp(velocity.x,direction.x*s,1.0-exp(-delta*speed*acceleration))
-        velocity.z=lerp(velocity.z,direction.z*s,1.0-exp(-delta*speed*acceleration))
-    else:
-        velocity.x=lerp(velocity.x,0.0,1.0-exp(-delta*speed*deceleration))
-        velocity.z=lerp(velocity.z,0.0,1.0-exp(-delta*speed*deceleration))
-    move_and_slide()
+	var input_dir:=Vector2.ZERO
+	input_dir.x=Input.get_axis("left","right")
+	input_dir.y=Input.get_axis("up","down")
+	var on_floor=is_on_floor()
+	if not on_floor:
+		velocity+=get_gravity()*delta
+	elif Input.is_action_pressed("space"):
+		$step_sound.play()
+		air_acceleration*=air_acceleration_factor*input_dir.length()
+		velocity.y=get_gravity().y*-jump_velocity
+	if was_on_floor and not on_floor:
+		jump_sway=1.0
+	was_on_floor=on_floor
+	jump_sway=move_toward(jump_sway,0.0,delta*sway_speed)
+	if Input.is_action_pressed("shoot") and not reloading:
+		shoot()
+	if Input.is_action_just_pressed("reload") and not reloading:
+		reload()
+	air_acceleration=maxf(air_acceleration-delta/deceleration,1.0)
+	var direction:=(transform.basis*Vector3(input_dir.x,0,input_dir.y))
+	if not direction.is_zero_approx():
+		var s:=speed*air_acceleration
+		velocity.x=lerp(velocity.x,direction.x*s,1.0-exp(-delta*speed*acceleration))
+		velocity.z=lerp(velocity.z,direction.z*s,1.0-exp(-delta*speed*acceleration))
+	else:
+		velocity.x=lerp(velocity.x,0.0,1.0-exp(-delta*speed*deceleration))
+		velocity.z=lerp(velocity.z,0.0,1.0-exp(-delta*speed*deceleration))
+	move_and_slide()

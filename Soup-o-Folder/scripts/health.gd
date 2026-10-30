@@ -5,12 +5,12 @@ class_name Health extends Node
 #
 #
 #@onready var health := max_health:
-    #set(v):
-        #if health != v:
-            #health_changed.emit()
-        #if health <= 0:
-            #killed.emit()
-        #health = v
+	#set(v):
+		#if health != v:
+			#health_changed.emit()
+		#if health <= 0:
+			#killed.emit()
+		#health = v
 #
 #
 #signal health_changed()
@@ -18,4 +18,4 @@ class_name Health extends Node
 #
 #
 #func damage(v: int) -> void:
-    #health -= v
+	#health -= v
