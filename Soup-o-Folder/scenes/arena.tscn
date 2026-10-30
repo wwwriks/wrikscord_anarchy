@@ -75,31 +75,31 @@ Vector2i(4, 0): {
 panorama = ExtResource("1_oimwn")
 energy_multiplier = 0.33
 
-[sub_resource type="Sky" id="Sky_67n32"]
+[sub_resource type="Sky" id="Sky_818fg"]
 sky_material = SubResource("PanoramaSkyMaterial_2x6ba")
 
 [sub_resource type="Environment" id="Environment_2x6ba"]
 background_mode = 2
-sky = SubResource("Sky_67n32")
+sky = SubResource("Sky_818fg")
 fog_light_energy = 4.42
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqmv4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7d4pn"]
 albedo_texture = ExtResource("3_a3wqe")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_o8exx"]
-material = SubResource("StandardMaterial3D_oqmv4")
+material = SubResource("StandardMaterial3D_7d4pn")
 radius = 34.9
 height = 19.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oimwn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pocf7"]
 albedo_texture = ExtResource("3_a3wqe")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oimwn"]
-material = SubResource("StandardMaterial3D_oimwn")
+material = SubResource("StandardMaterial3D_pocf7")
 size = Vector2(65, 65)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o8exx"]
@@ -181,13 +181,13 @@ shader_parameter/green_color = 18.0
 shader_parameter/blue_color = 18.0
 shader_parameter/dither_strength = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8exx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1gadm"]
 albedo_texture = ExtResource("3_a3wqe")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_uwlwv"]
-material = SubResource("StandardMaterial3D_o8exx")
+material = SubResource("StandardMaterial3D_1gadm")
 radius = 9.3
 height = 22.6
 

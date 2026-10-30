@@ -80,6 +80,8 @@ func _ready() -> void:
 	camera_base_position=camera.position
 
 func blood_handler():
+	if hp>3:
+		hp=3
 	match hp:
 		3:
 			$ui/Heart1.show()
@@ -95,7 +97,7 @@ func blood_handler():
 			$ui/Heart2.hide()
 			$ui/blood.modulate="#969696"
 		0:
-			pass
+			get_tree().change_scene_to_file("res://Soup-o-Folder/scenes/death_scene.tscn")
 
 func kill_count():
 	kills+=1
@@ -141,7 +143,7 @@ func change_weapon(new_weapon):
 			$Camera3D/items/gun_gun.hide()
 			$Camera3D/items/shotgun_model.hide()
 			$Camera3D/items/awp_model.show()
-			total_ammo=1
+			total_ammo=3
 	current_gun=str(new_weapon)
 	ammo=total_ammo
 	reloading=false

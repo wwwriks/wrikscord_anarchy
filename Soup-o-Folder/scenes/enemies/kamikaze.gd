@@ -6,8 +6,12 @@ extends CharacterBody3D
 @export var hp_scene_case: PackedScene=preload("res://Soup-o-Folder/scenes/hp_case.tscn")
 
 var damage_given=false
+var exploded=false
 
 func _spawn_explosion() -> void:
+	if exploded:
+		return
+	exploded=true
 	var drop_chance=randi_range(1,5)
 	match drop_chance:
 		1:
@@ -22,6 +26,9 @@ func _spawn_explosion() -> void:
 			print("spawn hp case")
 	if explosion_scene==null:
 		return
+	var player=get_tree().get_first_node_in_group("Player")
+	if player:
+		player.kill_count()
 	var expl:=explosion_scene.instantiate() as Node3D
 	get_parent().add_child(expl)
 	expl.global_position=global_position
