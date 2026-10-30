@@ -6,11 +6,11 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xwhw"]
 height = 4.65232
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hoyy7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71drd"]
 shading_mode = 0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hoyy7"]
-material = SubResource("StandardMaterial3D_hoyy7")
+material = SubResource("StandardMaterial3D_71drd")
 flip_faces = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3bl6"]
@@ -40,6 +40,7 @@ material = SubResource("StandardMaterial3D_nq2vo")
 [node name="Area3D" type="Area3D"]
 collision_layer = 0
 script = ExtResource("1_hoyy7")
+bulletSpeed = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)

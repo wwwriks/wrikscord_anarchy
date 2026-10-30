@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b61ifo7hdsysc"
+path="res://.godot/imported/Your Life is Here - Out of Combat.ogg-a8d38c76329c7879d48946c0a8afc97c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Out of Combat.ogg"
+dest_files=["res://.godot/imported/Your Life is Here - Out of Combat.ogg-a8d38c76329c7879d48946c0a8afc97c.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=160.0
+beat_count=0
+bar_beats=4

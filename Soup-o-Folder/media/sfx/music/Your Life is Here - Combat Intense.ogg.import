@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://1k8et1ri6e4x"
+path="res://.godot/imported/Your Life is Here - Combat Intense.ogg-4a123490dd9a07a9f14352af037429f9.oggvorbisstr"
+
+[deps]
+
+source_file="res://Soup-o-Folder/media/sfx/music/Your Life is Here - Combat Intense.ogg"
+dest_files=["res://.godot/imported/Your Life is Here - Combat Intense.ogg-4a123490dd9a07a9f14352af037429f9.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=160.0
+beat_count=0
+bar_beats=4
