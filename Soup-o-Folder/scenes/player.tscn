@@ -1521,7 +1521,7 @@ mesh = SubResource("BoxMesh_tso2o")
 skeleton = NodePath("../..")
 
 [node name="hand_left" type="MeshInstance3D" parent="Camera3D/items/shotgun_model/Shotgun1"]
-transform = Transform3D(-5.42998e-06, 1.63913e-07, -1.5, 5.96046e-08, 1.5, 1.63913e-07, 1.5, -5.9604e-08, -5.42999e-06, 1.70797, 0.085845, -0.454804)
+transform = Transform3D(-5.42999e-06, 1.63913e-07, -1.5, 5.96046e-08, 1.5, 1.63913e-07, 1.5, -5.9604e-08, -5.42999e-06, 1.70797, 0.085845, -0.454804)
 material_override = SubResource("StandardMaterial3D_m1tae")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tso2o")
