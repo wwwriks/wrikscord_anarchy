@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://pe10ussqe68f"]
+[gd_scene load_steps=53 format=3 uid="uid://pe10ussqe68f"]
 
 [ext_resource type="Script" uid="uid://qsh1hx7n0bs1" path="res://Soup-o-Folder/scripts/player.gd" id="1_bm35r"]
 [ext_resource type="ArrayMesh" uid="uid://d3p5321fxwpro" path="res://Soup-o-Folder/media/models/fucking_candy_shotgun.vox" id="1_tso2o"]
@@ -36,6 +36,8 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_tso2o"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t8exw"]
 
 [sub_resource type="Animation" id="Animation_m1tae"]
 length = 0.001
@@ -327,10 +329,22 @@ tracks/23/keys = {
 "update": 0,
 "values": [Vector3(-1.09275e-07, -1.5708, 5.96046e-08)]
 }
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("awp_model/Awp/mag:position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.672884, 0.0466127, -0.282162)]
+}
 
 [sub_resource type="Animation" id="Animation_0l5d0"]
 resource_name = "awp_reload"
-length = 1.8
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -338,10 +352,10 @@ tracks/0/path = NodePath("awp_model/Awp:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.153486, 0.2, 0.365123, 1.05818, 1.19772, 1.33892, 1.40554, 1.65968, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.153486, 0.2, 0.365123, 1.02883, 1.17189, 1.23155, 1.33892, 1.40554, 1.65968, 1.8, 1.99083, 2.1132, 2.21572, 2.4575),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.12366, -0.197078)]
+"values": [Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.119, -0.09, -0.169), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.110686, -0.168863), Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.12366, -0.156564), Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.12366, -0.197078), Vector3(0.118932, -0.12366, -0.197078)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -350,10 +364,10 @@ tracks/1/path = NodePath("awp_model/Awp:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.260476, 0.439447, 0.50224, 0.678992, 1.13333, 1.19762, 1.27204, 1.53949, 1.76667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.260476, 0.439447, 0.50224, 0.678992, 1.13333, 1.19762, 1.27204, 1.53949, 1.76667, 1.88644, 2.09927, 2.22165, 2.32416, 2.4575),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(0.03865, 1.74151, 0.789092), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-0.0154283, 1.72884, 1.01261), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(0, 1.5708, 0)]
+"values": [Vector3(0, 1.5708, 0), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(0.03865, 1.74151, 0.789092), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-0.0154283, 1.72884, 1.01261), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(-2.8664e-06, 1.72959, 0.916123), Vector3(0, 1.5708, 0), Vector3(-0.306759, 1.5708, -1.38459e-08), Vector3(-0.235585, 1.5708, -1.06491e-08), Vector3(-0.306759, 1.5708, -1.38459e-08), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -362,10 +376,10 @@ tracks/2/path = NodePath("awp_model/Awp/hand_left:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.260476, 0.481416, 0.7, 1.06667, 1.17428, 1.26667, 1.61257, 1.76667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.260476, 0.481416, 0.7, 0.876398, 1.06667, 1.17428, 1.36667, 1.88069, 2.1314, 2.30317, 2.44859),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.24675, 0.1438, -0.454804), Vector3(0.566006, -0.702187, -0.642417), Vector3(0.474384, -0.0649819, -0.273297), Vector3(-1.7981, -1.80935, -0.273305), Vector3(0.566006, -0.702187, -0.642417), Vector3(0.474384, -0.0649819, -0.273297), Vector3(0.474384, -0.0649819, -0.273297), Vector3(1.00227, -0.355354, -0.454805), Vector3(1.24675, 0.1438, -0.454804)]
+"values": [Vector3(1.24675, 0.1438, -0.454804), Vector3(0.566006, -0.702187, -0.642417), Vector3(0.474384, -0.0649819, -0.273297), Vector3(-0.632027, -2.26753, -0.0710416), Vector3(-0.632027, -2.26753, -0.0710416), Vector3(0.566006, -0.702187, -0.642417), Vector3(0.474384, -0.0649819, -0.273297), Vector3(0.474384, -0.0649819, -0.273297), Vector3(0.59561, -0.927461, 1.18191), Vector3(1.24674, -2.57999, 0.431929), Vector3(1.24675, -0.644514, -0.726944), Vector3(1.24675, 0.1438, -0.454804)]
 }
 tracks/3/type = "audio"
 tracks/3/imported = false
@@ -382,10 +396,26 @@ tracks/3/keys = {
 "end_offset": 0.0280447,
 "start_offset": 0.41366,
 "stream": ExtResource("19_t8exw")
+}, {
+"end_offset": 0.447847,
+"start_offset": 0.0,
+"stream": ExtResource("19_t8exw")
 }],
-"times": PackedFloat32Array(0.454306, 1.16667)
+"times": PackedFloat32Array(0.454306, 1.16667, 1.9)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("awp_model/Awp/mag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.460335, 0.767225, 0.971818, 1.17641),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.672884, 0.0466127, -0.282162), Vector3(0.672884, 0.0466127, -0.282162), Vector3(-0.635797, -2.0069, -0.160976), Vector3(-0.635797, -2.0069, -0.160976), Vector3(0.672884, 0.0466127, -0.282162)]
+}
 
 [sub_resource type="Animation" id="Animation_jquhq"]
 resource_name = "awp_shoot"
@@ -440,6 +470,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1.24675, 0.1438, -0.454804), Vector3(1.24675, 0.1438, -0.454804), Vector3(1.24675, 0.1438, -0.454804), Vector3(-2.80821, -2.75895, 0.359543), Vector3(-2.80821, -2.75895, 0.359543), Vector3(1.24675, 0.1438, -0.454804)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("awp_model/Awp/mag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.672884, 0.0466127, -0.282162)]
 }
 
 [sub_resource type="Animation" id="Animation_t8exw"]
@@ -507,6 +549,18 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.333333)
 }
 tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("awp_model/Awp/mag:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.672884, 0.0466127, -0.282162)]
+}
 
 [sub_resource type="Animation" id="Animation_s2ibs"]
 resource_name = "gun_reload"
@@ -1213,6 +1267,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_qtnu4"]
 resource_name = "shotgun_up"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1220,7 +1275,7 @@ tracks/0/path = NodePath("shotgun_model/Shotgun1:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26656, 1),
+"times": PackedFloat32Array(0, 0.2, 0.733333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.183939, 0.0604982, 0.0413446), Vector3(0.183939, -0.203256, -0.222048), Vector3(0.183939, -0.203256, -0.222048)]
@@ -1232,10 +1287,10 @@ tracks/1/path = NodePath("shotgun_model/Shotgun1:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.533333, 0.766667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.366667, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-4.31593e-08, 1.5708, 1.41169), Vector3(0, 2.67035, -0.20944), Vector3(0, 2.79253, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0)]
+"values": [Vector3(-4.31593e-08, 1.5708, 1.41169), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1244,10 +1299,10 @@ tracks/2/path = NodePath("shotgun_model/Shotgun1/hand_left:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.382673, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.70797, 0.085845, -0.454804), Vector3(1.70797, 0.085845, -0.454804)]
+"values": [Vector3(-5.69251, -3.49715, -0.454804), Vector3(0.302578, -2.53516, -0.454804), Vector3(1.70797, 0.085845, -0.454804), Vector3(1.70797, 0.085845, -0.454804)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1256,7 +1311,7 @@ tracks/3/path = NodePath("shotgun_model/Shotgun1/hand_left:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-1.09275e-07, -1.5708, 3.97364e-08), Vector3(-1.09275e-07, -1.5708, 3.97364e-08)]
@@ -1448,7 +1503,6 @@ visible = false
 texture = ExtResource("3_dl7ft")
 
 [node name="shotgun_model" type="Node3D" parent="Camera3D/items"]
-visible = false
 
 [node name="Shotgun1" type="MeshInstance3D" parent="Camera3D/items/shotgun_model"]
 transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.183939, -0.203256, -0.222048)
@@ -1467,13 +1521,14 @@ mesh = SubResource("BoxMesh_tso2o")
 skeleton = NodePath("../..")
 
 [node name="hand_left" type="MeshInstance3D" parent="Camera3D/items/shotgun_model/Shotgun1"]
-transform = Transform3D(-5.42999e-06, 1.63913e-07, -1.5, 5.96046e-08, 1.5, 1.63913e-07, 1.5, -5.9604e-08, -5.42999e-06, 1.70797, 0.085845, -0.454804)
+transform = Transform3D(-5.42998e-06, 1.63913e-07, -1.5, 5.96046e-08, 1.5, 1.63913e-07, 1.5, -5.9604e-08, -5.42999e-06, 1.70797, 0.085845, -0.454804)
 material_override = SubResource("StandardMaterial3D_m1tae")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tso2o")
 skeleton = NodePath("../..")
 
 [node name="awp_model" type="Node3D" parent="Camera3D/items"]
+visible = false
 
 [node name="Awp" type="MeshInstance3D" parent="Camera3D/items/awp_model"]
 transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.118932, -0.12366, -0.197078)
@@ -1493,6 +1548,10 @@ material_override = SubResource("StandardMaterial3D_m1tae")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tso2o")
 skeleton = NodePath("../..")
+
+[node name="mag" type="MeshInstance3D" parent="Camera3D/items/awp_model/Awp"]
+transform = Transform3D(0.730468, 5.96046e-08, -5.58794e-09, 5.96046e-08, 0.387424, 5.58794e-09, 0, -1.86265e-08, 0.17621, 0.672884, 0.0466127, -0.282162)
+mesh = SubResource("BoxMesh_t8exw")
 
 [node name="items_anim" type="AnimationPlayer" parent="Camera3D/items"]
 libraries = {
