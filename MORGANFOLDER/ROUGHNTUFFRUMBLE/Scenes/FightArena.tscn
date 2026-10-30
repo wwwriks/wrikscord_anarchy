@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://di4drfathugwv"]
+[gd_scene load_steps=21 format=3 uid="uid://di4drfathugwv"]
 
 [ext_resource type="Script" uid="uid://dquxog7mjcw0p" path="res://MORGANFOLDER/MarbleGame/Scripts/WATER.gd" id="1_qkoiw"]
 [ext_resource type="Material" uid="uid://d2cdu5yqlv7cd" path="res://MORGANFOLDER/MarbleGame/Materials/Water_Material.tres" id="2_5jkd3"]
@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c8aayx1cjuc7j" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Scenes/Pickup.tscn" id="6_364nb"]
 [ext_resource type="Script" uid="uid://ceg5ctk7424dt" path="res://MORGANFOLDER/ROUGHNTUFFRUMBLE/Scenes/unlockPortal.gd" id="7_kotgf"]
 [ext_resource type="PackedScene" uid="uid://b0kvrwfil7ksv" path="res://DDDs_Stuff/exit_portal.tscn" id="8_75e5p"]
+[ext_resource type="PackedScene" uid="uid://drguqisiyad4c" path="res://axelthings/obj-policecar.tscn" id="9_75e5p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvi2v"]
-albedo_color = Color(0.733333, 0.905882, 0.737255, 1)
+albedo_color = Color(0.930893, 0.440884, 0.427123, 1)
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
@@ -203,6 +204,7 @@ shape = SubResource("BoxShape3D_2opli")
 
 [node name="Ball" parent="." instance=ExtResource("3_5jkd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 9
 maxSpeed = 32
 maxAirSpeed = 28
 minSpeed = 6
@@ -285,5 +287,8 @@ Release Left Click to cast.
 Pick up the blue collectibles."
 font_size = 140
 outline_size = 36
+
+[node name="Obj-policecar" parent="." instance=ExtResource("9_75e5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.50271, 0)
 
 [connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]
